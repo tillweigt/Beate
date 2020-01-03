@@ -21,7 +21,7 @@
 #SBATCH --mail-type=ALL
 
 # set an output file
-#SBATCH --output Hpc/
+#SBATCH --output Hpc/Output
 
 # send mail to this address
 #SBATCH --mail-user=till.weigt@gmail.com
