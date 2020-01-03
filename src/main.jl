@@ -2,8 +2,8 @@ using Distributed
 
 # addprocs(8)
 
-@sync @everywhere Path = joinpath("C:\\", "GoogleDrive", "Forschung", "Software", "Beate")
-@sync @everywhere push!(LOAD_PATH, joinpath(Path, "src"))
+# @sync @everywhere Path = joinpath("C:\\", "GoogleDrive", "Forschung", "Software", "Beate")
+@sync @everywhere push!(LOAD_PATH, joinpath(pwd(), "src"))
 @sync @everywhere using Beate
 
 @sync @everywhere using FileIO, DataFrames, StatsBase, Distributions
