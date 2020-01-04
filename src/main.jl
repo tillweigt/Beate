@@ -4,7 +4,7 @@ using Distributed
 
 # @sync @everywhere Path = joinpath("C:\\", "GoogleDrive", "Forschung", "Software", "Beate")
 @sync @everywhere Path = pwd()
-@sync @everywhere push!(LOAD_PATH, joinpath(pwd(), "src"))
+@sync @everywhere push!(LOAD_PATH, joinpath(Path, "src"))
 @sync @everywhere using Beate
 
 @sync @everywhere using FileIO, DataFrames, StatsBase, Distributions
@@ -47,7 +47,7 @@ run_Algorithm(
 		ResampleThresholdIbis = 1.1,
 		NumberOfDensityPoint = 10
 	),
-	:IbisDensityTempering
+	:IbisDataTempering
 )
 
 # using Plots

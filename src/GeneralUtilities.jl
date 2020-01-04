@@ -141,6 +141,16 @@ function print_on_the_fly(
 			# 	)
 			# )
 
+			write(
+				joinpath(
+					pwd(),
+					"Hpc",
+					"Output",
+					"test.txt"
+				),
+				TemperingPoint
+			)
+
 		end
 	end
 
