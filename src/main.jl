@@ -15,9 +15,9 @@ include(joinpath(Path, "Data", "get_Data.jl"))
 include(joinpath(Path, "Models", string(ModelChoice) * ".jl"))
 include(joinpath(Path, "Models", "get_Parameter_for_simulation.jl"))
 
-Model = getfield(Main, ModelChoice)
+# Model = getfield(Main, ModelChoice)
 
-Prior = getfield(Main, Symbol(string(ModelChoice) * "Prior"))
+# Prior = getfield(Main, Symbol(string(ModelChoice) * "Prior"))
 
 # Data = get_Data(
 # 	# [:BookToMarketRatio], # RegressorName
@@ -31,8 +31,10 @@ Prior = getfield(Main, Symbol(string(ModelChoice) * "Prior"))
 
 Output =
 run_Algorithm(
-	Model,
-	Prior,
+	# Model,
+	getfield(Main, ModelChoice)
+	# Prior,
+	getfield(Main, Symbol(string(ModelChoice) * "Prior"))
 	# Data,
 	get_Data(
 		# [:BookToMarketRatio], # RegressorName

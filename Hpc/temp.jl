@@ -1,7 +1,5 @@
-using Distributed
-
-addprocs()
-
-@sync @distributed for i in 1:2
-	println(i)
+function test()
+	println(1)
 end
+
+test()
