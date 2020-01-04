@@ -61,8 +61,6 @@ function print_on_the_fly(
 	TemperingPoint
 )
 
-	println(1)
-
 	if !iszero(Setting.Input.PrintEach)
 		if iszero(mod(TemperingPoint, Setting.Input.PrintEach))
 
