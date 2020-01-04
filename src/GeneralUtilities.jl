@@ -148,7 +148,7 @@ function print_on_the_fly(
 					"Output",
 					"test.txt"
 				),
-				TemperingPoint
+				string(TemperingPoint)
 			)
 
 		end
