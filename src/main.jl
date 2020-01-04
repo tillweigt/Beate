@@ -1,4 +1,8 @@
+println(1)
+
 using Distributed
+
+println(2)
 
 # addprocs()
 
@@ -11,9 +15,13 @@ using Distributed
 
 @sync @everywhere ModelChoice = :WellLog
 
+println(3)
+
 include(joinpath(Path, "Data", "get_Data.jl"))
 include(joinpath(Path, "Models", string(ModelChoice) * ".jl"))
 include(joinpath(Path, "Models", "get_Parameter_for_simulation.jl"))
+
+println(4)
 
 Model = getfield(Main, ModelChoice)
 
@@ -28,8 +36,6 @@ Prior = getfield(Main, Symbol(string(ModelChoice) * "Prior"))
 # 	[1.0, 0.0, 0.0], # Parameter for exogenuous Regressor Simulation
 # 	get_Parameter_for_simulation(ModelChoice)..., # Parameter and TransitionProbabilityMatrix
 # )
-
-println(1)
 
 Output =
 run_Algorithm(
