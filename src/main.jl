@@ -1,6 +1,6 @@
 using Distributed
 
-addprocs()
+# addprocs()
 
 # @sync @everywhere Path = joinpath("C:\\", "GoogleDrive", "Forschung", "Software", "Beate")
 @sync @everywhere Path = pwd()
