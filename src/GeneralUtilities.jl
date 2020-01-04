@@ -6,6 +6,8 @@ function run_Algorithm(
 	AlgorithmType
 )
 
+	println(2)
+
 	Algorithm =
 	getfield(
 		Beate,

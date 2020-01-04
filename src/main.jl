@@ -29,6 +29,8 @@ Prior = getfield(Main, Symbol(string(ModelChoice) * "Prior"))
 # 	get_Parameter_for_simulation(ModelChoice)..., # Parameter and TransitionProbabilityMatrix
 # )
 
+println(1)
+
 Output =
 run_Algorithm(
 	Model,
