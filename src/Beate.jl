@@ -33,7 +33,7 @@ run_Algorithm
 
 # Input
 include("DistributionsExtentsions.jl")
-include("Inputstructs.jl")
+include("InputStructs.jl")
 include("initialize.jl")
 
 # Algorithm
