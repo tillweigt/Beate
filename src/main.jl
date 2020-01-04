@@ -1,4 +1,5 @@
 println(1)
+println(1a)
 
 using Distributed
 
@@ -36,6 +37,8 @@ Prior = getfield(Main, Symbol(string(ModelChoice) * "Prior"))
 # 	[1.0, 0.0, 0.0], # Parameter for exogenuous Regressor Simulation
 # 	get_Parameter_for_simulation(ModelChoice)..., # Parameter and TransitionProbabilityMatrix
 # )
+
+error()
 
 Output =
 run_Algorithm(
