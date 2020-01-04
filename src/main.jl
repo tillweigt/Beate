@@ -45,9 +45,9 @@ run_Algorithm(
 		McmcLastUpdateIndex = 1000,
 		McmcVarianceInitialisation = 0.001,
 		ResampleThresholdIbis = 1.1,
-		NumberOfDensityPoint = 1
+		NumberOfDensityPoint = 10
 	),
-	:IbisDataTempering
+	:IbisDensityTempering
 )
 
 # using Plots
