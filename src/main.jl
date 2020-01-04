@@ -29,14 +29,12 @@ include(joinpath(Path, "Models", "get_Parameter_for_simulation.jl"))
 # 	get_Parameter_for_simulation(ModelChoice)..., # Parameter and TransitionProbabilityMatrix
 # )
 
-println(1)
-
 Output =
 run_Algorithm(
 	# Model,
-	getfield(Main, ModelChoice)
+	getfield(Main, ModelChoice),
 	# Prior,
-	getfield(Main, Symbol(string(ModelChoice) * "Prior"))
+	getfield(Main, Symbol(string(ModelChoice) * "Prior")),
 	# Data,
 	get_Data(
 		# [:BookToMarketRatio], # RegressorName
