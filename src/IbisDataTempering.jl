@@ -55,8 +55,7 @@ function IbisDataTempering(
 
 			resample_Computation!(Setting, Computation)
 
-			# @sync @distributed
-			for parameterParticle in 1:Setting.NumberOf.ParameterParticle
+			@sync @distributed for parameterParticle in 1:Setting.NumberOf.ParameterParticle
 
 				move_Computation!(
 					Setting,
