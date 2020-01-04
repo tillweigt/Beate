@@ -9,7 +9,7 @@ using Distributed
 
 @sync @everywhere using FileIO, DataFrames, StatsBase, Distributions
 
-ModelChoice = :WellLog
+@sync @everywhere ModelChoice = :WellLog
 
 include(joinpath(Path, "Data", "get_Data.jl"))
 include(joinpath(Path, "Models", string(ModelChoice) * ".jl"))
@@ -19,21 +19,30 @@ Model = getfield(Main, ModelChoice)
 
 Prior = getfield(Main, Symbol(string(ModelChoice) * "Prior"))
 
-Data = get_Data(
-	# [:BookToMarketRatio], # RegressorName
-	ModelChoice, Path,
-	1, # NumberOfTarget
-	100, # NumberOfDataPoint
-	Model, Prior,
-	[1.0, 0.0, 0.0], # Parameter for exogenuous Regressor Simulation
-	get_Parameter_for_simulation(ModelChoice)..., # Parameter and TransitionProbabilityMatrix
-)
+# Data = get_Data(
+# 	# [:BookToMarketRatio], # RegressorName
+# 	ModelChoice, Path,
+# 	1, # NumberOfTarget
+# 	100, # NumberOfDataPoint
+# 	Model, Prior,
+# 	[1.0, 0.0, 0.0], # Parameter for exogenuous Regressor Simulation
+# 	get_Parameter_for_simulation(ModelChoice)..., # Parameter and TransitionProbabilityMatrix
+# )
 
 Output =
 run_Algorithm(
 	Model,
 	Prior,
-	Data,
+	# Data,
+	get_Data(
+		# [:BookToMarketRatio], # RegressorName
+		ModelChoice, Path,
+		1, # NumberOfTarget
+		100, # NumberOfDataPoint
+		Model, Prior,
+		[1.0, 0.0, 0.0], # Parameter for exogenuous Regressor Simulation
+		get_Parameter_for_simulation(ModelChoice)..., # Parameter and TransitionProbabilityMatrix
+	),
 	InputSettingStruct(
 		NumberOfStateParticle = 128,
 		NumberOfMcmcStep = 1,
