@@ -21,7 +21,7 @@
 #SBATCH --mail-type=ALL
 
 # set an output file
-#SBATCH --output Temp/Output
+#SBATCH --output Output/Output
 
 # send mail to this address
 #SBATCH --mail-user=till.weigt@gmail.com
