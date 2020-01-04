@@ -3,6 +3,7 @@ using Distributed
 # addprocs(8)
 
 # @sync @everywhere Path = joinpath("C:\\", "GoogleDrive", "Forschung", "Software", "Beate")
+@sync @everywhere Path = pwd()
 @sync @everywhere push!(LOAD_PATH, joinpath(pwd(), "src"))
 @sync @everywhere using Beate
 
