@@ -5,7 +5,20 @@ if iszero(length(ARGS))
 	Args = fill("", 20)
 
 	Args[1] = "NParallel"
-
+	Args[2] = "WellLog"
+	Args[3] = 128 # NumberOfStateParticle = 128,
+	Args[4] = 1 # NumberOfMcmcStep = 1,
+	Args[5] = 50 # NumberOfParameterParticle = 50,
+	Args[6] = 1 # PrintEach = 1,
+	Args[7] = false # CovarianceScaling = false,
+	Args[8] = true # McmcFullCovariance = true,
+	Args[9] = 500 # McmcUpdateIntervalLength = 500,
+	Args[10] = 1000 # McmcLastUpdateIndex = 1000,
+	Args[11] = 0.001 # McmcVarianceInitialisation = 0.001,
+	Args[12] = 1.1 # ResampleThresholdIbis = 1.1,
+	Args[13] = 10 # NumberOfDensityPoint = 10,
+	Args[14] = Path # Path = Path,
+	Args[15] = true # SaveOutput = true
 else
 
 	Args = ARGS
@@ -21,7 +34,7 @@ Args[1] == "Parallel" ? addprocs() : nothing
 
 @sync @everywhere using FileIO, DataFrames, StatsBase, Distributions
 
-@sync @everywhere ModelChoice = :WellLog
+@sync @everywhere ModelChoice = Symbol(Args[2])
 
 include(joinpath(Path, "Data", "get_Data.jl"))
 include(joinpath(Path, "Models", string(ModelChoice) * ".jl"))
@@ -47,19 +60,19 @@ run_Algorithm(
 	Prior,
 	Data,
 	InputSettingStruct(
-		NumberOfStateParticle = 128,
-		NumberOfMcmcStep = 1,
-		NumberOfParameterParticle = 50,
-		PrintEach = 1,
-		CovarianceScaling = false,
-		McmcFullCovariance = true,
-		McmcUpdateIntervalLength = 500,
-		McmcLastUpdateIndex = 1000,
-		McmcVarianceInitialisation = 0.001,
-		ResampleThresholdIbis = 1.1,
-		NumberOfDensityPoint = 10,
+		NumberOfStateParticle = parse(Int64, Args[3]),
+		NumberOfMcmcStep = parse(Int64, Args[4]),
+		NumberOfParameterParticle = parse(Int64, Args[5]),
+		PrintEach = parse(Int64, Args[6]),
+		CovarianceScaling = parse(Bool, Args[7]),
+		McmcFullCovariance = parse(Bool, Args[8]),
+		McmcUpdateIntervalLength = parse(Int64, Args[9]),
+		McmcLastUpdateIndex = parse(Int64, Args[10]),
+		McmcVarianceInitialisation = parse(Float64, Args[11]),
+		ResampleThresholdIbis = parse(Float64, Args[12]),
+		NumberOfDensityPoint = parse(Int64, Args[13]),
 		Path = Path,
-		SaveOutput = true
+		SaveOutput = parse(Bool, Args[15])
 	),
 	:IbisDataTempering
 )
