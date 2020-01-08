@@ -33,12 +33,12 @@ Prior = getfield(Main, Symbol(string(ModelChoice) * "Prior"))
 
 Data = get_Data(
 	# [:BookToMarketRatio], # RegressorName
-	ModelChoice, Path,
-	1, # NumberOfTarget
-	100, # NumberOfDataPoint
-	Model, Prior,
-	[1.0, 0.0, 0.0], # Parameter for exogenuous Regressor Simulation
-	get_Parameter_for_simulation(ModelChoice)..., # Parameter and TransitionProbabilityMatrix
+	ModelChoice, Path#,
+	# 1, # NumberOfTarget
+	# 100, # NumberOfDataPoint
+	# Model, Prior,
+	# [1.0, 0.0, 0.0], # Parameter for exogenuous Regressor Simulation
+	# get_Parameter_for_simulation(ModelChoice)..., # Parameter and TransitionProbabilityMatrix
 )
 
 Output =
