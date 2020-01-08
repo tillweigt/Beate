@@ -1,30 +1,33 @@
 using Distributed
 
+if !iszero(length(ARGS))
+
+	ARGS[1] == "Parallel" ? addprocs() : nothing
+
+end
+
 if iszero(length(ARGS))
 
 	@sync @everywhere Args = fill("", 20)
 
-	Args[1] = "NParallel"
 	Args[2] = "WellLog"
-	Args[3] = 128 # NumberOfStateParticle = 128,
-	Args[4] = 1 # NumberOfMcmcStep = 1,
-	Args[5] = 50 # NumberOfParameterParticle = 50,
-	Args[6] = 1 # PrintEach = 1,
-	Args[7] = false # CovarianceScaling = false,
-	Args[8] = true # McmcFullCovariance = true,
-	Args[9] = 500 # McmcUpdateIntervalLength = 500,
-	Args[10] = 1000 # McmcLastUpdateIndex = 1000,
-	Args[11] = 0.001 # McmcVarianceInitialisation = 0.001,
-	Args[12] = 1.1 # ResampleThresholdIbis = 1.1,
-	Args[13] = 10 # NumberOfDensityPoint = 10,
-	Args[14] = true # SaveOutput = true
+	Args[3] = "128" # NumberOfStateParticle = 128,
+	Args[4] = "1" # NumberOfMcmcStep = 1,
+	Args[5] = "50" # NumberOfParameterParticle = 50,
+	Args[6] = "1" # PrintEach = 1,
+	Args[7] = "false" # CovarianceScaling = false,
+	Args[8] = "true" # McmcFullCovariance = true,
+	Args[9] = "500" # McmcUpdateIntervalLength = 500,
+	Args[10] = "1000" # McmcLastUpdateIndex = 1000,
+	Args[11] = "0.001" # McmcVarianceInitialisation = 0.001,
+	Args[12] = "1.1" # ResampleThresholdIbis = 1.1,
+	Args[13] = "10" # NumberOfDensityPoint = 10,
+	Args[14] = "true" # SaveOutput = true
 else
 
 	@sync @everywhere Args = ARGS
 
 end
-
-Args[1] == "Parallel" ? addprocs() : nothing
 
 # @sync @everywhere Path = joinpath("C:\\", "GoogleDrive", "Forschung", "Software", "Beate")
 @sync @everywhere Path = pwd()
