@@ -29,7 +29,7 @@ else
 
 end
 
-println(Args)
+println(Args[2])
 
 # @sync @everywhere Path = joinpath("C:\\", "GoogleDrive", "Forschung", "Software", "Beate")
 @sync @everywhere Path = pwd()
