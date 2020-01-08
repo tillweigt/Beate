@@ -1,6 +1,6 @@
 using Distributed
 
-if iszero(ARGS)
+if iszero(length(ARGS))
 
 	Args = fill("", 20)
 
