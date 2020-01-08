@@ -17,8 +17,7 @@ if iszero(length(ARGS))
 	Args[11] = 0.001 # McmcVarianceInitialisation = 0.001,
 	Args[12] = 1.1 # ResampleThresholdIbis = 1.1,
 	Args[13] = 10 # NumberOfDensityPoint = 10,
-	Args[14] = Path # Path = Path,
-	Args[15] = true # SaveOutput = true
+	Args[14] = true # SaveOutput = true
 else
 
 	Args = ARGS
@@ -72,7 +71,7 @@ run_Algorithm(
 		ResampleThresholdIbis = parse(Float64, Args[12]),
 		NumberOfDensityPoint = parse(Int64, Args[13]),
 		Path = Path,
-		SaveOutput = parse(Bool, Args[15])
+		SaveOutput = parse(Bool, Args[14])
 	),
 	:IbisDataTempering
 )

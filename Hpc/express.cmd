@@ -29,4 +29,17 @@
 # run the application
 ../julia-1.1.0/bin/julia \
 src/main.jl \
-Parallel
+Parallel \
+WellLog \
+128 \
+1 \
+50 \
+1 \
+false \
+true \
+500 \
+1000 \
+0.001 \
+1.1 \
+10 \
+true
