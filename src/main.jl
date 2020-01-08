@@ -23,10 +23,11 @@ if iszero(length(ARGS))
 	Args[12] = "1.1" # ResampleThresholdIbis = 1.1,
 	Args[13] = "10" # NumberOfDensityPoint = 10,
 	Args[14] = "true" # SaveOutput = true
+
 else
 
-	Args = fill("", length(ARGS))
-	@sync @everywhere Args .= ARGS
+	@sync @everywhere Args = fill("", length(ARGS))
+	Args .= ARGS
 
 end
 
