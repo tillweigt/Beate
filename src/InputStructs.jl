@@ -73,7 +73,8 @@ end
 	T2<:Function,
 	T3<:Symbol,
 	T4<:Bool,
-	T5<:Float64
+	T5<:Float64,
+	T6<:AbstractString
 }
 	NumberOfParameterParticle::T1 = 1
 	NumberOfStateParticle::T1 = 1
@@ -89,4 +90,6 @@ end
 	McmcVarianceInitialisation::T5 = 1.0
 	McmcFullCovariance::T4 = true
 	ResampleThresholdIbis::T5 = 1.1
+	Path::T6 = pwd()
+	SaveOutput::T4 = true
 end

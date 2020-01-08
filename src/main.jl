@@ -1,9 +1,4 @@
-println(1)
-println(1a)
-
 using Distributed
-
-println(2)
 
 # addprocs()
 
@@ -16,50 +11,33 @@ println(2)
 
 @sync @everywhere ModelChoice = :WellLog
 
-println(3)
-
 include(joinpath(Path, "Data", "get_Data.jl"))
 include(joinpath(Path, "Models", string(ModelChoice) * ".jl"))
 include(joinpath(Path, "Models", "get_Parameter_for_simulation.jl"))
-
-println(4)
 
 Model = getfield(Main, ModelChoice)
 
 Prior = getfield(Main, Symbol(string(ModelChoice) * "Prior"))
 
-# Data = get_Data(
-# 	# [:BookToMarketRatio], # RegressorName
-# 	ModelChoice, Path,
-# 	1, # NumberOfTarget
-# 	100, # NumberOfDataPoint
-# 	Model, Prior,
-# 	[1.0, 0.0, 0.0], # Parameter for exogenuous Regressor Simulation
-# 	get_Parameter_for_simulation(ModelChoice)..., # Parameter and TransitionProbabilityMatrix
-# )
-
-error()
+Data = get_Data(
+	# [:BookToMarketRatio], # RegressorName
+	ModelChoice, Path,
+	1, # NumberOfTarget
+	100, # NumberOfDataPoint
+	Model, Prior,
+	[1.0, 0.0, 0.0], # Parameter for exogenuous Regressor Simulation
+	get_Parameter_for_simulation(ModelChoice)..., # Parameter and TransitionProbabilityMatrix
+)
 
 Output =
 run_Algorithm(
 	Model,
-	# getfield(Main, ModelChoice),
 	Prior,
-	# getfield(Main, Symbol(string(ModelChoice) * "Prior")),
-	# Data,
-	get_Data(
-		# [:BookToMarketRatio], # RegressorName
-		ModelChoice, Path,
-		1, # NumberOfTarget
-		100, # NumberOfDataPoint
-		Model, Prior,
-		[1.0, 0.0, 0.0], # Parameter for exogenuous Regressor Simulation
-		get_Parameter_for_simulation(ModelChoice)..., # Parameter and TransitionProbabilityMatrix
-	),
+	Data,
 	InputSettingStruct(
 		NumberOfStateParticle = 128,
 		NumberOfMcmcStep = 1,
-		NumberOfParameterParticle = 1000,
+		NumberOfParameterParticle = 50,
 		PrintEach = 1,
 		CovarianceScaling = false,
 		McmcFullCovariance = true,
@@ -67,7 +45,9 @@ run_Algorithm(
 		McmcLastUpdateIndex = 1000,
 		McmcVarianceInitialisation = 0.001,
 		ResampleThresholdIbis = 1.1,
-		NumberOfDensityPoint = 10
+		NumberOfDensityPoint = 10,
+		Path = Path,
+		SaveOutput = true
 	),
 	:IbisDataTempering
 )

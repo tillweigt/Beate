@@ -6,8 +6,6 @@ function run_Algorithm(
 	AlgorithmType
 )
 
-	println(2)
-
 	Algorithm =
 	getfield(
 		Beate,
@@ -20,6 +18,10 @@ function run_Algorithm(
 		Prior,
 		Data,
 		InputSetting
+	)
+
+	save_Output(
+		Output...
 	)
 
 	return Output
@@ -55,7 +57,7 @@ function make_NumberOfLatent(Prior)
 
 end
 
-function print_on_the_fly(
+function print_and_save_on_the_fly(
 	Setting,
 	Computation,
 	ComputationProposal,
@@ -143,17 +145,85 @@ function print_on_the_fly(
 			# 	)
 			# )
 
-			write(
-				joinpath(
-					pwd(),
-					"Hpc",
-					"Output",
-					"test.txt"
-				),
-				string(TemperingPoint)
-			)
-
 		end
+	end
+
+	save_print_on_the_fly(
+		Setting,
+		Computation,
+		ComputationProposal,
+		AlgorithmComputation,
+		TemperingPoint
+	)
+
+	return nothing
+
+end
+
+function save_print_on_the_fly(
+	Setting,
+	Computation,
+	ComputationProposal,
+	AlgorithmComputation,
+	TemperingPoint
+)
+
+	open(
+		joinpath(
+			Setting.Input.Path,
+			"ComputationDiagnostics",
+			"test" *
+			".txt"
+		),
+		"a"
+	) do File
+
+		write(
+			File,
+			"\n", "\n",
+			"TemperingPoint: ", string(TemperingPoint)
+		)
+
+	end
+
+	return nothing
+
+end
+
+function save_Output(
+	Setting,
+	Computation,
+	ComputationOverTempering,
+	AlgorithmComputation
+)
+
+	if Setting.Input.SaveOutput
+
+		File = joinpath(
+			Setting.Input.Path,
+			"Output",
+			"test"
+		)
+
+		try
+			mkdir(
+				File
+			)
+		catch
+		end
+
+		save(
+			joinpath(
+				File,
+				"test" *
+				".jld2"
+			),
+			"Setting", Setting,
+			"Computation", Computation,
+			"ComputationOverTempering", ComputationOverTempering,
+			"AlgorithmComputation", AlgorithmComputation
+		)
+
 	end
 
 	return nothing
