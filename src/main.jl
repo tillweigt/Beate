@@ -25,7 +25,8 @@ if iszero(length(ARGS))
 	Args[14] = "true" # SaveOutput = true
 else
 
-	@sync @everywhere Args = ARGS
+	Args = fill("", length(ARGS))
+	@sync @everywhere Args .= ARGS
 
 end
 
