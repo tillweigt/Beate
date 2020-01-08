@@ -27,7 +27,7 @@ if iszero(length(ARGS))
 else
 
 	@sync @everywhere Args = fill("", length(ARGS))
-	Args .= ARGS
+	@sync @everywhere Args .= ARGS
 
 end
 
