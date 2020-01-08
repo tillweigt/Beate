@@ -21,11 +21,12 @@
 #SBATCH --mail-type=ALL
 
 # set an output file
-#SBATCH --output Output/Output
+#SBATCH --output Output/Console/%x_%A
 
 # send mail to this address
 #SBATCH --mail-user=till.weigt@gmail.com
 
 # run the application
 ../julia-1.1.0/bin/julia \
-src/main.jl
+src/main.jl \
+Parallel

@@ -1,6 +1,18 @@
 using Distributed
 
-# addprocs()
+if iszero(ARGS)
+
+	Args = fill("", 20)
+
+	Args[1] = "NParallel"
+
+else
+
+	Args = ARGS
+
+end
+
+Args[1] == "Parallel" ? addprocs() : nothing
 
 # @sync @everywhere Path = joinpath("C:\\", "GoogleDrive", "Forschung", "Software", "Beate")
 @sync @everywhere Path = pwd()
