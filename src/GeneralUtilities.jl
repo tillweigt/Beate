@@ -171,6 +171,7 @@ function save_print_on_the_fly(
 	open(
 		joinpath(
 			Setting.Input.Path,
+			"Output",
 			"ComputationDiagnostics",
 			"test" *
 			".txt"
@@ -202,6 +203,7 @@ function save_Output(
 		File = joinpath(
 			Setting.Input.Path,
 			"Output",
+			"Computation",
 			"test"
 		)
 
