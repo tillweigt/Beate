@@ -2,7 +2,7 @@ using Distributed
 
 if iszero(length(ARGS))
 
-	Args = fill("", 20)
+	@sync @everywhere Args = fill("", 20)
 
 	Args[1] = "NParallel"
 	Args[2] = "WellLog"
@@ -20,7 +20,7 @@ if iszero(length(ARGS))
 	Args[14] = true # SaveOutput = true
 else
 
-	Args = ARGS
+	@sync @everywhere Args = ARGS
 
 end
 
