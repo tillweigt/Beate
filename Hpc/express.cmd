@@ -29,7 +29,7 @@
 # run the application
 ../julia-1.1.0/bin/julia \
 src/main.jl \
-Parallel \
+NParallel \
 WellLog \
 128 \
 1 \
