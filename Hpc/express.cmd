@@ -13,7 +13,7 @@
 #SBATCH --partition express
 
 # set max wallclock time
-#SBATCH --time=0-00:10:00
+#SBATCH --time=0-02:00:00
 
 # set name of job
 #SBATCH --job-name=test
