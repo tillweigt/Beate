@@ -43,4 +43,5 @@ true \
 1.1 \
 10 \
 true \
+IbisDensityTempering \
 2
