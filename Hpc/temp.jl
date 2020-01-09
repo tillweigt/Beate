@@ -1,4 +1,4 @@
-Args = fill("", 20)
+Args = fill("", length(ARGS))
 
 Args .= ARGS
 
