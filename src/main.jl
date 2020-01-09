@@ -29,9 +29,13 @@ if iszero(length(ARGS))
 
 else
 
-	@sync @everywhere Args = fill("", length(ARGS))
+	# @sync @everywhere
+	# Args = fill("", length(ARGS))
 
-	@sync @everywhere Args .= ARGS
+	# @sync @everywhere
+	# Args .= ARGS
+
+	Args = ARGS
 
 end
 
