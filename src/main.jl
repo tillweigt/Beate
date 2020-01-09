@@ -6,9 +6,12 @@ if !iszero(length(ARGS))
 
 end
 
+addprocs(2)
+
 if iszero(length(ARGS))
 
-	@sync @everywhere Args = fill("", 20)
+	# @sync @everywhere
+	Args = fill("", 20)
 
 	Args[2] = "WellLog"
 	Args[3] = "128" # NumberOfStateParticle = 128,
@@ -32,9 +35,6 @@ else
 
 end
 
-println("ARGS: ", Symbol(ARGS[2]))
-println("Args: ", Symbol(Args[2]))
-
 # @sync @everywhere Path = joinpath("C:\\", "GoogleDrive", "Forschung", "Software", "Beate")
 @sync @everywhere Path = pwd()
 @sync @everywhere push!(LOAD_PATH, joinpath(Path, "src"))
@@ -42,7 +42,8 @@ println("Args: ", Symbol(Args[2]))
 
 @sync @everywhere using FileIO, DataFrames, StatsBase, Distributions
 
-@sync @everywhere ModelChoice = :WellLog#Symbol(Args[2])
+# @sync @everywhere
+ModelChoice = :WellLog#Symbol(Args[2])
 
 include(joinpath(Path, "Data", "get_Data.jl"))
 include(joinpath(Path, "Models", string(ModelChoice) * ".jl"))
@@ -62,8 +63,7 @@ Data = get_Data(
 	# get_Parameter_for_simulation(ModelChoice)..., # Parameter and TransitionProbabilityMatrix
 )
 
-Output =
-run_Algorithm(
+Output = run_Algorithm(
 	Model,
 	Prior,
 	Data,

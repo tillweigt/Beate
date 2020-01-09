@@ -4,7 +4,7 @@
 #SBATCH --nodes=1
 
 # set the number of CPU cores per node
-#SBATCH --ntasks-per-node 72
+#SBATCH --ntasks-per-node 2
 
 # How much memory is needed (per node). Possible units: K, G, M, T
 #SBATCH --mem=50G
