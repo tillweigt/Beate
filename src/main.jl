@@ -6,7 +6,7 @@ if !iszero(length(ARGS))
 
 end
 
-if iszero(length(ARGS))
+if true#iszero(length(ARGS))
 
 	@sync @everywhere Args = fill("", 20)
 
