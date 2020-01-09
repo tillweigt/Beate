@@ -43,7 +43,7 @@ end
 @sync @everywhere using FileIO, DataFrames, StatsBase, Distributions
 
 # @sync @everywhere
-ModelChoice = :WellLog#Symbol(Args[2])
+ModelChoice = Symbol(Args[2])
 
 include(joinpath(Path, "Data", "get_Data.jl"))
 include(joinpath(Path, "Models", string(ModelChoice) * ".jl"))
