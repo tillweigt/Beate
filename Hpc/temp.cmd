@@ -13,7 +13,7 @@
 #SBATCH --partition express
 
 # set max wallclock time
-#SBATCH --time=0-02:00:00
+#SBATCH --time=0-00:00:10
 
 # set name of job
 #SBATCH --job-name=test
@@ -21,11 +21,25 @@
 #SBATCH --mail-type=ALL
 
 # set an output file
-#SBATCH --output Output/Output
+#SBATCH --output Output/Console/%x_%A
 
 # send mail to this address
 #SBATCH --mail-user=till.weigt@gmail.com
 
 # run the application
 ../julia-1.1.0/bin/julia \
-Hpc/temp.jl
+Hpc/temp.jl \
+Parallel \
+WellLog \
+128 \
+1 \
+50 \
+1 \
+false \
+true \
+500 \
+1000 \
+0.001 \
+1.1 \
+10 \
+true

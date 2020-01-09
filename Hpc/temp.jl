@@ -1,5 +1,11 @@
-function test()
-	println(1)
-end
+Args = fill("", 20)
 
-test()
+Args .= ARGS
+
+println(typeof(ARGS))
+
+ARGS[1]
+
+println(typeof(Args))
+
+Args[1]
