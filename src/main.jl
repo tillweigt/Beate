@@ -1,18 +1,10 @@
 using Distributed
 
-if !iszero(length(ARGS))
-
-	ARGS[1] == "Parallel" ? addprocs() : nothing
-
-end
-
-addprocs(2)
-
 if iszero(length(ARGS))
 
-	# @sync @everywhere
 	Args = fill("", 20)
 
+	Args[1] = "Parallel"
 	Args[2] = "WellLog"
 	Args[3] = "128" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
@@ -29,15 +21,11 @@ if iszero(length(ARGS))
 
 else
 
-	# @sync @everywhere
-	# Args = fill("", length(ARGS))
-
-	# @sync @everywhere
-	# Args .= ARGS
-
 	Args = ARGS
 
 end
+
+Args[1] == "Parallel" ? addprocs() : nothing
 
 # @sync @everywhere Path = joinpath("C:\\", "GoogleDrive", "Forschung", "Software", "Beate")
 @sync @everywhere Path = pwd()
@@ -46,7 +34,6 @@ end
 
 @sync @everywhere using FileIO, DataFrames, StatsBase, Distributions
 
-# @sync @everywhere
 ModelChoice = Symbol(Args[2])
 
 include(joinpath(Path, "Data", "get_Data.jl"))
