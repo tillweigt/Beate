@@ -172,8 +172,8 @@ function save_print_on_the_fly(
 		joinpath(
 			Setting.Input.Path,
 			"Output",
-			"ComputationDiagnostics",
-			"test" *
+			"RuntimeDiagnostics",
+			"Output" *
 			".txt"
 		),
 		"a"
@@ -204,7 +204,8 @@ function save_Output(
 			Setting.Input.Path,
 			"Output",
 			"Computation",
-			"test"
+			Setting.Input.AlgorithmType,
+			Setting.Input.ModelChoice,
 		)
 
 		try
@@ -217,7 +218,11 @@ function save_Output(
 		save(
 			joinpath(
 				File,
-				"test" *
+				"PP_" * string(Setting.NumberOf.ParameterParticle) *
+				"_SP_" * string(Setting.NumberOf.StateParticle) *
+				"_MS_" * string(Setting.NumberOf.McmcStep) *
+				"_DP_" * string(Setting.NumberOf.DensityPoint) *
+				"_CLN_" * string(Setting.Input.ComputationLoopNumber) * 
 				".jld2"
 			),
 			"Setting", Setting,

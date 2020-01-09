@@ -4,11 +4,11 @@ if iszero(length(ARGS))
 
 	Args = fill("", 20)
 
-	Args[1] = "Parallel"
+	Args[1] = "NParallel"
 	Args[2] = "WellLog"
-	Args[3] = "128" # NumberOfStateParticle = 128,
+	Args[3] = "32" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
-	Args[5] = "50" # NumberOfParameterParticle = 50,
+	Args[5] = "30" # NumberOfParameterParticle = 50,
 	Args[6] = "1" # PrintEach = 1,
 	Args[7] = "false" # CovarianceScaling = false,
 	Args[8] = "true" # McmcFullCovariance = true,
@@ -16,8 +16,10 @@ if iszero(length(ARGS))
 	Args[10] = "1000" # McmcLastUpdateIndex = 1000,
 	Args[11] = "0.001" # McmcVarianceInitialisation = 0.001,
 	Args[12] = "1.1" # ResampleThresholdIbis = 1.1,
-	Args[13] = "10" # NumberOfDensityPoint = 10,
+	Args[13] = "1" # NumberOfDensityPoint = 10,
 	Args[14] = "true" # SaveOutput = true
+	Args[15] = "IbisDensityTempering"
+	Args[16] = "2"
 
 else
 
@@ -34,19 +36,19 @@ Args[1] == "Parallel" ? addprocs() : nothing
 
 @sync @everywhere using FileIO, DataFrames, StatsBase, Distributions
 
-ModelChoice = Symbol(Args[2])
+ModelChoice = Args[2]
 
 include(joinpath(Path, "Data", "get_Data.jl"))
-include(joinpath(Path, "Models", string(ModelChoice) * ".jl"))
+include(joinpath(Path, "Models", ModelChoice * ".jl"))
 include(joinpath(Path, "Models", "get_Parameter_for_simulation.jl"))
 
-Model = getfield(Main, ModelChoice)
+Model = getfield(Main, Symbol(ModelChoice))
 
-Prior = getfield(Main, Symbol(string(ModelChoice) * "Prior"))
+Prior = getfield(Main, Symbol(ModelChoice * "Prior"))
 
 Data = get_Data(
 	# [:BookToMarketRatio], # RegressorName
-	ModelChoice, Path#,
+	Symbol(ModelChoice), Path#,
 	# 1, # NumberOfTarget
 	# 100, # NumberOfDataPoint
 	# Model, Prior,
@@ -54,38 +56,59 @@ Data = get_Data(
 	# get_Parameter_for_simulation(ModelChoice)..., # Parameter and TransitionProbabilityMatrix
 )
 
-Output = run_Algorithm(
-	Model,
-	Prior,
-	Data,
-	InputSettingStruct(
-		NumberOfStateParticle = parse(Int64, Args[3]),
-		NumberOfMcmcStep = parse(Int64, Args[4]),
-		NumberOfParameterParticle = parse(Int64, Args[5]),
-		PrintEach = parse(Int64, Args[6]),
-		CovarianceScaling = parse(Bool, Args[7]),
-		McmcFullCovariance = parse(Bool, Args[8]),
-		McmcUpdateIntervalLength = parse(Int64, Args[9]),
-		McmcLastUpdateIndex = parse(Int64, Args[10]),
-		McmcVarianceInitialisation = parse(Float64, Args[11]),
-		ResampleThresholdIbis = parse(Float64, Args[12]),
-		NumberOfDensityPoint = parse(Int64, Args[13]),
-		Path = Path,
-		SaveOutput = parse(Bool, Args[14])
-	),
-	:IbisDataTempering
-)
+for i in 1:5
 
-# using Plots
+	Output = run_Algorithm(
+		Model,
+		Prior,
+		Data,
+		InputSettingStruct(
+			NumberOfStateParticle = parse(Int64, Args[3]),
+			NumberOfMcmcStep = 1,
+			NumberOfParameterParticle = 1,
+			PrintEach = 0,
+			CovarianceScaling = false,
+			McmcFullCovariance = false,
+			McmcUpdateIntervalLength = parse(Int64, Args[9]),
+			McmcLastUpdateIndex = parse(Int64, Args[10]),
+			McmcVarianceInitialisation = parse(Float64, Args[11]),
+			ResampleThresholdIbis = parse(Float64, Args[12]),
+			NumberOfDensityPoint = 1,
+			Path = Path,
+			SaveOutput = false,
+			ModelChoice = ModelChoice,
+			AlgorithmType = "Filter"
+		),
+		:Filter # AlgorithmType
+	)
 
-# histogram(Output[3].Parameter[1, :, end])
+end
 
-# plot(Data.Target')
+for computationLoopNumber in 1:parse(Int64, Args[16])
 
-# plot!(Output[3].Prediction[1, 1, :])
+	Output = run_Algorithm(
+		Model,
+		Prior,
+		Data,
+		InputSettingStruct(
+			NumberOfStateParticle = parse(Int64, Args[3]),
+			NumberOfMcmcStep = parse(Int64, Args[4]),
+			NumberOfParameterParticle = parse(Int64, Args[5]),
+			PrintEach = parse(Int64, Args[6]),
+			CovarianceScaling = parse(Bool, Args[7]),
+			McmcFullCovariance = parse(Bool, Args[8]),
+			McmcUpdateIntervalLength = parse(Int64, Args[9]),
+			McmcLastUpdateIndex = parse(Int64, Args[10]),
+			McmcVarianceInitialisation = parse(Float64, Args[11]),
+			ResampleThresholdIbis = parse(Float64, Args[12]),
+			NumberOfDensityPoint = parse(Int64, Args[13]),
+			Path = Path,
+			SaveOutput = parse(Bool, Args[14]),
+			ModelChoice = ModelChoice,
+			AlgorithmType = Args[15],
+			ComputationLoopNumber = computationLoopNumber
+		),
+		Symbol(Args[15]) # AlgorithmType
+	)
 
-# scatter(Output[3].TransitionProbabilityMatrix[1, 1, 1, :])
-
-# scatter!(Output[3].TransitionProbabilityMatrix[1, 2, 1, :])
-
-# histogram(Output[3].Parameter[1, 1, 8000:end])
+end

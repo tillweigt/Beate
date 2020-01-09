@@ -25,7 +25,7 @@ function move_Computation!(
 				Computation.LogLikelihood[parameterParticle] -
 				Computation.LogLikelihoodIncrement[parameterParticle] *
 				Setting.DensityTemperingDifference[densityPoint]
-				
+
 			end
 
 			set_TransitionProbabilityMatrixProposal!(
@@ -123,7 +123,7 @@ function move_Computation!(
 				mcmcStep
 			)
 
-			print_on_the_fly(
+			save_print_on_the_fly(
 				Setting,
 				Computation,
 				ComputationProposal,

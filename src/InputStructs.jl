@@ -92,4 +92,7 @@ end
 	ResampleThresholdIbis::T5 = 1.1
 	Path::T6 = pwd()
 	SaveOutput::T4 = true
+	ModelChoice::T6
+	AlgorithmType::T6
+	ComputationLoopNumber::T1 = 1
 end
