@@ -29,7 +29,7 @@
 # run the application
 ../julia-1.1.0/bin/julia \
 src/main.jl \
-Parallel \
+NParallel \
 WellLog \
 128 `#NumberOfStateParticle` \
 1 `#NumberOfMcmcStep` \
@@ -43,5 +43,5 @@ true `#McmcFullCovariance` \
 1.1 `#ResampleThresholdIbis` \
 1 `#NumberOfDensityPoint` \
 true `#SaveOutput` \
-IbisDataTempering `#AlgorithmType` \
+IbisDensityTempering `#AlgorithmType` \
 10 `#ComputationLoopNumber`
