@@ -219,7 +219,6 @@ function save_Output(
 				"scratch",
 				"tmp",
 				"t_weig05",
-				"Output",
 				"Computation",
 				Setting.Input.AlgorithmType,
 				Setting.Input.ModelChoice,
