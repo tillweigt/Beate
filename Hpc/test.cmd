@@ -10,13 +10,13 @@
 #SBATCH --mem=50G
 
 # set a partition
-#SBATCH --partition normal
+#SBATCH --partition express
 
 # set max wallclock time
-#SBATCH --time=7-00:00:00
+#SBATCH --time=0-00:10:00
 
 # set name of job
-#SBATCH --job-name=IbisDensity_100RepOf1
+#SBATCH --job-name=test
 # mail alert at start, end and abortion of execution
 #SBATCH --mail-type=ALL
 
@@ -28,7 +28,7 @@
 
 # run the application
 ../julia-1.1.0/bin/julia \
-src/main.jl \
+src/temp.jl \
 Parallel \
 WellLog \
 128 `#NumberOfStateParticle` \
@@ -43,5 +43,5 @@ true `#McmcFullCovariance` \
 1.1 `#ResampleThresholdIbis` \
 1 `#NumberOfDensityPoint` \ 
 true `#SaveOutput` \
-IbisDensityTempering `#AlgorithmType` \
+IbisDataTempering `#AlgorithmType` \
 100 `#ComputationLoopNumber`
