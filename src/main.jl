@@ -53,8 +53,13 @@ Data = get_Data(
 	# 100, # NumberOfDataPoint
 	# Model, Prior,
 	# [1.0, 0.0, 0.0], # Parameter for exogenuous Regressor Simulation
-	# get_Parameter_for_simulation(ModelChoice)..., # Parameter and TransitionProbabilityMatrix
+	# get_Parameter_for_simulation(Symbol(ModelChoice))..., # Parameter and TransitionProbabilityMatrix
 )
+
+# using Plots
+
+plot(Data.Target')
+plot!(Data.State[1, :])
 
 for i in 1:5
 

@@ -68,7 +68,7 @@ function get_Parameter_for_simulation(ModelChoice)
 	elseif ModelChoice == :WellLog
 
 		Parameter = [
-			0.05,
+			0.1,
 			0.0,
 			1.0
 		]
