@@ -213,7 +213,7 @@ function save_Output(
 
 	if Setting.Input.SaveOutput
 
-		if ComputationOnCluster
+		if Setting.Input.ComputationOnCluster
 
 			File = joinpath(
 				Setting.Input.Path,

@@ -20,7 +20,7 @@ if !ComputationOnCluster
 	Args[12] = "1.1" # ResampleThresholdIbis = 1.1,
 	Args[13] = "1" # NumberOfDensityPoint = 10,
 	Args[14] = "true" # SaveOutput = true
-	Args[15] = "IbisDataTempering"
+	Args[15] = "Filter"
 	Args[16] = "2"
 
 else
