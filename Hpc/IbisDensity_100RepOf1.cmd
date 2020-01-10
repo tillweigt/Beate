@@ -16,7 +16,7 @@
 #SBATCH --time=7-00:00:00
 
 # set name of job
-#SBATCH --job-name=IbisData_100RepOf1
+#SBATCH --job-name=IbisDensity_100RepOf1
 # mail alert at start, end and abortion of execution
 #SBATCH --mail-type=ALL
 
@@ -44,4 +44,4 @@ true `#McmcFullCovariance` \
 100 `#NumberOfDensityPoint` \
 true `#SaveOutput` \
 IbisDensityTempering `#AlgorithmType` \
-100 `#ComputationLoopNumber`
+10 `#ComputationLoopNumber`
