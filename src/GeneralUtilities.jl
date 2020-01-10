@@ -168,19 +168,32 @@ function save_print_on_the_fly(
 	TemperingPoint
 )
 
+	File = joinpath(
+		Setting.Input.Path,
+		"Output",
+		"RuntimeDiagnostics",
+		Setting.Input.AlgorithmType,
+		Setting.Input.ModelChoice
+	)
+
+	try
+		mkdir(
+			File
+		)
+	catch
+	end
+
 	open(
 		joinpath(
-			Setting.Input.Path,
-			"Output",
-			"RuntimeDiagnostics",
-			"Output" *
+			File,
+			"TextOutputOnTheFly" *
 			".txt"
 		),
 		"a"
-	) do File
+	) do file
 
 		write(
-			File,
+			file,
 			"\n", "\n",
 			"TemperingPoint: ", string(TemperingPoint)
 		)
@@ -200,13 +213,34 @@ function save_Output(
 
 	if Setting.Input.SaveOutput
 
-		File = joinpath(
-			Setting.Input.Path,
-			"Output",
-			"Computation",
-			Setting.Input.AlgorithmType,
-			Setting.Input.ModelChoice,
-		)
+		if ComputationOnCluster
+
+			File = joinpath(
+				Setting.Input.Path,
+				"..",
+				"..",
+				"..",
+				"..",
+				"scratch",
+				"tmp",
+				"t_weig05",
+				"Output",
+				"Computation",
+				Setting.Input.AlgorithmType,
+				Setting.Input.ModelChoice,
+			)
+
+		else
+
+			File = joinpath(
+				Setting.Input.Path,
+				"Output",
+				"Computation",
+				Setting.Input.AlgorithmType,
+				Setting.Input.ModelChoice,
+			)
+
+		end
 
 		try
 			mkdir(
@@ -222,7 +256,7 @@ function save_Output(
 				"_SP_" * string(Setting.NumberOf.StateParticle) *
 				"_MS_" * string(Setting.NumberOf.McmcStep) *
 				"_DP_" * string(Setting.NumberOf.DensityPoint) *
-				"_CLN_" * string(Setting.Input.ComputationLoopNumber) * 
+				"_CLN_" * string(Setting.Input.ComputationLoopNumber) *
 				".jld2"
 			),
 			"Setting", Setting,

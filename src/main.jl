@@ -1,6 +1,8 @@
 using Distributed
 
-if iszero(length(ARGS))
+iszero(length(ARGS)) ? ComputationOnCluster = false : ComputationOnCluster = true
+
+if !ComputationOnCluster
 
 	Args = fill("", 20)
 
@@ -18,7 +20,7 @@ if iszero(length(ARGS))
 	Args[12] = "1.1" # ResampleThresholdIbis = 1.1,
 	Args[13] = "1" # NumberOfDensityPoint = 10,
 	Args[14] = "true" # SaveOutput = true
-	Args[15] = "IbisDensityTempering"
+	Args[15] = "IbisDataTempering"
 	Args[16] = "2"
 
 else
@@ -55,12 +57,6 @@ Data = get_Data(
 	# [1.0, 0.0, 0.0], # Parameter for exogenuous Regressor Simulation
 	# get_Parameter_for_simulation(Symbol(ModelChoice))..., # Parameter and TransitionProbabilityMatrix
 )
-
-# using Plots
-
-plot(Data.Target')
-plot!(Data.State[1, :])
-
 for i in 1:5
 
 	Output = run_Algorithm(
@@ -82,7 +78,8 @@ for i in 1:5
 			Path = Path,
 			SaveOutput = false,
 			ModelChoice = ModelChoice,
-			AlgorithmType = "Filter"
+			AlgorithmType = "Filter",
+			ComputationOnCluster = ComputationOnCluster
 		),
 		:Filter # AlgorithmType
 	)

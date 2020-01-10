@@ -95,4 +95,5 @@ end
 	ModelChoice::T6
 	AlgorithmType::T6
 	ComputationLoopNumber::T1 = 1
+	ComputationOnCluster::T4
 end
