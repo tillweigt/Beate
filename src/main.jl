@@ -59,7 +59,7 @@ Data = get_Data(
 )
 for preRun in 1:5
 
-	Output = run_Algorithm(
+	run_Algorithm(
 		Model,
 		Prior,
 		Data,
