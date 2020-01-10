@@ -57,7 +57,7 @@ Data = get_Data(
 	# [1.0, 0.0, 0.0], # Parameter for exogenuous Regressor Simulation
 	# get_Parameter_for_simulation(Symbol(ModelChoice))..., # Parameter and TransitionProbabilityMatrix
 )
-for i in 1:5
+for preRun in 1:5
 
 	Output = run_Algorithm(
 		Model,
@@ -78,8 +78,7 @@ for i in 1:5
 			Path = Path,
 			SaveOutput = false,
 			ModelChoice = ModelChoice,
-			AlgorithmType = "Filter",
-			ComputationOnCluster = ComputationOnCluster
+			AlgorithmType = "Filter"
 		),
 		:Filter # AlgorithmType
 	)
@@ -108,7 +107,8 @@ for computationLoopNumber in 1:parse(Int64, Args[16])
 			SaveOutput = parse(Bool, Args[14]),
 			ModelChoice = ModelChoice,
 			AlgorithmType = Args[15],
-			ComputationLoopNumber = computationLoopNumber
+			ComputationLoopNumber = computationLoopNumber,
+			ComputationOnCluster = ComputationOnCluster
 		),
 		Symbol(Args[15]) # AlgorithmType
 	)

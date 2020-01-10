@@ -93,7 +93,7 @@ end
 	Path::T6 = pwd()
 	SaveOutput::T4 = true
 	ModelChoice::T6
-	AlgorithmType::T6
+	AlgorithmType::T6 = Filter
 	ComputationLoopNumber::T1 = 1
-	ComputationOnCluster::T4
+	ComputationOnCluster::T4 = false
 end
