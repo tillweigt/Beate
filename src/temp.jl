@@ -2,9 +2,14 @@ using FileIO, JLD2
 
 a = 5
 
-save(
+write(
 	a,
 	joinpath(
-		""
+		"/scratch",
+		"tmp",
+		"t_weig05",
+		"Computation",
+		Setting.Input.AlgorithmType,
+		Setting.Input.ModelChoice,
 	)
 )

@@ -216,7 +216,7 @@ function save_Output(
 		if Setting.Input.ComputationOnCluster
 
 			File = joinpath(
-				"scratch",
+				"/scratch",
 				"tmp",
 				"t_weig05",
 				"Computation",
