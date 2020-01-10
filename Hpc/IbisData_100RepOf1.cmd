@@ -41,7 +41,7 @@ true `#McmcFullCovariance` \
 1 `#McmcLstUpdateIndex` \
 0.001 `#McmcVarianceInitialisation` \
 1.1 `#ResampleThresholdIbis` \
-1 `#NumberOfDensityPoint` \ 
+1 `#NumberOfDensityPoint` \
 true `#SaveOutput` \
 IbisDataTempering `#AlgorithmType` \
 100 `#ComputationLoopNumber`
