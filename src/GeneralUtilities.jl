@@ -216,11 +216,6 @@ function save_Output(
 		if Setting.Input.ComputationOnCluster
 
 			File = joinpath(
-				Setting.Input.Path,
-				"..",
-				"..",
-				"..",
-				"..",
 				"scratch",
 				"tmp",
 				"t_weig05",
