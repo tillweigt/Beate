@@ -8,20 +8,20 @@ if !ComputationOnCluster
 
 	Args[1] = "NParallel"
 	Args[2] = "WellLog"
-	Args[3] = "32" # NumberOfStateParticle = 128,
+	Args[3] = "128" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
-	Args[5] = "30" # NumberOfParameterParticle = 50,
+	Args[5] = "100" # NumberOfParameterParticle = 50,
 	Args[6] = "1" # PrintEach = 1,
-	Args[7] = "false" # CovarianceScaling = false,
+	Args[7] = "true" # CovarianceScaling = false,
 	Args[8] = "true" # McmcFullCovariance = true,
 	Args[9] = "500" # McmcUpdateIntervalLength = 500,
 	Args[10] = "1000" # McmcLastUpdateIndex = 1000,
-	Args[11] = "0.001" # McmcVarianceInitialisation = 0.001,
+	Args[11] = "1.0" # McmcVarianceInitialisation = 0.001,
 	Args[12] = "1.1" # ResampleThresholdIbis = 1.1,
 	Args[13] = "1" # NumberOfDensityPoint = 10,
 	Args[14] = "true" # SaveOutput = true
-	Args[15] = "Filter"
-	Args[16] = "2"
+	Args[15] = "IbisDataTempering"
+	Args[16] = "1"
 
 else
 
@@ -84,6 +84,8 @@ for preRun in 1:5
 	)
 
 end
+
+Output = missing
 
 for computationLoopNumber in 1:parse(Int64, Args[16])
 

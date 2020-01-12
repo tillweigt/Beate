@@ -35,11 +35,11 @@ WellLog \
 1 `#NumberOfMcmcStep` \
 1000 `#NumberOfParameterParticle` \
 1 `#PrintEach` \
-true `#CovarianceScaling` \
+false `#CovarianceScaling` \
 true `#McmcFullCovariance` \
 1 `#McmcUpdateIntevalLength` \
 1 `#McmcLstUpdateIndex` \
-0.001 `#McmcVarianceInitialisation` \
+1.0 `#McmcVarianceInitialisation` \
 1.1 `#ResampleThresholdIbis` \
 100 `#NumberOfDensityPoint` \
 true `#SaveOutput` \

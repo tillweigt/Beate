@@ -221,7 +221,7 @@ function save_Output(
 				"t_weig05",
 				"Computation",
 				Setting.Input.AlgorithmType,
-				Setting.Input.ModelChoice,
+				Setting.Input.ModelChoice
 			)
 
 		else
