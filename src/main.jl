@@ -20,7 +20,7 @@ if !ComputationOnCluster
 	Args[12] = "1.1" # ResampleThresholdIbis = 1.1,
 	Args[13] = "1" # NumberOfDensityPoint = 10,
 	Args[14] = "true" # SaveOutput = true
-	Args[15] = "IbisDataTempering"
+	Args[15] = "IbisDensityTempering"
 	Args[16] = "1"
 
 else
@@ -57,6 +57,11 @@ Data = get_Data(
 	# [1.0, 0.0, 0.0], # Parameter for exogenuous Regressor Simulation
 	# get_Parameter_for_simulation(Symbol(ModelChoice))..., # Parameter and TransitionProbabilityMatrix
 )
+
+# using Plots
+
+plot(Data.Target')
+
 for preRun in 1:5
 
 	run_Algorithm(

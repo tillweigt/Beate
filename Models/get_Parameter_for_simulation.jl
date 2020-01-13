@@ -68,15 +68,15 @@ function get_Parameter_for_simulation(ModelChoice)
 	elseif ModelChoice == :WellLog
 
 		Parameter = [
-			0.1,
+			0.05,
 			0.0,
 			1.0
 		]
 
 		TransitionProbabilityMatrix = reshape(
 			[
-				0.9, 0.1,
-				0.9, 0.1
+				0.95, 0.05,
+				0.95, 0.05
 			],
 			2, 2
 		)
