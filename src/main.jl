@@ -58,10 +58,6 @@ Data = get_Data(
 	# get_Parameter_for_simulation(Symbol(ModelChoice))..., # Parameter and TransitionProbabilityMatrix
 )
 
-# using Plots
-
-plot(Data.Target')
-
 for preRun in 1:5
 
 	run_Algorithm(
