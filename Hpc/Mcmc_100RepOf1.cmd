@@ -10,10 +10,10 @@
 #SBATCH --mem=50G
 
 # set a partition
-#SBATCH --partition d0ow
+#SBATCH --partition express
 
 # set max wallclock time
-#SBATCH --time=7-00:00:00
+#SBATCH --time=0-02:00:00
 
 # set name of job
 #SBATCH --job-name=Mcmc_100RepOf1
