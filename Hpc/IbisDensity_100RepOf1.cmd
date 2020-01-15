@@ -39,7 +39,7 @@ false `#CovarianceScaling` \
 true `#McmcFullCovariance` \
 1 `#McmcUpdateIntevalLength` \
 1 `#McmcLstUpdateIndex` \
-1.0 `#McmcVarianceInitialisation` \
+0.001 `#McmcVarianceInitialisation` \
 1.1 `#ResampleThresholdIbis` \
 50 `#NumberOfDensityPoint` \
 true `#SaveOutput` \

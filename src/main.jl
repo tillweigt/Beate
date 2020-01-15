@@ -10,7 +10,7 @@ if !ComputationOnCluster
 	Args[2] = "WellLog"
 	Args[3] = "128" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
-	Args[5] = "300" # NumberOfParameterParticle = 50,
+	Args[5] = "1000" # NumberOfParameterParticle = 50,
 	Args[6] = "1" # PrintEach = 1,
 	Args[7] = "false" # CovarianceScaling = false,
 	Args[8] = "true" # McmcFullCovariance = true,
@@ -18,9 +18,9 @@ if !ComputationOnCluster
 	Args[10] = "1000" # McmcLastUpdateIndex = 1000,
 	Args[11] = "0.001" # McmcVarianceInitialisation = 0.001,
 	Args[12] = "1.1" # ResampleThresholdIbis = 1.1,
-	Args[13] = "1" # NumberOfDensityPoint = 10,
+	Args[13] = "50" # NumberOfDensityPoint = 10,
 	Args[14] = "false" # SaveOutput = true
-	Args[15] = "IbisDataTempering"
+	Args[15] = "IbisDensityTempering"
 	Args[16] = "1"
 
 else
@@ -90,7 +90,7 @@ for preRun in 1:5
 end
 
 computationLoopNumber = 1
-for computationLoopNumber in 1:parse(Int64, Args[16])
+# for computationLoopNumber in 1:parse(Int64, Args[16])
 
 	Output = run_Algorithm(
 		Model,
@@ -118,4 +118,4 @@ for computationLoopNumber in 1:parse(Int64, Args[16])
 		Symbol(Args[15]) # AlgorithmType
 	)
 
-end
+# end
