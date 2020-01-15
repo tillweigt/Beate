@@ -195,7 +195,32 @@ function save_print_on_the_fly(
 		write(
 			file,
 			"\n", "\n",
-			"TemperingPoint: ", string(TemperingPoint)
+			"TemperingPoint: ", string(TemperingPoint),
+			"\n",
+			"MeanOfParameter: ",
+			string(
+				mean(Computation.Parameter, dims = 2)
+			),
+			"\n",
+			"StandardDeviationOfParameter: ",
+			string(
+				std(Computation.Parameter, dims = 2)
+			),
+			"\n",
+			"McmcProposalStandardDeviation: ",
+			string(
+				AlgorithmComputation.ParameterFullCovariance[:, :, TemperingPoint + 1]
+			),
+			"\n",
+			"EffectiveSampleSizeParameterParticle: ",
+			string(
+				AlgorithmComputation.EffectiveSampleSizeParameterParticle[TemperingPoint]
+			),
+			"\n",
+			"AcceptanceRatio: ",
+			string(
+				AlgorithmComputation.AcceptanceRatio[TemperingPoint]
+			)
 		)
 
 	end

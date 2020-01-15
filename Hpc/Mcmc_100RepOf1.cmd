@@ -32,7 +32,7 @@ src/main.jl \
 NParallel \
 WellLog \
 128 `#NumberOfStateParticle` \
-20000 `#NumberOfMcmcStep` \
+50000 `#NumberOfMcmcStep` \
 1 `#NumberOfParameterParticle` \
 1 `#PrintEach` \
 false `#CovarianceScaling` \

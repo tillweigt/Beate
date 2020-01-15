@@ -38,8 +38,10 @@ Output = load(
 	"AlgorithmComputation"
 )
 
-plot(Output[4].AcceptanceRatio)
-
-histogram(Output[3].Parameter[3, :, end], bins = 10)
+plot(Output[3].Parameter[1, 1, 10000:end])
 
 histogram(Output[3].Parameter[1, 1, 10000:end], nbins = 50)
+
+plot(Output[4].AcceptanceRatio)
+
+plot(Output[4].ParameterFullCovariance[3, 3, 10000:end])
