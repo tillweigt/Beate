@@ -35,7 +35,7 @@ WellLog \
 1 `#NumberOfMcmcStep` \
 500 `#NumberOfParameterParticle` \
 1 `#PrintEach` \
-false `#CovarianceScaling` \
+true `#CovarianceScaling` \
 true `#McmcFullCovariance` \
 1 `#McmcUpdateIntevalLength` \
 1 `#McmcLstUpdateIndex` \

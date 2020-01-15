@@ -214,7 +214,9 @@ function save_print_on_the_fly(
 			"\n",
 			"McmcProposalStandardDeviation: ",
 			string(
-				AlgorithmComputation.ParameterFullCovariance[:, :, TemperingPoint + 1]
+				sqrt.(diag(
+					AlgorithmComputation.ParameterFullCovariance[:, :, TemperingPoint + 1]
+				))
 			),
 			"\n",
 			"EffectiveSampleSizeParameterParticle: ",

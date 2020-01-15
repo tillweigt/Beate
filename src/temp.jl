@@ -1,14 +1,14 @@
 using FileIO, JLD2, Plots
 
-AlgorithmType = "Mcmc"
+AlgorithmType = "IbisDataTempering"
 
 ModelChoice = "WellLog"
 
-NumberOfParameterParticle = 1
+NumberOfParameterParticle = 500
 
 NumberOfStateParticle = 128
 
-NumberOfMcmcStep = 20000
+NumberOfMcmcStep = 1
 
 NumberOfDensityPoint = 1
 
@@ -42,6 +42,14 @@ plot(Output[3].Parameter[1, 1, 10000:end])
 
 histogram(Output[3].Parameter[1, 1, 10000:end], nbins = 50)
 
-plot(Output[4].AcceptanceRatio)
-
 plot(Output[4].ParameterFullCovariance[3, 3, 10000:end])
+
+
+histogram(Output[3].Parameter[3, :, end])
+
+plot(Output[4].ParameterFullCovariance[3, 3, 20:end])
+
+
+plot(Output[4].EffectiveSampleSizeParameterParticle)
+
+plot(Output[4].AcceptanceRatio)
