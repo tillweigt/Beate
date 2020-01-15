@@ -42,4 +42,4 @@ plot(Output[4].AcceptanceRatio)
 
 histogram(Output[3].Parameter[3, :, end], bins = 10)
 
-histogram(Output[3].Parameter[2, 1, 5000:end])
+histogram(Output[3].Parameter[3, 1, 2000:end])

@@ -50,12 +50,12 @@ Prior = getfield(Main, Symbol(ModelChoice * "Prior"))
 
 Data = get_Data(
 	# [:BookToMarketRatio], # RegressorName
-	Symbol(ModelChoice), Path,
-	1, # NumberOfTarget
-	100, # NumberOfDataPoint
-	Model, Prior,
-	[1.0, 0.0, 0.0], # Parameter for exogenuous Regressor Simulation
-	get_Parameter_for_simulation(Symbol(ModelChoice))..., # Parameter and TransitionProbabilityMatrix
+	Symbol(ModelChoice), Path#,
+	# 1, # NumberOfTarget
+	# 100, # NumberOfDataPoint
+	# Model, Prior,
+	# [1.0, 0.0, 0.0], # Parameter for exogenuous Regressor Simulation
+	# get_Parameter_for_simulation(Symbol(ModelChoice))..., # Parameter and TransitionProbabilityMatrix
 )
 
 # using Plots
@@ -90,7 +90,22 @@ for preRun in 1:5
 end
 
 computationLoopNumber = 1
-for computationLoopNumber in 1:parse(Int64, Args[16])
+# for computationLoopNumber in 1:parse(Int64, Args[16])
+
+	Args[3] = "128" # NumberOfStateParticle = 128,
+	Args[4] = "5000" # NumberOfMcmcStep = 1,
+	Args[5] = "1" # NumberOfParameterParticle = 50,
+	Args[6] = "100" # PrintEach = 1,
+	Args[7] = "false" # CovarianceScaling = false,
+	Args[8] = "true" # McmcFullCovariance = true,
+	Args[9] = "500" # McmcUpdateIntervalLength = 500,
+	Args[10] = "1000" # McmcLastUpdateIndex = 1000,
+	Args[11] = "0.001" # McmcVarianceInitialisation = 0.001,
+	Args[12] = "1.1" # ResampleThresholdIbis = 1.1,
+	Args[13] = "1" # NumberOfDensityPoint = 10,
+	Args[14] = "false" # SaveOutput = true
+	Args[15] = "Mcmc"
+	Args[16] = "1"
 
 	Output = run_Algorithm(
 		Model,
@@ -118,4 +133,4 @@ for computationLoopNumber in 1:parse(Int64, Args[16])
 		Symbol(Args[15]) # AlgorithmType
 	)
 
-end
+# end

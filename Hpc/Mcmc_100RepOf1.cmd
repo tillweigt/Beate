@@ -37,9 +37,9 @@ WellLog \
 1 `#PrintEach` \
 false `#CovarianceScaling` \
 true `#McmcFullCovariance` \
-5000 `#McmcUpdateIntevalLength` \
-10000 `#McmcLstUpdateIndex` \
-1.0 `#McmcVarianceInitialisation` \
+500 `#McmcUpdateIntevalLength` \
+1000 `#McmcLstUpdateIndex` \
+0.001 `#McmcVarianceInitialisation` \
 1.1 `#ResampleThresholdIbis` \
 1 `#NumberOfDensityPoint` \
 true `#SaveOutput` \
