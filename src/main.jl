@@ -50,16 +50,16 @@ Prior = getfield(Main, Symbol(ModelChoice * "Prior"))
 
 Data = get_Data(
 	# [:BookToMarketRatio], # RegressorName
-	Symbol(ModelChoice), Path#,
-	# 1, # NumberOfTarget
-	# 100, # NumberOfDataPoint
-	# Model, Prior,
-	# [1.0, 0.0, 0.0], # Parameter for exogenuous Regressor Simulation
-	# get_Parameter_for_simulation(Symbol(ModelChoice))..., # Parameter and TransitionProbabilityMatrix
+	Symbol(ModelChoice), Path,
+	1, # NumberOfTarget
+	500, # NumberOfDataPoint
+	Model, Prior,
+	[1.0, 0.0, 0.0], # Parameter for exogenuous Regressor Simulation
+	get_Parameter_for_simulation(Symbol(ModelChoice))..., # Parameter and TransitionProbabilityMatrix
 )
 
-# using Plots
-# plot(Data.Target')
+using Plots
+plot(Data.Target')
 
 for preRun in 1:5
 

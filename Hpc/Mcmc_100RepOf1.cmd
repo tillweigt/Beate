@@ -10,10 +10,10 @@
 #SBATCH --mem=50G
 
 # set a partition
-#SBATCH --partition express
+#SBATCH --partition normal
 
 # set max wallclock time
-#SBATCH --time=0-02:00:00
+#SBATCH --time=2-00:00:00
 
 # set name of job
 #SBATCH --job-name=Mcmc_100RepOf1
@@ -32,7 +32,7 @@ src/main.jl \
 NParallel \
 WellLog \
 128 `#NumberOfStateParticle` \
-50000 `#NumberOfMcmcStep` \
+30000 `#NumberOfMcmcStep` \
 1 `#NumberOfParameterParticle` \
 1 `#PrintEach` \
 false `#CovarianceScaling` \

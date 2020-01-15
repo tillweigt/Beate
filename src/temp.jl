@@ -1,4 +1,4 @@
-using FileIO, JLD2, Plots
+using FileIO, JLD2, Plots, Statistics
 
 AlgorithmType = "IbisDataTempering"
 
@@ -38,6 +38,10 @@ Output = load(
 	"AlgorithmComputation"
 )
 
+
+plot(Output[1].Data.Target')
+
+
 plot(Output[3].Parameter[1, 1, 20000:end])
 
 histogram(Output[3].Parameter[3, 1, 10000:end], nbins = 30)
@@ -45,9 +49,16 @@ histogram(Output[3].Parameter[3, 1, 10000:end], nbins = 30)
 plot(Output[4].ParameterFullCovariance[1, 1, 30000:end])
 
 
-histogram(Output[3].Parameter[3, :, end])
+histogram(Output[3].Parameter[1, :, end])
 
 plot(Output[4].ParameterFullCovariance[3, 3, 20:end])
+
+
+plot(
+	mean(
+		Output[3].Parameter[1, :, :], dims = 2
+	)
+)
 
 
 plot(Output[4].EffectiveSampleSizeParameterParticle)

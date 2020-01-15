@@ -69,7 +69,7 @@ function get_Parameter_for_simulation(ModelChoice)
 
 		Parameter = [
 			0.05,
-			# 0.0,
+			0.0,
 			1.0
 		]
 
