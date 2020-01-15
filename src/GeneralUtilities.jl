@@ -197,6 +197,11 @@ function save_print_on_the_fly(
 			"\n", "\n",
 			"TemperingPoint: ", string(TemperingPoint),
 			"\n",
+			"CovarianceScalingScalar: ",
+			string(
+				AlgorithmComputation.CovarianceScalingScalar[TemperingPoint]
+			),
+			"\n",
 			"MeanOfParameter: ",
 			string(
 				mean(Computation.Parameter, dims = 2)
@@ -220,6 +225,11 @@ function save_print_on_the_fly(
 			"AcceptanceRatio: ",
 			string(
 				AlgorithmComputation.AcceptanceRatio[TemperingPoint]
+			),
+			"\n",
+			"TransitionProbabilityMatrix: ",
+			string(
+				mean(Computation.TransitionProbabilityMatrix, dims = 3)
 			)
 		)
 
