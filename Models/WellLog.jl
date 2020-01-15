@@ -16,8 +16,10 @@ ChangeToMean = KalmanFilterStruct(
 	end,
 	Transition = function(Regressor, Parameter, State)
 		Normal(
-			Parameter[2],
-			Parameter[3]
+			0.0,
+			# Parameter[2],
+			Parameter[2]
+			# Parameter[3]
 		)
 	end,
 	TransitionMatrixState = function(Regressor, Parameter, State)
@@ -49,7 +51,7 @@ PriorStruct(
 		# Invariant(0.0),
 		# Invariant(1.0), # Transition
 		Uniform(), # Observation
-		Uniform(-1.0, 1.0),
+		# Uniform(-1.0, 1.0),
 		Uniform(0.0, 2.0), # Transition
 		# Invariant(0.9), Invariant(0.1), # TransitionProbability
 		# Invariant(0.9), Invariant(0.1)

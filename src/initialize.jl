@@ -453,7 +453,7 @@ function make_AlgorithmComputation(Setting)
 	CovarianceScalingScalar = SharedArray{Float64}(
 		TemperingLength
 	)
-	CovarianceScalingScalar .= 2.38
+	CovarianceScalingScalar .= 1.0
 
 	ResampleThresholdDpf = SharedArray{Float64}(
 		Setting.NumberOf.ParameterParticle,

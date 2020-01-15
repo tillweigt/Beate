@@ -1,18 +1,18 @@
 using FileIO, JLD2, Plots
 
-AlgorithmType = "Mcmc"
+AlgorithmType = "IbisDensityTempering"
 
 ModelChoice = "WellLog"
 
-NumberOfParameterParticle = 1
+NumberOfParameterParticle = 500
 
 NumberOfStateParticle = 128
 
-NumberOfMcmcStep = 20000
+NumberOfMcmcStep = 1
 
-NumberOfDensityPoint = 1
+NumberOfDensityPoint = 50
 
-ComputationLoopNumber = 8
+ComputationLoopNumber = 1
 
 File = joinpath(
 	pwd(),
@@ -38,8 +38,8 @@ Output = load(
 	"AlgorithmComputation"
 )
 
-plot(Output[3].Parameter[3, 1, 1:20000])
+plot(Output[4].AcceptanceRatio)
 
-# histogram(Output[3].Parameter[1, :, end])
+histogram(Output[3].Parameter[3, :, end], bins = 10)
 
-plot(Output[1].Data.Target[1, :])
+histogram(Output[3].Parameter[2, 1, 5000:end])

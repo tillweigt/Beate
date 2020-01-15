@@ -36,7 +36,7 @@ function Filter(
 			dataPoint
 		)
 
-		save_print_on_the_fly(
+		print_and_save_on_the_fly(
 			Setting,
 			Computation,
 			ComputationProposal,
