@@ -447,7 +447,7 @@ function make_AlgorithmComputation(Setting)
 	)
 	for i in 1:Setting.NumberOf.Parameter
 		ParameterFullCovariance[i, i, :] .=
-			Setting.Input.McmcVarianceInitialisation
+			Setting.Input.McmcVarianceInitialisation[i]
 	end
 
 	CovarianceScalingScalar = SharedArray{Float64}(

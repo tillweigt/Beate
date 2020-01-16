@@ -33,13 +33,13 @@ NParallel \
 WellLog \
 128 `#NumberOfStateParticle` \
 1 `#NumberOfMcmcStep` \
-500 `#NumberOfParameterParticle` \
+2000 `#NumberOfParameterParticle` \
 1 `#PrintEach` \
 false `#CovarianceScaling` \
 true `#McmcFullCovariance` \
 1 `#McmcUpdateIntevalLength` \
 1 `#McmcLstUpdateIndex` \
-0.001 `#McmcVarianceInitialisation` \
+[0.001, 0.001, 0.001] `#McmcVarianceInitialisation` \
 1.1 `#ResampleThresholdIbis` \
 1 `#NumberOfDensityPoint` \
 true `#SaveOutput` \

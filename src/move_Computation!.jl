@@ -248,6 +248,77 @@ function propose_Parameter!(
 
 end
 
+# function propose_Parameter!(
+# 	Setting,
+# 	Computation,
+# 	ComputationProposal,
+# 	AlgorithmComputation,
+# 	dataPoint,
+# 	densityPoint,
+# 	parameterParticle,
+# 	mcmcStep
+# )
+#
+# 	TemperingIndex = compute_TemperingIndex(
+# 		Setting, dataPoint, densityPoint, mcmcStep
+# 	)
+#
+# 	if Setting.Input.McmcFullCovariance
+#
+# 		DistributionParameter = MvNormal(
+# 			AlgorithmComputation.ParameterMean[:, TemperingIndex],
+# 			# Computation.Parameter[:, parameterParticle],
+# 			AlgorithmComputation.ParameterFullCovariance[:, :, TemperingIndex]
+# 		)
+#
+# 	else
+#
+# 		DistributionParameter = MvNormal(
+# 			AlgorithmComputation.ParameterMean[:, TemperingIndex],
+# 			# Computation.Parameter[:, parameterParticle],
+# 			Diagonal(diag(
+# 				AlgorithmComputation.ParameterFullCovariance[:, :, TemperingIndex]
+# 			))
+# 		)
+#
+# 	end
+#
+# 	ComputationProposal.Parameter[:, parameterParticle] =
+# 	rand(DistributionParameter)
+#
+# 	if Setting.Input.McmcFullCovariance
+#
+# 		DistributionParameterProposal = MvNormal(
+# 			ComputationProposal.Parameter[:, parameterParticle],
+# 			AlgorithmComputation.ParameterFullCovariance[:, :, TemperingIndex]
+# 		)
+#
+# 	else
+#
+# 		DistributionParameterProposal = MvNormal(
+# 			ComputationProposal.Parameter[:, parameterParticle],
+# 			Diagonal(diag(
+# 				AlgorithmComputation.ParameterFullCovariance[:, :, TemperingIndex]
+# 			))
+# 		)
+#
+# 	end
+#
+# 	LogProposalRatio =
+# 	Setting.Input.ScoringRule(
+# 		DistributionParameterProposal,
+# 		# Computation.Parameter[:, parameterParticle]
+# 		AlgorithmComputation.ParameterMean[:, TemperingIndex]
+# 	) -
+# 	Setting.Input.ScoringRule(
+# 		DistributionParameter,
+# 		ComputationProposal.Parameter[:, parameterParticle]
+# 	)
+#
+# 	return LogProposalRatio
+#
+# end
+
 function compute_LogProbabilityOfPriorAtParameter(
 	Setting, Prior, Computation, parameterParticle
 )

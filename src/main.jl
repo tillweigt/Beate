@@ -9,18 +9,18 @@ if !ComputationOnCluster
 	Args[1] = "NParallel"
 	Args[2] = "WellLog"
 	Args[3] = "128" # NumberOfStateParticle = 128,
-	Args[4] = "1" # NumberOfMcmcStep = 1,
-	Args[5] = "100" # NumberOfParameterParticle = 50,
-	Args[6] = "1" # PrintEach = 1,
+	Args[4] = "10000" # NumberOfMcmcStep = 1,
+	Args[5] = "1" # NumberOfParameterParticle = 50,
+	Args[6] = "100" # PrintEach = 1,
 	Args[7] = "false" # CovarianceScaling = false,
 	Args[8] = "true" # McmcFullCovariance = true,
-	Args[9] = "500" # McmcUpdateIntervalLength = 500,
-	Args[10] = "1000" # McmcLastUpdateIndex = 1000,
-	Args[11] = "0.001" # McmcVarianceInitialisation = 0.001,
+	Args[9] = "1000" # McmcUpdateIntervalLength = 500,
+	Args[10] = "3000" # McmcLastUpdateIndex = 1000,
+	Args[11] = "fill(1.0, 3)" # McmcVarianceInitialisation = 0.001,
 	Args[12] = "1.1" # ResampleThresholdIbis = 1.1,
-	Args[13] = "50" # NumberOfDensityPoint = 10,
+	Args[13] = "1" # NumberOfDensityPoint = 10,
 	Args[14] = "false" # SaveOutput = true
-	Args[15] = "IbisDensityTempering"
+	Args[15] = "Mcmc"
 	Args[16] = "1"
 
 else
@@ -52,7 +52,7 @@ Data = get_Data(
 	# [:BookToMarketRatio], # RegressorName
 	Symbol(ModelChoice), Path#,
 	# 1, # NumberOfTarget
-	# 500, # NumberOfDataPoint
+	# 100, # NumberOfDataPoint
 	# Model, Prior,
 	# [1.0, 0.0, 0.0], # Parameter for exogenuous Regressor Simulation
 	# get_Parameter_for_simulation(Symbol(ModelChoice))..., # Parameter and TransitionProbabilityMatrix
@@ -76,7 +76,8 @@ for preRun in 1:5
 			McmcFullCovariance = false,
 			McmcUpdateIntervalLength = parse(Int64, Args[9]),
 			McmcLastUpdateIndex = parse(Int64, Args[10]),
-			McmcVarianceInitialisation = parse(Float64, Args[11]),
+			McmcVarianceInitialisation =
+			eval(Meta.parse(Args[11])),
 			ResampleThresholdIbis = parse(Float64, Args[12]),
 			NumberOfDensityPoint = 1,
 			Path = Path,
@@ -105,7 +106,8 @@ computationLoopNumber = 1
 			McmcFullCovariance = parse(Bool, Args[8]),
 			McmcUpdateIntervalLength = parse(Int64, Args[9]),
 			McmcLastUpdateIndex = parse(Int64, Args[10]),
-			McmcVarianceInitialisation = parse(Float64, Args[11]),
+			McmcVarianceInitialisation =
+			eval(Meta.parse(Args[11])),
 			ResampleThresholdIbis = parse(Float64, Args[12]),
 			NumberOfDensityPoint = parse(Int64, Args[13]),
 			Path = Path,

@@ -74,7 +74,8 @@ end
 	T3<:Symbol,
 	T4<:Bool,
 	T5<:Float64,
-	T6<:AbstractString
+	T6<:AbstractString,
+	T7<:AbstractArray
 }
 	NumberOfParameterParticle::T1 = 1
 	NumberOfStateParticle::T1 = 1
@@ -87,7 +88,7 @@ end
 	ResampleScheme::T3 = :MultinomialResampling
 	PrintEach::T1 = 0
 	CovarianceScaling::T4 = false
-	McmcVarianceInitialisation::T5 = 1.0
+	McmcVarianceInitialisation::T7
 	McmcFullCovariance::T4 = true
 	ResampleThresholdIbis::T5 = 1.1
 	Path::T6 = pwd()
