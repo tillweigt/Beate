@@ -72,8 +72,3 @@ plot(
 plot(Output[4].EffectiveSampleSizeParameterParticle)
 
 plot(Output[4].AcceptanceRatio)
-
-
-a = "[0.0, 0.2]"
-
-typeof(eval(Meta.parse(a)))

@@ -7,10 +7,10 @@ if !ComputationOnCluster
 	Args = fill("", 20)
 
 	Args[1] = "NParallel"
-	Args[2] = "RealDataMixture"
+	Args[2] = "RealData"
 	Args[3] = "128" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
-	Args[5] = "300" # NumberOfParameterParticle = 50,
+	Args[5] = "500" # NumberOfParameterParticle = 50,
 	Args[6] = "1" # PrintEach = 1,
 	Args[7] = "false" # CovarianceScaling = false,
 	Args[8] = "true" # McmcFullCovariance = true,
@@ -20,7 +20,7 @@ if !ComputationOnCluster
 	Args[12] = "1.1" # ResampleThresholdIbis = 1.1,
 	Args[13] = "10" # NumberOfDensityPoint = 10,
 	Args[14] = "false" # SaveOutput = true
-	Args[15] = "IbisDensityTempering"
+	Args[15] = "IbisDataTempering"
 	Args[16] = "1"
 
 else

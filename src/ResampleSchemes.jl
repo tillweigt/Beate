@@ -16,21 +16,20 @@ end
 
 function StratifiedResampling(WeightNormalized, IndexLength)
 
-	K = mean(WeightNormalized)
-
-	K <= 0.0 ? println(K) : nothing
+	K = sum(WeightNormalized) / IndexLength
 
 	U = rand(Uniform(0.0, K))
 
-	ResampleIndex = fill(0, IndexLength)
-
-	IndexNumber = 1
+	ResampleIndex = fill(
+		argmax(WeightNormalized),
+		IndexLength
+	)
 
 	ResampleIndexNumber = 1
 
-	while ResampleIndexNumber <= IndexLength
+	for IndexNumber in 1:length(WeightNormalized)
 
-		U = U - WeightNormalized[IndexNumber]
+		U -= WeightNormalized[IndexNumber]
 
 		if U < 0.0
 
@@ -39,11 +38,9 @@ function StratifiedResampling(WeightNormalized, IndexLength)
 
 			ResampleIndexNumber += 1
 
-			U = U + K
+			U += K
 
 		end
-
-		IndexNumber += 1
 
 	end
 

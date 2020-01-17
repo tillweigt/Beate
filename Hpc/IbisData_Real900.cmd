@@ -10,10 +10,10 @@
 #SBATCH --mem=50G
 
 # set a partition
-#SBATCH --partition express
+#SBATCH --partition d0ow
 
 # set max wallclock time
-#SBATCH --time=0-02:00:00
+#SBATCH --time=1-00:00:00
 
 # set name of job
 #SBATCH --job-name=IbisData_Real900
