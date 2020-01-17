@@ -7,7 +7,7 @@ if !ComputationOnCluster
 	Args = fill("", 20)
 
 	Args[1] = "NParallel"
-	Args[2] = "RealData"
+	Args[2] = "RealDataZero"
 	Args[3] = "128" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
 	Args[5] = "500" # NumberOfParameterParticle = 50,

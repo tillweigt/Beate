@@ -30,7 +30,7 @@
 ../julia-1.1.0/bin/julia \
 src/main.jl \
 NParallel \
-WellLog \
+RealData \
 128 `#NumberOfStateParticle` \
 1 `#NumberOfMcmcStep` \
 1000 `#NumberOfParameterParticle` \

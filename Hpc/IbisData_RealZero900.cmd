@@ -10,13 +10,13 @@
 #SBATCH --mem=50G
 
 # set a partition
-#SBATCH --partition d0ow
+#SBATCH --partition normal
 
 # set max wallclock time
 #SBATCH --time=2-00:00:00
 
 # set name of job
-#SBATCH --job-name=IbisData_Real900
+#SBATCH --job-name=IbisData_RealZero900
 # mail alert at start, end and abortion of execution
 #SBATCH --mail-type=ALL
 
@@ -30,7 +30,7 @@
 ../julia-1.1.0/bin/julia \
 src/main.jl \
 NParallel \
-RealData \
+RealDataZero \
 128 `#NumberOfStateParticle` \
 1 `#NumberOfMcmcStep` \
 500 `#NumberOfParameterParticle` \
