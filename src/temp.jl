@@ -1,8 +1,9 @@
-using FileIO, JLD2, Plots, Statistics
+push!(LOAD_PATH, joinpath(pwd(), "src"))
+using FileIO, JLD2, Plots, Statistics, Beate
 
-AlgorithmType = "IbisDensityTempering"
+AlgorithmType = "IbisDataTempering"
 
-ModelChoice = "WellLog"
+ModelChoice = "RealDataMixture"
 
 NumberOfParameterParticle = 500
 
@@ -10,7 +11,7 @@ NumberOfStateParticle = 128
 
 NumberOfMcmcStep = 1
 
-NumberOfDensityPoint = 50
+NumberOfDensityPoint = 1
 
 ComputationLoopNumber = 1
 
@@ -41,7 +42,6 @@ Output = load(
 
 plot(Output[1].Data.Target')
 
-
 plot(Output[3].Parameter[1, 1, 5000:end])
 
 histogram(Output[3].Parameter[3, 1, 10000:end], nbins = 30)
@@ -49,9 +49,11 @@ histogram(Output[3].Parameter[3, 1, 10000:end], nbins = 30)
 plot(Output[4].ParameterFullCovariance[1, 1, 30000:end])
 
 
-histogram(Output[3].Parameter[3:5, :, end]')
+histogram(Output[3].Parameter[5, :, end])
 
-histogram(Output[3].TransitionProbabilityMatrix[1, 1, :, end])
+mean(Output[3].TransitionProbabilityMatrix[:, :, :, end], dims = 3)
+
+plot(dropdims(mean(Output[3].TransitionProbabilityMatrix[:, 2, :, 100:end], dims = 2), dims = 2)')
 
 plot(Output[4].ParameterFullCovariance[3, 3, 20:end])
 
