@@ -7,7 +7,7 @@ if !ComputationOnCluster
 	Args = fill("", 20)
 
 	Args[1] = "NParallel"
-	Args[2] = "RealDataTimeVarying"
+	Args[2] = "RealDataMixture"
 	Args[3] = "128" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
 	Args[5] = "100" # NumberOfParameterParticle = 50,
@@ -16,7 +16,7 @@ if !ComputationOnCluster
 	Args[8] = "true" # McmcFullCovariance = true,
 	Args[9] = "1000" # McmcUpdateIntervalLength = 500,
 	Args[10] = "3000" # McmcLastUpdateIndex = 1000,
-	Args[11] = "fill(0.01, 4)" # McmcVarianceInitialisation = 0.001,
+	Args[11] = "fill(0.1, 6)" # McmcVarianceInitialisation = 0.001,
 	Args[12] = "1.1" # ResampleThresholdIbis = 1.1,
 	Args[13] = "1" # NumberOfDensityPoint = 10,
 	Args[14] = "false" # SaveOutput = true
