@@ -58,11 +58,11 @@ Data = get_Data(
 	# get_Parameter_for_simulation(Symbol(ModelChoice))..., # Parameter and TransitionProbabilityMatrix
 )
 
-using Plots
-plot(Data.Regressor')
-plot(Data.State[3, :])
-plot(Data.Target')
-plot(Data.State[1, :])
+# using Plots
+# plot(Data.Regressor')
+# plot(Data.State[3, :])
+# plot(Data.Target')
+# plot(Data.State[1, :])
 
 for preRun in 1:5
 
