@@ -59,9 +59,9 @@ PriorStruct(
 	State = [
 		Invariant(0.0), Invariant(1.0), # Transition
 		Invariant(1.0), # MixtureTransition
-		# Dirichlet(fill(1.0, 2)), # TransitionProbability
-		# Dirichlet(fill(1.0, 2))
-		Invariant(0.95), Invariant(0.05), # TransitionProbability
-		Invariant(0.95), Invariant(0.05)
+		Dirichlet(fill(1.0, 2)), # TransitionProbability
+		Dirichlet(fill(1.0, 2))
+		# Invariant(0.95), Invariant(0.05), # TransitionProbability
+		# Invariant(0.95), Invariant(0.05)
 	]
 )

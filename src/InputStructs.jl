@@ -39,7 +39,7 @@ end
 	MixtureStateIndex::T3
 	TransitionProbabilityMatrixIndex::T4
 	IsTransitionProbabilityMatrixFromState::T5
-	ResampleScheme::T6 = :MultinomialResampling
+	ResampleScheme::T6 = :StratifiedResampling
 end
 
 @with_kw struct PriorStruct{

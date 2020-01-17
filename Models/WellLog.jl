@@ -41,7 +41,8 @@ DiscreteParticleFilterStruct(
 	# TransitionProbabilityMatrixIndex = 4:7,
 	# IsTransitionProbabilityMatrixFromState = false,
 	TransitionProbabilityMatrixIndex = 4:7,
-	IsTransitionProbabilityMatrixFromState = true
+	IsTransitionProbabilityMatrixFromState = true,
+	:StratifiedResampling
 )
 
 WellLogPrior =

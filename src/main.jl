@@ -10,7 +10,7 @@ if !ComputationOnCluster
 	Args[2] = "RealDataMixture"
 	Args[3] = "128" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
-	Args[5] = "100" # NumberOfParameterParticle = 50,
+	Args[5] = "300" # NumberOfParameterParticle = 50,
 	Args[6] = "1" # PrintEach = 1,
 	Args[7] = "false" # CovarianceScaling = false,
 	Args[8] = "true" # McmcFullCovariance = true,
@@ -18,9 +18,9 @@ if !ComputationOnCluster
 	Args[10] = "3000" # McmcLastUpdateIndex = 1000,
 	Args[11] = "fill(0.1, 6)" # McmcVarianceInitialisation = 0.001,
 	Args[12] = "1.1" # ResampleThresholdIbis = 1.1,
-	Args[13] = "1" # NumberOfDensityPoint = 10,
+	Args[13] = "10" # NumberOfDensityPoint = 10,
 	Args[14] = "false" # SaveOutput = true
-	Args[15] = "IbisDataTempering"
+	Args[15] = "IbisDensityTempering"
 	Args[16] = "1"
 
 else

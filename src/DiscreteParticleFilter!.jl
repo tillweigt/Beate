@@ -871,6 +871,10 @@ function compute_ResampleIndex(
 
 		ResampleIndex = Array{Int64}(undef, 0)
 
+	elseif all(iszero(WeightNormalized))
+
+		ResampleIndex = 1:IndexLength
+
 	else
 
 		ResampleIndex = ResampleSchmeme(
