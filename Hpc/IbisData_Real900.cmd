@@ -10,7 +10,7 @@
 #SBATCH --mem=50G
 
 # set a partition
-#SBATCH --partition express
+#SBATCH --partition normal
 
 # set max wallclock time
 #SBATCH --time=1-00:00:00
@@ -33,7 +33,7 @@ NParallel \
 RealData \
 128 `#NumberOfStateParticle` \
 1 `#NumberOfMcmcStep` \
-500 `#NumberOfParameterParticle` \
+2000 `#NumberOfParameterParticle` \
 1 `#PrintEach` \
 false `#CovarianceScaling` \
 true `#McmcFullCovariance` \
@@ -45,4 +45,4 @@ true `#McmcFullCovariance` \
 true `#SaveOutput` \
 IbisDataTempering `#AlgorithmType` \
 1 `#ComputationLoopNumber` \
-1000 `#DataStart`
+900 `#DataStart`
