@@ -49,10 +49,10 @@ PriorStruct(
 		# Invariant(0.05), # Observation
 		# Invariant(0.0),
 		# Invariant(10.0), # Transition
-		Uniform(),
-		Uniform(),
-		Uniform(),
-		Uniform(0.0, 50.0),
+		Uniform(-0.5, 0.5),
+		Uniform(0.0, 0.2),
+		Uniform(-0.5, 0.5),
+		Uniform(0.0, 0.5),
 		# Invariant(0.9), Invariant(0.1), # TransitionProbability
 		# Invariant(0.9), Invariant(0.1)
 	],

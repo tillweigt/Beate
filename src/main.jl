@@ -10,7 +10,7 @@ if !ComputationOnCluster
 	Args[2] = "RealData"
 	Args[3] = "128" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
-	Args[5] = "100" # NumberOfParameterParticle = 50,
+	Args[5] = "500" # NumberOfParameterParticle = 50,
 	Args[6] = "1" # PrintEach = 1,
 	Args[7] = "false" # CovarianceScaling = false,
 	Args[8] = "true" # McmcFullCovariance = true,
@@ -49,9 +49,9 @@ Model = getfield(Main, Symbol(ModelChoice))
 Prior = getfield(Main, Symbol(ModelChoice * "Prior"))
 
 Data = get_Data(
-	# [:BookToMarketRatio], # RegressorName
-	Symbol(ModelChoice), Path#,
-	# 1, # NumberOfTarget
+	[:DividendYield], # RegressorName
+	Symbol(ModelChoice), Path,
+	1, # NumberOfTarget
 	# 100, # NumberOfDataPoint
 	# Model, Prior,
 	# [0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
@@ -63,6 +63,12 @@ Data = get_Data(
 # plot(Data.State[3, :])
 # plot(Data.Target')
 # plot(Data.State[1, :])
+
+Data = DataStruct(
+	Data.Target[:, 900:end],
+	Data.Regressor[:, 900:end],
+	Data.State[:, 900:end]
+)
 
 for preRun in 1:5
 
