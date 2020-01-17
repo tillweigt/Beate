@@ -7,20 +7,20 @@ if !ComputationOnCluster
 	Args = fill("", 20)
 
 	Args[1] = "NParallel"
-	Args[2] = "WellLog"
+	Args[2] = "RealData"
 	Args[3] = "128" # NumberOfStateParticle = 128,
-	Args[4] = "10000" # NumberOfMcmcStep = 1,
-	Args[5] = "1" # NumberOfParameterParticle = 50,
-	Args[6] = "100" # PrintEach = 1,
+	Args[4] = "1" # NumberOfMcmcStep = 1,
+	Args[5] = "100" # NumberOfParameterParticle = 50,
+	Args[6] = "1" # PrintEach = 1,
 	Args[7] = "false" # CovarianceScaling = false,
 	Args[8] = "true" # McmcFullCovariance = true,
 	Args[9] = "1000" # McmcUpdateIntervalLength = 500,
 	Args[10] = "3000" # McmcLastUpdateIndex = 1000,
-	Args[11] = "fill(1.0, 3)" # McmcVarianceInitialisation = 0.001,
+	Args[11] = "fill(0.01, 4)" # McmcVarianceInitialisation = 0.001,
 	Args[12] = "1.1" # ResampleThresholdIbis = 1.1,
 	Args[13] = "1" # NumberOfDensityPoint = 10,
 	Args[14] = "false" # SaveOutput = true
-	Args[15] = "Mcmc"
+	Args[15] = "IbisDataTempering"
 	Args[16] = "1"
 
 else
@@ -54,12 +54,15 @@ Data = get_Data(
 	# 1, # NumberOfTarget
 	# 100, # NumberOfDataPoint
 	# Model, Prior,
-	# [1.0, 0.0, 0.0], # Parameter for exogenuous Regressor Simulation
+	# [0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
 	# get_Parameter_for_simulation(Symbol(ModelChoice))..., # Parameter and TransitionProbabilityMatrix
 )
 
-# using Plots
-# plot(Data.Target')
+using Plots
+plot(Data.Regressor')
+plot(Data.State[3, :])
+plot(Data.Target')
+plot(Data.State[1, :])
 
 for preRun in 1:5
 
