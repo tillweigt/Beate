@@ -10,7 +10,7 @@ if !ComputationOnCluster
 	Args[2] = "RealData"
 	Args[3] = "128" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
-	Args[5] = "500" # NumberOfParameterParticle = 50,
+	Args[5] = "300" # NumberOfParameterParticle = 50,
 	Args[6] = "1" # PrintEach = 1,
 	Args[7] = "false" # CovarianceScaling = false,
 	Args[8] = "true" # McmcFullCovariance = true,
@@ -22,6 +22,7 @@ if !ComputationOnCluster
 	Args[14] = "false" # SaveOutput = true
 	Args[15] = "IbisDataTempering"
 	Args[16] = "1"
+	Args[17] = "1000"
 
 else
 
@@ -64,10 +65,11 @@ Data = get_Data(
 # plot(Data.Target')
 # plot(Data.State[1, :])
 
+DataStart = parse(Int64, Args[17])
 Data = DataStruct(
-	Data.Target[:, 900:end],
-	Data.Regressor[:, 900:end],
-	Data.State[:, 900:end]
+	Data.Target[:, DataStart:end],
+	Data.Regressor[:, DataStart:end],
+	Data.State[:, DataStart:end]
 )
 
 for preRun in 1:5

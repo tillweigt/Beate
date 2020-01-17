@@ -33,7 +33,7 @@ NParallel \
 RealDataMixture \
 128 `#NumberOfStateParticle` \
 1 `#NumberOfMcmcStep` \
-2000 `#NumberOfParameterParticle` \
+500 `#NumberOfParameterParticle` \
 1 `#PrintEach` \
 false `#CovarianceScaling` \
 true `#McmcFullCovariance` \
@@ -44,4 +44,5 @@ true `#McmcFullCovariance` \
 1 `#NumberOfDensityPoint` \
 true `#SaveOutput` \
 IbisDataTempering `#AlgorithmType` \
-1 `#ComputationLoopNumber`
+1 `#ComputationLoopNumber` \
+1000 `#DataStart`
