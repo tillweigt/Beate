@@ -1,6 +1,6 @@
 Path = pwd()
 push!(LOAD_PATH, joinpath(Path, "src"))
-using FileIO, JLD2, Beate, DataFrames, Plots
+using FileIO, JLD2, Beate, DataFrames, Plots, Statistics
 
 AlgorithmType = "IbisDataTempering"
 
@@ -28,7 +28,7 @@ Output = load(
 	"Parameter"
 )
 
-plot(mean(Output[1][3, :, :], dims = 1)')
+plot(mean(Output[1][1, :, 1:23], dims = 1)')
 
 plot!(mean(Output[2][1, :, :], dims = 1)')
 
