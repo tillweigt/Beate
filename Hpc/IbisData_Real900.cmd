@@ -10,7 +10,7 @@
 #SBATCH --mem=50G
 
 # set a partition
-#SBATCH --partition normal
+#SBATCH --partition d0ow
 
 # set max wallclock time
 #SBATCH --time=1-00:00:00

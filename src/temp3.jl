@@ -4,17 +4,7 @@ using FileIO, JLD2, Beate, DataFrames, Plots
 
 AlgorithmType = "IbisDataTempering"
 
-ModelChoice = "RealDataZero"
-
-NumberOfParameterParticle = 500
-
-NumberOfStateParticle = 128
-
-NumberOfMcmcStep = 1
-
-NumberOfDensityPoint = 1
-
-ComputationLoopNumber = 1
+ModelChoice = "RealData"
 
 File = joinpath(
 	pwd(),
@@ -32,10 +22,12 @@ File2 = joinpath(
 
 Output = load(
 	File2,
-	# "Setting",
-	# "Computation",
-	"temp"#,
-	# "AlgorithmComputation"
+	"State",
+	"Prediction",
+	"TransitionProbability",
+	"Parameter"
 )
 
-plot(mean(Output[1, :, :], dims = 1)')
+plot(mean(Output[1][1, :, :], dims = 1)')
+
+plot!(mean(Output[2][1, :, :], dims = 1)')

@@ -50,7 +50,7 @@ Data = get_Data(
 	# # [0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
 	# get_Parameter_for_simulation(Symbol(ModelChoice))..., # Parameter and TransitionProbabilityMatrix
 )
-plot(Data.Target')
+plot(Data.Target[1, :])
 
 plot(Output[1].Data.Target')
 plot!(Output[1].Data.Regressor' .+ 4.0)
