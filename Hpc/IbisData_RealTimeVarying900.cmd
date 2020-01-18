@@ -10,7 +10,7 @@
 #SBATCH --mem=50G
 
 # set a partition
-#SBATCH --partition normal
+#SBATCH --partition d0ow
 
 # set max wallclock time
 #SBATCH --time=2-00:00:00
@@ -33,7 +33,7 @@ NParallel \
 RealDataTimeVarying \
 128 `#NumberOfStateParticle` \
 1 `#NumberOfMcmcStep` \
-500 `#NumberOfParameterParticle` \
+2000 `#NumberOfParameterParticle` \
 1 `#PrintEach` \
 false `#CovarianceScaling` \
 true `#McmcFullCovariance` \

@@ -33,7 +33,7 @@ NParallel \
 RealData \
 128 `#NumberOfStateParticle` \
 1 `#NumberOfMcmcStep` \
-1000 `#NumberOfParameterParticle` \
+2000 `#NumberOfParameterParticle` \
 1 `#PrintEach` \
 false `#CovarianceScaling` \
 true `#McmcFullCovariance` \

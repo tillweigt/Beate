@@ -229,6 +229,11 @@ function save_print_on_the_fly(
 				AlgorithmComputation.AcceptanceRatio[TemperingPoint]
 			),
 			"\n",
+			"State: ",
+			string(
+				mean(Computation.State, dims = 2)
+			)
+			"\n",
 			"TransitionProbabilityMatrix: ",
 			string(
 				mean(Computation.TransitionProbabilityMatrix, dims = 3)
