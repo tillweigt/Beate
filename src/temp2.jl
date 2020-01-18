@@ -49,5 +49,5 @@ save(
 		"temp.jld2"
 	),
 	"temp",
-	Output[1].State
+	Output.State
 )
