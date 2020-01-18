@@ -28,6 +28,10 @@ Output = load(
 	"Parameter"
 )
 
-plot(mean(Output[1][1, :, :], dims = 1)')
+plot(mean(Output[1][3, :, :], dims = 1)')
 
 plot!(mean(Output[2][1, :, :], dims = 1)')
+
+plot(mean(Output[4][3, :, :], dims = 1)')
+
+plot(mean(Output[3][2, 2, :, :], dims = 1)')
