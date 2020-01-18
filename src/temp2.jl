@@ -1,5 +1,5 @@
 Path = pwd()
-push!(LOAD_PATH, joinpath(Path, "src"))
+push!(LOAD_PATH, joinpath(Path))
 using FileIO, JLD2, Plots, Statistics, Beate, DataFrames
 
 AlgorithmType = "IbisDataTempering"
@@ -18,6 +18,7 @@ ComputationLoopNumber = 1
 
 File = joinpath(
 	Path,
+	"..",
 	"Output",
 	"Computation",
 	AlgorithmType,
