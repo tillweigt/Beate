@@ -232,7 +232,7 @@ function save_print_on_the_fly(
 			"State: ",
 			string(
 				mean(Computation.State, dims = 2)
-			)
+			),
 			"\n",
 			"TransitionProbabilityMatrix: ",
 			string(
