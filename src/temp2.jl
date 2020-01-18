@@ -1,6 +1,6 @@
 Path = pwd()
 push!(LOAD_PATH, joinpath(Path))
-using FileIO, JLD2, Plots, Statistics, Beate, DataFrames
+using FileIO, JLD2, Beate, DataFrames
 
 AlgorithmType = "IbisDataTempering"
 
