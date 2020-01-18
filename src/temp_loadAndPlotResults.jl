@@ -62,7 +62,7 @@ histogram(Output[3].Parameter[3, 1, 10000:end], nbins = 30)
 plot(Output[4].ParameterFullCovariance[1, 1, 30000:end])
 
 
-histogram(Output[3].Parameter[3, :, end], nbins = 30)
+histogram(Output[3].Parameter[4, :, end], nbins = 30)
 
 plot!(mean(Output[3].Parameter[3, :, 100:end], dims = 1)' .* 100)
 
