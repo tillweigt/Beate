@@ -21,8 +21,8 @@ File = joinpath(
 	"tmp",
 	"t_weig05",
 	"Computation",
-	Setting.Input.AlgorithmType,
-	Setting.Input.ModelChoice
+	AlgorithmType,
+	ModelChoice
 )
 
 File2 = joinpath(
