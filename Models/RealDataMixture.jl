@@ -1,14 +1,14 @@
 @sync @everywhere function Observation1(Regressor, Parameter, State)
 	Normal(
-		Parameter[1] + Parameter[2] * Regressor[1],
-		Parameter[3]
+		Parameter[1],# + Parameter[2] * Regressor[1],
+		Parameter[2]
 	)
 end
 
 @sync @everywhere function Observation2(Regressor, Parameter, State)
 	Normal(
-		Parameter[1] + Parameter[2] * Regressor[1],
-		Parameter[4]
+		Parameter[1],# + Parameter[2] * Regressor[1],
+		Parameter[3]
 	)
 end
 
@@ -50,7 +50,7 @@ RealDataMixturePrior =
 PriorStruct(
 	Parameter = [
 		Uniform(-1.0, 1.0),
-		Uniform(-1.0, 1.0),
+		# Uniform(-1.0, 1.0),
 		Uniform(),
 		Uniform(),
 		# Uniform(0.1, 0.2)

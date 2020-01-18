@@ -7,8 +7,8 @@ if !ComputationOnCluster
 	Args = fill("", 20)
 
 	Args[1] = "NParallel"
-	Args[2] = "Kalman2"
-	Args[3] = "1" # NumberOfStateParticle = 128,
+	Args[2] = "RealDataMixture"
+	Args[3] = "128" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
 	Args[5] = "300" # NumberOfParameterParticle = 50,
 	Args[6] = "1" # PrintEach = 1,
