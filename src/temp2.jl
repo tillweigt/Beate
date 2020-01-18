@@ -4,7 +4,7 @@ using FileIO, JLD2, Beate, DataFrames
 
 AlgorithmType = "IbisDataTempering"
 
-ModelChoice = "RealData"
+ModelChoice = ARGS[1]
 
 NumberOfParameterParticle = 500
 
