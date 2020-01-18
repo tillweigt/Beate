@@ -35,14 +35,14 @@ RealDataMixture =
 DiscreteParticleFilterStruct(
 	Filter = (
 		Model1,
-		Model2,
-		Model3
+		Model2#,
+		# Model3
 	),
 	StateIndex = 1:1,
 	MixtureStateIndex = 2,
 	# TransitionProbabilityMatrixIndex = 4:7,
 	# IsTransitionProbabilityMatrixFromState = false,
-	TransitionProbabilityMatrixIndex = 3:11,
+	TransitionProbabilityMatrixIndex = 3:6,
 	IsTransitionProbabilityMatrixFromState = true
 )
 
@@ -53,12 +53,12 @@ PriorStruct(
 		Uniform(-1.0, 1.0),
 		Uniform(),
 		Uniform(),
-		Uniform()
+		# Uniform(0.1, 0.2)
 	],
 	State = [
 		Invariant(0.0), Invariant(1.0),
-		Dirichlet(fill(1.0, 3)), # TransitionProbability
-		Dirichlet(fill(1.0, 3)),
-		Dirichlet(fill(1.0, 3))
+		Dirichlet(fill(1.0, 2)), # TransitionProbability
+		# Dirichlet(fill(1.0, 3)),
+		Dirichlet(fill(1.0, 2))
 	]
 )

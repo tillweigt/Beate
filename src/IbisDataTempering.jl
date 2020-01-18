@@ -15,7 +15,14 @@ function IbisDataTempering(
 
 	for dataPoint in 1:Setting.NumberOf.DataPoint
 
+		# Computation.LogLikelihood .= 0.0
+
 		for parameterParticle in 1:Setting.NumberOf.ParameterParticle
+
+			initialize_Computation!(
+				Prior, Setting,
+				Computation, parameterParticle
+			)
 
 			for dataPoint in 1:dataPoint
 

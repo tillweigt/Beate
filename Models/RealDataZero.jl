@@ -8,7 +8,7 @@ end
 ChangeToZero = KalmanFilterStruct(
 	Observation = Observation,
 	ObservationMatrixState = function(Regressor, Parameter, State)
-		reshape([1.0], 1, 1)
+		reshape([Regressor[1]], 1, 1)
 	end,
 	Transition = function(Regressor, Parameter, State)
 		Normal(
@@ -27,7 +27,7 @@ ChangeToZero = KalmanFilterStruct(
 ChangeTimeVarying = KalmanFilterStruct(
 	Observation = Observation,
 	ObservationMatrixState = function(Regressor, Parameter, State)
-		reshape([1.0], 1, 1)
+		reshape([Regressor[1]], 1, 1)
 	end,
 	Transition = function(Regressor, Parameter, State)
 		Normal(

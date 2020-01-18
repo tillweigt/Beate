@@ -7,8 +7,8 @@ if !ComputationOnCluster
 	Args = fill("", 20)
 
 	Args[1] = "NParallel"
-	Args[2] = "RealDataZero"
-	Args[3] = "64" # NumberOfStateParticle = 128,
+	Args[2] = "Kalman"
+	Args[3] = "1" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
 	Args[5] = "300" # NumberOfParameterParticle = 50,
 	Args[6] = "1" # PrintEach = 1,
@@ -22,8 +22,7 @@ if !ComputationOnCluster
 	Args[14] = "false" # SaveOutput = true
 	Args[15] = "IbisDataTempering"
 	Args[16] = "1"
-	Args[17] = "850"
-	Args[18] = "1000"
+	Args[17] = "800"
 
 else
 
@@ -51,27 +50,26 @@ Model = getfield(Main, Symbol(ModelChoice))
 Prior = getfield(Main, Symbol(ModelChoice * "Prior"))
 
 Data = get_Data(
-	[:DividendYield], # RegressorName
+	# [:DividendYield], # RegressorName
 	Symbol(ModelChoice), Path,
 	1, # NumberOfTarget
-	# 100, # NumberOfDataPoint
-	# Model, Prior,
-	# [0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
-	# get_Parameter_for_simulation(Symbol(ModelChoice))..., # Parameter and TransitionProbabilityMatrix
+	300, # NumberOfDataPoint
+	Model, Prior,
+	[0.1, 0.9, 0.1], # Parameter for exogenuous Regressor Simulation
+	get_Parameter_for_simulation(Symbol(ModelChoice))..., # Parameter and TransitionProbabilityMatrix
 )
 
-DataStart = parse(Int64, Args[17])
-DataEnd = parse(Int64, Args[18])
-Data = DataStruct(
-	Data.Target[:, DataStart:DataEnd],
-	Data.Regressor[:, DataStart:DataEnd],
-	Data.State[:, DataStart:DataEnd]
-)
+# DataStart = parse(Int64, Args[17])
+# Data = DataStruct(
+# 	Data.Target[:, DataStart:end],
+# 	Data.Regressor[:, DataStart:end],
+# 	Data.State[:, DataStart:end]
+# )
 
-# using Plots
-# Index = 1:80
-# plot(Data.Target[1, Index])
-# plot!(Data.Regressor[1, Index] .+ 4.0)
+using Plots
+plot(Data.Regressor')
+plot(Data.Target')
+plot(Data.State')
 
 for preRun in 1:5
 

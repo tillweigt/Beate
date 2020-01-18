@@ -28,7 +28,7 @@ Output = load(
 	"Parameter"
 )
 
-plot(mean(Output[1][1, :, 1:23], dims = 1)')
+plot(mean(Output[1][1, :, 1:end], dims = 1)')
 
 plot!(mean(Output[2][1, :, :], dims = 1)')
 

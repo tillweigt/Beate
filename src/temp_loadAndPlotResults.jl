@@ -62,7 +62,9 @@ histogram(Output[3].Parameter[3, 1, 10000:end], nbins = 30)
 plot(Output[4].ParameterFullCovariance[1, 1, 30000:end])
 
 
-histogram(Output[3].Parameter[4, :, end])
+histogram(Output[3].Parameter[3, :, end], nbins = 30)
+
+plot!(mean(Output[3].Parameter[3, :, 100:end], dims = 1)' .* 100)
 
 mean(Output[3].TransitionProbabilityMatrix[:, :, :, end], dims = 3)
 
@@ -74,7 +76,7 @@ plot(Data.Target[1, :])
 plot!(mean(Output[3].Prediction[1, :, :], dims = 1)')
 
 plot(Data.State[1, :])
-plot(mean(Output[3].State[1, :, :], dims = 1)')
+plot(mean(Output[3].State[1, :, 100:end], dims = 1)')
 
 
 plot(

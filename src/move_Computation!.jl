@@ -67,14 +67,21 @@ function move_Computation!(
 					# ComputationProposal.LogLikelihood[parameterParticle] =
 					# ComputationProposal.LogLikelihoodIncrement[parameterParticle]
 
+					update_LogLikelihood!(
+						Setting,
+						ComputationProposal,
+						parameterParticle,
+						densityPoint
+					)
+
 				end
 
-				update_LogLikelihood!(
-					Setting,
-					ComputationProposal,
-					parameterParticle,
-					densityPoint
-				)
+				# update_LogLikelihood!(
+				# 	Setting,
+				# 	ComputationProposal,
+				# 	parameterParticle,
+				# 	densityPoint
+				# )
 
 				compute_AcceptanceBool!(
 					Setting,
