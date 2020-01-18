@@ -17,12 +17,12 @@ NumberOfDensityPoint = 1
 ComputationLoopNumber = 1
 
 File = joinpath(
-	Path,
-	"..",
-	"Output",
+	"/scratch",
+	"tmp",
+	"t_weig05",
 	"Computation",
-	AlgorithmType,
-	ModelChoice
+	Setting.Input.AlgorithmType,
+	Setting.Input.ModelChoice
 )
 
 File2 = joinpath(
