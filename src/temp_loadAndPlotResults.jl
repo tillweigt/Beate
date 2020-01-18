@@ -74,7 +74,7 @@ plot(Data.Target[1, :])
 plot!(mean(Output[3].Prediction[1, :, :], dims = 1)')
 
 plot(Data.State[1, :])
-plot!(mean(Output[3].State[1, :, :], dims = 1)')
+plot(mean(Output[3].State[1, :, :], dims = 1)')
 
 
 plot(
