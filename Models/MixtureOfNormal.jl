@@ -33,10 +33,10 @@ DiscreteParticleFilterStruct(
 MixtureOfNormalPrior =
 PriorStruct(
 	Parameter = [
-		# Invariant(0.0), Invariant(0.05),
-		# Invariant(1.0), Invariant(0.05),
-		Uniform(-0.5, 0.5), Uniform(0.0, 0.5), # Observation
-		Uniform(0.5, 1.5), Uniform(0.0, 0.5),
+		Invariant(0.0), Invariant(0.1),
+		Invariant(0.2), Invariant(0.1),
+		# Uniform(-0.5, 0.5), Uniform(0.0, 0.5), # Observation
+		# Uniform(0.5, 1.5), Uniform(0.0, 0.5),
 		# Invariant(0.9), Invariant(0.1), # TransitionProbability
 		# Invariant(0.1), Invariant(0.9)
 	],

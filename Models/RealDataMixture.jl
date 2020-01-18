@@ -43,8 +43,7 @@ DiscreteParticleFilterStruct(
 	# TransitionProbabilityMatrixIndex = 4:7,
 	# IsTransitionProbabilityMatrixFromState = false,
 	TransitionProbabilityMatrixIndex = 3:11,
-	IsTransitionProbabilityMatrixFromState = true,
-	ResampleScheme = :StratifiedResampling
+	IsTransitionProbabilityMatrixFromState = true
 )
 
 RealDataMixturePrior =
