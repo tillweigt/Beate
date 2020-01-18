@@ -37,10 +37,10 @@ File2 = joinpath(
 
 Output = load(
 	File2,
-	"Setting",
-	"Computation",
-	"ComputationOverTempering",
-	"AlgorithmComputation"
+	# "Setting",
+	# "Computation",
+	"ComputationOverTempering"#,
+	# "AlgorithmComputation"
 )
 
 save(
@@ -49,5 +49,5 @@ save(
 		"temp.jld2"
 	),
 	"temp",
-	Output[3].State
+	Output[1].State
 )
