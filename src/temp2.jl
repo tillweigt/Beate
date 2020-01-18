@@ -6,7 +6,7 @@ AlgorithmType = "IbisDataTempering"
 
 ModelChoice = ARGS[1]
 
-NumberOfParameterParticle = 500
+NumberOfParameterParticle = ARGS[2]
 
 NumberOfStateParticle = 128
 
@@ -48,6 +48,12 @@ save(
 		File,
 		"temp.jld2"
 	),
-	"temp",
-	Output.State
+	"State",
+	Output.State,
+	"Prediction",
+	Output.Prediction,
+	"TransitionProbability",
+	Output.TransitionProbabilityMatrix,
+	"Parameter",
+	Output.Parameter
 )
