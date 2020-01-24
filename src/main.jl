@@ -6,26 +6,26 @@ if !ComputationOnCluster
 
 	Args = fill("", 20)
 
-	Args[1] = "Parallel"
+	Args[1] = "NParallel"
 	Args[2] = "WellLog" # ModelChoice
 	Args[3] = "128" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
-	Args[5] = "100" # NumberOfParameterParticle = 50,
-	Args[6] = "0" # PrintEach = 1,
+	Args[5] = "1000" # NumberOfParameterParticle = 50,
+	Args[6] = "1" # PrintEach = 1,
 	Args[7] = "false" # CovarianceScaling = false,
 	Args[8] = "true" # McmcFullCovariance = true,
 	Args[9] = "1000" # McmcUpdateIntervalLength = 500,
 	Args[10] = "3000" # McmcLastUpdateIndex = 1000,
-	Args[11] = "fill(0.001, 6)" # McmcVarianceInitialisation = 0.001,
+	Args[11] = "fill(0.01, 10)" # McmcVarianceInitialisation = 0.001,
 	Args[12] = "1.1" # ResampleThresholdIbis = 1.1,
 	Args[13] = "1" # NumberOfDensityPoint = 10,
 	Args[14] = "true" # SaveOutput = true
-	Args[15] = "Filter" # AlgotirhmType
-	Args[16] = "2" # ComputationLoopNumber
+	Args[15] = "IbisDataTempering" # AlgotirhmType
+	Args[16] = "1" # ComputationLoopNumber
 	Args[17] = "1" # DataStart
 	Args[18] = "99" # DataEnd
-	Args[19] = "100" # NumberOfDataPoint
-	Args[20] = "Simulation"
+	Args[19] = "0" # NumberOfDataPoint
+	Args[20] = "true"
 
 else
 
