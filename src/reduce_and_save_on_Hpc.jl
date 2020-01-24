@@ -1,3 +1,4 @@
+println(pwd())
 Path = pwd()
 push!(LOAD_PATH, Path)
 using FileIO, JLD2, Beate, DataFrames
