@@ -37,7 +37,7 @@ File2 = joinpath(
 
 Setting = load(
 	File2,
-	"Setting",
+	"Setting"
 	# "Computation",
 	# "ComputationOverTempering"#,
 	# "AlgorithmComputation"
