@@ -45,7 +45,7 @@ true `#McmcFullCovariance` \
 true `#SaveOutput` \
 Filter `#AlgorithmType` \
 2 `#ComputationLoopNumber` \
-1 `#DataStart` \
-99 `#DataEnd` \
+900 `#DataStart` \
+1091 `#DataEnd` \
 0 `#NumberOfDataPoint` \
-Simulation `#DataType`
+false `#Simulation`

@@ -48,4 +48,4 @@ Filter `#AlgorithmType` \
 1 `#DataStart` \
 99 `#DataEnd` \
 0 `#NumberOfDataPoint` \
-Simulation `#DataType`
+true `#Simulation`
