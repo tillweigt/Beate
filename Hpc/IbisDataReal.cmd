@@ -16,7 +16,7 @@
 #SBATCH --time=7-00:00:00
 
 # set name of job
-#SBATCH --job-name=IbisDataSim
+#SBATCH --job-name=IbisDataReal
 # mail alert at start, end and abortion of execution
 #SBATCH --mail-type=ALL
 
