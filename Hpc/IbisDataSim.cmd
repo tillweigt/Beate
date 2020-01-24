@@ -33,7 +33,7 @@ Parallel \
 WellLog \
 128 `#NumberOfStateParticle` \
 1 `#NumberOfMcmcStep` \
-1 `#NumberOfParameterParticle` \
+1000 `#NumberOfParameterParticle` \
 1 `#PrintEach` \
 false `#CovarianceScaling` \
 true `#McmcFullCovariance` \
@@ -43,7 +43,7 @@ true `#McmcFullCovariance` \
 1.1 `#ResampleThresholdIbis` \
 1 `#NumberOfDensityPoint` \
 true `#SaveOutput` \
-Filter `#AlgorithmType` \
+IbisDataTempering `#AlgorithmType` \
 2 `#ComputationLoopNumber` \
 1 `#DataStart` \
 99 `#DataEnd` \
