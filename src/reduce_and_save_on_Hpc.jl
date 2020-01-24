@@ -35,7 +35,8 @@ File2 = joinpath(
 	".jld2"
 )
 
-Output = load(
+Setting,
+ComputationOverTempering = load(
 	File2,
 	# "Setting",
 	# "Computation",
@@ -48,6 +49,8 @@ save(
 		File,
 		"temp.jld2"
 	),
+	"Data",
+	Setting.Data,
 	"State",
 	Output.State,
 	"Prediction",
