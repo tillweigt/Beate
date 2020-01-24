@@ -14,7 +14,7 @@ NumberOfMcmcStep = 1
 
 NumberOfDensityPoint = 1
 
-ComputationLoopNumber = Args[3]
+ComputationLoopNumber = ARGS[3]
 
 File = joinpath(
 	"/scratch",
