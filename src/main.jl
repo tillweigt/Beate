@@ -59,7 +59,7 @@ Data = get_Data(
 	parse(Int64, Args[19]), # NumberOfDataPoint
 	Model, Prior,
 	[0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
-	Args[20]
+	parse(Bool, Args[20])
 )
 
 DataStart = parse(Int64, Args[17])
