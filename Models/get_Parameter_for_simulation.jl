@@ -58,6 +58,20 @@ function get_Parameter_for_simulation(ModelChoice)
 			2, 2
 		)
 
+	elseif ModelChoice == :RealDataTimeVarying
+
+		Parameter = [
+			0.0, 0.1, 0.1
+		]
+
+		TransitionProbabilityMatrix = reshape(
+			[
+				0.9, 0.1,
+				0.9, 0.1
+			],
+			2, 2
+		)
+
 	else
 
 		stop()

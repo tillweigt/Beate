@@ -6,24 +6,26 @@ if !ComputationOnCluster
 
 	Args = fill("", 20)
 
-	Args[1] = "NParallel"
-	Args[2] = "RealDataMixture"
+	Args[1] = "Parallel"
+	Args[2] = "WellLog" # ModelChoice
 	Args[3] = "128" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
-	Args[5] = "300" # NumberOfParameterParticle = 50,
-	Args[6] = "1" # PrintEach = 1,
+	Args[5] = "100" # NumberOfParameterParticle = 50,
+	Args[6] = "0" # PrintEach = 1,
 	Args[7] = "false" # CovarianceScaling = false,
 	Args[8] = "true" # McmcFullCovariance = true,
 	Args[9] = "1000" # McmcUpdateIntervalLength = 500,
 	Args[10] = "3000" # McmcLastUpdateIndex = 1000,
-	Args[11] = "fill(0.1, 6)" # McmcVarianceInitialisation = 0.001,
+	Args[11] = "fill(0.001, 6)" # McmcVarianceInitialisation = 0.001,
 	Args[12] = "1.1" # ResampleThresholdIbis = 1.1,
 	Args[13] = "1" # NumberOfDensityPoint = 10,
-	Args[14] = "false" # SaveOutput = true
-	Args[15] = "IbisDataTempering"
-	Args[16] = "1"
-	Args[17] = "850"
-	Args[18] = "1000"
+	Args[14] = "true" # SaveOutput = true
+	Args[15] = "Filter" # AlgotirhmType
+	Args[16] = "2" # ComputationLoopNumber
+	Args[17] = "1" # DataStart
+	Args[18] = "99" # DataEnd
+	Args[19] = "100" # NumberOfDataPoint
+	Args[20] = "Simulation"
 
 else
 
@@ -54,10 +56,10 @@ Data = get_Data(
 	[:DividendYield], # RegressorName
 	Symbol(ModelChoice), Path,
 	1, # NumberOfTarget
-	# 100, # NumberOfDataPoint
-	# Model, Prior,
-	# [0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
-	# get_Parameter_for_simulation(Symbol(ModelChoice))..., # Parameter and TransitionProbabilityMatrix
+	parse(Int64, Args[19]), # NumberOfDataPoint
+	Model, Prior,
+	[0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
+	Args[20]
 )
 
 DataStart = parse(Int64, Args[17])
@@ -67,11 +69,6 @@ Data = DataStruct(
 	Data.Regressor[:, DataStart:DataEnd],
 	Data.State[:, DataStart:DataEnd]
 )
-
-# using Plots
-# Index = 1:80
-# plot(Data.Target[1, Index])
-# plot!(Data.Regressor[1, Index] .+ 4.0)
 
 for preRun in 1:5
 
@@ -102,8 +99,54 @@ for preRun in 1:5
 
 end
 
-computationLoopNumber = 1
-# for computationLoopNumber in 1:parse(Int64, Args[16])
+if parse(Int64, Args[16]) > 1
+
+	InputPmap = [
+		(
+			Model,
+			Prior,
+			Data,
+			InputSettingStruct(
+				NumberOfStateParticle = parse(Int64, Args[3]),
+				NumberOfMcmcStep = parse(Int64, Args[4]),
+				NumberOfParameterParticle = parse(Int64, Args[5]),
+				PrintEach = parse(Int64, Args[6]),
+				CovarianceScaling = parse(Bool, Args[7]),
+				McmcFullCovariance = parse(Bool, Args[8]),
+				McmcUpdateIntervalLength = parse(Int64, Args[9]),
+				McmcLastUpdateIndex = parse(Int64, Args[10]),
+				McmcVarianceInitialisation =
+				eval(Meta.parse(Args[11])),
+				ResampleThresholdIbis = parse(Float64, Args[12]),
+				NumberOfDensityPoint = parse(Int64, Args[13]),
+				Path = Path,
+				SaveOutput = parse(Bool, Args[14]),
+				ModelChoice = ModelChoice,
+				AlgorithmType = Args[15],
+				ComputationLoopNumber = computationLoopNumber,
+				ComputationOnCluster = ComputationOnCluster
+			),
+			Symbol(Args[15])
+		) # AlgorithmType
+		for computationLoopNumber in 1:parse(Int64, Args[16])
+	]
+
+	@everywhere function run_Algorithm_parallel(InputPmap)
+
+		run_Algorithm(
+			InputPmap...
+		)
+
+		return nothing
+
+	end
+
+	pmap(
+		run_Algorithm_parallel,
+		InputPmap
+	)
+
+else
 
 	Output = run_Algorithm(
 		Model,
@@ -126,10 +169,10 @@ computationLoopNumber = 1
 			SaveOutput = parse(Bool, Args[14]),
 			ModelChoice = ModelChoice,
 			AlgorithmType = Args[15],
-			ComputationLoopNumber = computationLoopNumber,
+			ComputationLoopNumber = 1,
 			ComputationOnCluster = ComputationOnCluster
 		),
 		Symbol(Args[15]) # AlgorithmType
 	)
 
-# end
+end

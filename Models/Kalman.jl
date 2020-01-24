@@ -47,7 +47,7 @@ PriorStruct(
 		# Invariant(10.0), # Transition
 		Uniform(-1.0, 1.0),
 		Uniform(0.0, 2.0),
-		Uniform(0.0, 1.0),
+		Uniform(),
 		# Invariant(0.9), Invariant(0.1), # TransitionProbability
 		# Invariant(0.9), Invariant(0.1)
 	],

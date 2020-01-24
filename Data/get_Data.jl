@@ -1,5 +1,46 @@
 function get_Data(
 	RegressorName,
+	ModelChoice, Path,
+	NumberOfTarget, NumberOfDataPoint,
+	Model, Prior,
+	ParameterRegressor,
+	Simulation
+)
+
+	if iszero(NumberOfDataPoint)
+
+		if Simulation
+
+			Data = get_Data(ModelChoice, Path)
+
+		else
+
+			Data = get_Data(
+				RegressorName,
+				ModelChoice,
+				Path,
+				NumberOfTarget
+			)
+
+		end
+
+	else
+
+		Data = get_Data(
+			ModelChoice, Path,
+			NumberOfTarget, NumberOfDataPoint,
+			Model, Prior,
+			ParameterRegressor
+		)
+
+	end
+
+	return Data
+
+end
+
+function get_Data(
+	RegressorName,
 	ModelChoice,
 	Path,
 	NumberOfTarget
@@ -36,8 +77,11 @@ function get_Data(
 	ModelChoice, Path,
 	NumberOfTarget, NumberOfDataPoint,
 	Model, Prior,
-	ParameterRegressor, Parameter, TransitionProbabilityMatrix
+	ParameterRegressor
 )
+
+	Parameter, TransitionProbabilityMatrix =
+	get_Parameter_for_simulation(Symbol(ModelChoice))
 
 	Regressor = simulate_Regressor(
 		ParameterRegressor, NumberOfTarget, NumberOfDataPoint
