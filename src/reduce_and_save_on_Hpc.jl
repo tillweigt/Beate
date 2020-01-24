@@ -35,13 +35,13 @@ File2 = joinpath(
 	".jld2"
 )
 
-Setting = load(
-	File2,
-	"Setting"
-	# "Computation",
-	# "ComputationOverTempering"#,
-	# "AlgorithmComputation"
-)
+# Setting = load(
+# 	File2,
+# 	"Setting"
+# 	# "Computation",
+# 	# "ComputationOverTempering"#,
+# 	# "AlgorithmComputation"
+# )
 
 ComputationOverTempering = load(
 	File2,
@@ -56,8 +56,8 @@ save(
 		File,
 		"temp.jld2"
 	),
-	"Data",
-	Setting.Data,
+	# "Data",
+	# Setting.Data,
 	"State",
 	ComputationOverTempering.State,
 	"Prediction",
