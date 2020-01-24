@@ -7,7 +7,7 @@
 #SBATCH --ntasks-per-node 72
 
 # How much memory is needed (per node). Possible units: K, G, M, T
-#SBATCH --mem=50G
+#SBATCH --mem=150G
 
 # set a partition
 #SBATCH --partition normal
@@ -44,7 +44,7 @@ true `#McmcFullCovariance` \
 1 `#NumberOfDensityPoint` \
 true `#SaveOutput` \
 IbisDataTempering `#AlgorithmType` \
-50 `#ComputationLoopNumber` \
+10 `#ComputationLoopNumber` \
 800 `#DataStart` \
 1091 `#DataEnd` \
 0 `#NumberOfDataPoint` \

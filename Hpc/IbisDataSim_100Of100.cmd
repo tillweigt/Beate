@@ -44,7 +44,7 @@ true `#McmcFullCovariance` \
 1 `#NumberOfDensityPoint` \
 true `#SaveOutput` \
 IbisDataTempering `#AlgorithmType` \
-50 `#ComputationLoopNumber` \
+10 `#ComputationLoopNumber` \
 1 `#DataStart` \
 500 `#DataEnd` \
 501 `#NumberOfDataPoint` \
