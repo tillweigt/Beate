@@ -10,13 +10,13 @@
 #SBATCH --mem=50G
 
 # set a partition
-#SBATCH --partition d0ow
+#SBATCH --partition normal
 
 # set max wallclock time
 #SBATCH --time=7-00:00:00
 
 # set name of job
-#SBATCH --job-name=IbisDataSim
+#SBATCH --job-name=IbisDataReal_Full
 # mail alert at start, end and abortion of execution
 #SBATCH --mail-type=ALL
 
@@ -30,7 +30,7 @@
 ../julia-1.1.0/bin/julia \
 src/main.jl \
 Parallel \
-WellLog \
+JumpVol \
 128 `#NumberOfStateParticle` \
 1 `#NumberOfMcmcStep` \
 1000 `#NumberOfParameterParticle` \
@@ -44,8 +44,8 @@ true `#McmcFullCovariance` \
 1 `#NumberOfDensityPoint` \
 true `#SaveOutput` \
 IbisDataTempering `#AlgorithmType` \
-2 `#ComputationLoopNumber` \
+50 `#ComputationLoopNumber` \
 1 `#DataStart` \
-99 `#DataEnd` \
+1091 `#DataEnd` \
 0 `#NumberOfDataPoint` \
-true `#Simulation`
+false `#Simulation`

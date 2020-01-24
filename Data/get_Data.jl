@@ -4,7 +4,9 @@ function get_Data(
 	NumberOfTarget, NumberOfDataPoint,
 	Model, Prior,
 	ParameterRegressor,
-	Simulation
+	Simulation,
+	DataStart,
+	DataEnd
 )
 
 	if iszero(NumberOfDataPoint)
@@ -34,6 +36,17 @@ function get_Data(
 		)
 
 	end
+
+	if Simulation
+		TargetVol = Data.Target[:, DataStart:DataEnd]
+	else
+		TargetVol = log.(Data.Target[:, DataStart:DataEnd].^2)
+	end
+	Data = DataStruct(
+		TargetVol,
+		Data.Regressor[:, DataStart:DataEnd],
+		Data.State[:, DataStart:DataEnd]
+	)
 
 	return Data
 

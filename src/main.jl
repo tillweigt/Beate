@@ -6,11 +6,11 @@ if !ComputationOnCluster
 
 	Args = fill("", 20)
 
-	Args[1] = "NParallel"
-	Args[2] = "JumpVol" # ModelChoice
+	Args[1] = "Parallel"
+	Args[2] = "WellLog" # ModelChoice
 	Args[3] = "128" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
-	Args[5] = "1000" # NumberOfParameterParticle = 50,
+	Args[5] = "100" # NumberOfParameterParticle = 50,
 	Args[6] = "1" # PrintEach = 1,
 	Args[7] = "false" # CovarianceScaling = false,
 	Args[8] = "true" # McmcFullCovariance = true,
@@ -24,7 +24,7 @@ if !ComputationOnCluster
 	Args[16] = "1" # ComputationLoopNumber
 	Args[17] = "1000" # DataStart
 	Args[18] = "1091" # DataEnd
-	Args[19] = "0" # NumberOfDataPoint
+	Args[19] = "501" # NumberOfDataPoint
 	Args[20] = "false"
 
 else
@@ -52,35 +52,22 @@ Model = getfield(Main, Symbol(ModelChoice))
 
 Prior = getfield(Main, Symbol(ModelChoice * "Prior"))
 
-Data = get_Data(
-	[:DividendYield], # RegressorName
-	Symbol(ModelChoice), Path,
-	1, # NumberOfTarget
-	parse(Int64, Args[19]), # NumberOfDataPoint
-	Model, Prior,
-	[0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
-	parse(Bool, Args[20])
-)
-
-DataStart = parse(Int64, Args[17])
-DataEnd = parse(Int64, Args[18])
-if parse(Bool, Args[20])
-	TargetVol = Data.Target[:, DataStart:DataEnd]
-else
-	TargetVol = log.(Data.Target[:, DataStart:DataEnd].^2)
-end
-Data = DataStruct(
-	TargetVol,
-	Data.Regressor[:, DataStart:DataEnd],
-	Data.State[:, DataStart:DataEnd]
-)
-
 for preRun in 1:5
 
 	run_Algorithm(
 		Model,
 		Prior,
-		Data,
+		get_Data(
+			[:DividendYield], # RegressorName
+			Symbol(ModelChoice), Path,
+			1, # NumberOfTarget
+			parse(Int64, Args[19]), # NumberOfDataPoint
+			Model, Prior,
+			[0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
+			parse(Bool, Args[20]),
+			parse(Int64, Args[17]),
+			parse(Int64, Args[18])
+		),
 		InputSettingStruct(
 			NumberOfStateParticle = parse(Int64, Args[3]),
 			NumberOfMcmcStep = 1,
@@ -110,7 +97,17 @@ if parse(Int64, Args[16]) > 1
 		(
 			Model,
 			Prior,
-			Data,
+			get_Data(
+				[:DividendYield], # RegressorName
+				Symbol(ModelChoice), Path,
+				1, # NumberOfTarget
+				parse(Int64, Args[19]), # NumberOfDataPoint
+				Model, Prior,
+				[0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
+				parse(Bool, Args[20]),
+				parse(Int64, Args[17]),
+				parse(Int64, Args[18])
+			),
 			InputSettingStruct(
 				NumberOfStateParticle = parse(Int64, Args[3]),
 				NumberOfMcmcStep = parse(Int64, Args[4]),
@@ -156,7 +153,17 @@ else
 	Output = run_Algorithm(
 		Model,
 		Prior,
-		Data,
+		get_Data(
+			[:DividendYield], # RegressorName
+			Symbol(ModelChoice), Path,
+			1, # NumberOfTarget
+			parse(Int64, Args[19]), # NumberOfDataPoint
+			Model, Prior,
+			[0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
+			parse(Bool, Args[20]),
+			parse(Int64, Args[17]),
+			parse(Int64, Args[18])
+		),
 		InputSettingStruct(
 			NumberOfStateParticle = parse(Int64, Args[3]),
 			NumberOfMcmcStep = parse(Int64, Args[4]),
