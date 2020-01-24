@@ -7,7 +7,7 @@
 #SBATCH --ntasks-per-node 72
 
 # How much memory is needed (per node). Possible units: K, G, M, T
-#SBATCH --mem=50G
+#SBATCH --mem=150G
 
 # set a partition
 #SBATCH --partition normal
@@ -16,7 +16,7 @@
 #SBATCH --time=7-00:00:00
 
 # set name of job
-#SBATCH --job-name=IbisDataSim
+#SBATCH --job-name=IbisDataSim_100Of1
 # mail alert at start, end and abortion of execution
 #SBATCH --mail-type=ALL
 
