@@ -10,7 +10,7 @@
 #SBATCH --mem=50G
 
 # set a partition
-#SBATCH --partition d0ow
+#SBATCH --partition normal
 
 # set max wallclock time
 #SBATCH --time=7-00:00:00
@@ -30,10 +30,10 @@
 ../julia-1.1.0/bin/julia \
 src/main.jl \
 Parallel \
-JumpingVariance \
+JumpVol \
 128 `#NumberOfStateParticle` \
 1 `#NumberOfMcmcStep` \
-1 `#NumberOfParameterParticle` \
+1000 `#NumberOfParameterParticle` \
 1 `#PrintEach` \
 false `#CovarianceScaling` \
 true `#McmcFullCovariance` \
@@ -43,9 +43,9 @@ true `#McmcFullCovariance` \
 1.1 `#ResampleThresholdIbis` \
 1 `#NumberOfDensityPoint` \
 true `#SaveOutput` \
-Filter `#AlgorithmType` \
+IbisDataTempering `#AlgorithmType` \
 2 `#ComputationLoopNumber` \
-900 `#DataStart` \
+1 `#DataStart` \
 1091 `#DataEnd` \
 0 `#NumberOfDataPoint` \
 false `#Simulation`

@@ -7,7 +7,7 @@ if !ComputationOnCluster
 	Args = fill("", 20)
 
 	Args[1] = "NParallel"
-	Args[2] = "WellLog" # ModelChoice
+	Args[2] = "JumpVol" # ModelChoice
 	Args[3] = "128" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
 	Args[5] = "1000" # NumberOfParameterParticle = 50,
@@ -22,10 +22,10 @@ if !ComputationOnCluster
 	Args[14] = "true" # SaveOutput = true
 	Args[15] = "IbisDataTempering" # AlgotirhmType
 	Args[16] = "1" # ComputationLoopNumber
-	Args[17] = "1" # DataStart
-	Args[18] = "99" # DataEnd
+	Args[17] = "1000" # DataStart
+	Args[18] = "1091" # DataEnd
 	Args[19] = "0" # NumberOfDataPoint
-	Args[20] = "true"
+	Args[20] = "false"
 
 else
 
@@ -64,8 +64,13 @@ Data = get_Data(
 
 DataStart = parse(Int64, Args[17])
 DataEnd = parse(Int64, Args[18])
+if parse(Bool, Args[20])
+	TargetVol = Data.Target[:, DataStart:DataEnd]
+else
+	TargetVol = log.(Data.Target[:, DataStart:DataEnd].^2)
+end
 Data = DataStruct(
-	Data.Target[:, DataStart:DataEnd],
+	TargetVol,
 	Data.Regressor[:, DataStart:DataEnd],
 	Data.State[:, DataStart:DataEnd]
 )
