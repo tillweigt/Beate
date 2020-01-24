@@ -10,7 +10,7 @@
 #SBATCH --mem=150G
 
 # set a partition
-#SBATCH --partition d0ow
+#SBATCH --partition normal
 
 # set max wallclock time
 #SBATCH --time=7-00:00:00
@@ -39,7 +39,7 @@ false `#CovarianceScaling` \
 true `#McmcFullCovariance` \
 1 `#McmcUpdateIntevalLength` \
 1 `#McmcLastUpdateIndex` \
-"fill(0.01,10)" `#McmcVarianceInitialisation` \
+"fill(0.001,10)" `#McmcVarianceInitialisation` \
 1.1 `#ResampleThresholdIbis` \
 1 `#NumberOfDensityPoint` \
 true `#SaveOutput` \
