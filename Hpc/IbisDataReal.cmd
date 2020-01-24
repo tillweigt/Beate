@@ -16,7 +16,7 @@
 #SBATCH --time=7-00:00:00
 
 # set name of job
-#SBATCH --job-name=IbisDataReal_1
+#SBATCH --job-name=IbisDataReal_800
 # mail alert at start, end and abortion of execution
 #SBATCH --mail-type=ALL
 
@@ -45,7 +45,7 @@ true `#McmcFullCovariance` \
 true `#SaveOutput` \
 IbisDataTempering `#AlgorithmType` \
 50 `#ComputationLoopNumber` \
-1 `#DataStart` \
+800 `#DataStart` \
 1091 `#DataEnd` \
 0 `#NumberOfDataPoint` \
 false `#Simulation`
