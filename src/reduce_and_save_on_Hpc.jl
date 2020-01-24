@@ -1,5 +1,5 @@
 Path = pwd()
-push!(LOAD_PATH, joinpath(Path, "src"))
+push!(LOAD_PATH, Path)
 using FileIO, JLD2, Beate, DataFrames
 
 AlgorithmType = "IbisDataTempering"
