@@ -7,7 +7,7 @@
 #SBATCH --ntasks-per-node 72
 
 # How much memory is needed (per node). Possible units: K, G, M, T
-#SBATCH --mem=150G
+#SBATCH --mem=50G
 
 # set a partition
 #SBATCH --partition d0ow
