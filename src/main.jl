@@ -10,7 +10,7 @@ if !ComputationOnCluster
 	Args[2] = "JumpVol" # ModelChoice
 	Args[3] = "128" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
-	Args[5] = "100" # NumberOfParameterParticle = 50,
+	Args[5] = "1000" # NumberOfParameterParticle = 50,
 	Args[6] = "1" # PrintEach = 1,
 	Args[7] = "false" # CovarianceScaling = false,
 	Args[8] = "true" # McmcFullCovariance = true,
@@ -22,7 +22,7 @@ if !ComputationOnCluster
 	Args[14] = "true" # SaveOutput = true
 	Args[15] = "IbisDataTempering" # AlgotirhmType
 	Args[16] = "1" # ComputationLoopNumber
-	Args[17] = "1050" # DataStart
+	Args[17] = "1000" # DataStart
 	Args[18] = "1091" # DataEnd
 	Args[19] = "0" # NumberOfDataPoint
 	Args[20] = "false"

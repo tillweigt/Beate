@@ -56,11 +56,13 @@ histogram(Parameter[1, :, end])
 plot(sqrt.(exp.(Data.Target[1, :])))
 plot!(sqrt.(exp.(mean(Prediction[1, :, :], dims = 1)[1, :])))
 
-plot(Data.Target[1, 1:end])
+plot(Data.Target[1, 250:end])
 plot!(mean(State[1, :, 1:end], dims = 1)[1, :])
 
-plot(mean(State[3, :, 1:end], dims = 1)[1, :])
+plot(mean(State[3, :, 250:end], dims = 1)[1, :])
 
 plot(mean(TransitionProbablityMatrix[1, 1, :, :], dims = 1)[1, :])
 
 plot!(mean(Output[3].State[1, :, :], dims = 1)[1, :])
+
+plot(mean(Output[3].State[3, :, :], dims = 1)[1, :])
