@@ -47,12 +47,12 @@ DiscreteParticleFilterStruct(
 WellLogManyOfManyPrior =
 PriorStruct(
 	Parameter = [
-		Invariant(0.1), # Observation
-		Invariant(0.0),
-		Invariant(1.0), # Transition
-		# Uniform(), # Observation
-		# Uniform(-5.0, 5.0),
-		# Uniform(0.0, 10.0), # Transition
+		# Invariant(0.1), # Observation
+		# Invariant(0.0),
+		# Invariant(1.0), # Transition
+		Uniform(), # Observation
+		Uniform(-5.0, 5.0),
+		Uniform(0.0, 10.0), # Transition
 		# Invariant(0.9), Invariant(0.1), # TransitionProbability
 		# Invariant(0.9), Invariant(0.1)
 	],
