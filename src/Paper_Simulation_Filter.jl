@@ -7,7 +7,7 @@ if !ComputationOnCluster
 	Args = fill("", 20)
 
 	Args[1] = "NParallel"
-	Args[2] = "MixtureOfNormal"
+	Args[2] = "WellLogSim" # ModelChoice
 	Args[3] = "128" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
 	Args[5] = "1" # NumberOfParameterParticle = 50,
@@ -16,13 +16,16 @@ if !ComputationOnCluster
 	Args[8] = "true" # McmcFullCovariance = true,
 	Args[9] = "1000" # McmcUpdateIntervalLength = 500,
 	Args[10] = "3000" # McmcLastUpdateIndex = 1000,
-	Args[11] = "fill(0.1, 6)" # McmcVarianceInitialisation = 0.001,
+	Args[11] = "fill(0.01, 10)" # McmcVarianceInitialisation = 0.001,
 	Args[12] = "1.1" # ResampleThresholdIbis = 1.1,
 	Args[13] = "1" # NumberOfDensityPoint = 10,
 	Args[14] = "false" # SaveOutput = true
-	Args[15] = "Filter"
-	Args[16] = "500"
-	Args[17] = "1000"
+	Args[15] = "Filter" # AlgotirhmType
+	Args[16] = "100" # ComputationLoopNumber
+	Args[17] = "1" # DataStart
+	Args[18] = "500" # DataEnd
+	Args[19] = "501" # NumberOfDataPoint
+	Args[20] = "true"
 
 else
 
@@ -49,36 +52,22 @@ Model = getfield(Main, Symbol(ModelChoice))
 
 Prior = getfield(Main, Symbol(ModelChoice * "Prior"))
 
-Data = get_Data(
-	# [:DividendYield], # RegressorName
-	Symbol(ModelChoice), Path,
-	1, # NumberOfTarget
-	100, # NumberOfDataPoint
-	Model, Prior,
-	[1.0, 0.0, 0.0],
-	# [0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
-	get_Parameter_for_simulation(Symbol(ModelChoice))..., # Parameter and TransitionProbabilityMatrix
-)
-
-# using Plots
-# plot(Data.Regressor')
-# plot(Data.State[3, :])
-# plot(Data.Target')
-# plot(Data.State[1, :])
-
-# DataStart = parse(Int64, Args[17])
-# Data = DataStruct(
-# 	Data.Target[:, DataStart:end],
-# 	Data.Regressor[:, DataStart:end],
-# 	Data.State[:, DataStart:end]
-# )
-
 for preRun in 1:5
 
 	run_Algorithm(
 		Model,
 		Prior,
-		Data,
+		get_Data(
+			[:DividendYield], # RegressorName
+			Symbol(ModelChoice), Path,
+			1, # NumberOfTarget
+			parse(Int64, Args[19]), # NumberOfDataPoint
+			Model, Prior,
+			[0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
+			parse(Bool, Args[20]),
+			parse(Int64, Args[17]),
+			parse(Int64, Args[18])
+		),
 		InputSettingStruct(
 			NumberOfStateParticle = parse(Int64, Args[3]),
 			NumberOfMcmcStep = 1,
@@ -102,23 +91,37 @@ for preRun in 1:5
 
 end
 
-out = fill(NaN, 2, 99, parse(Int64, Args[16]))
+TransitionProbabilityMatrix = fill(
+	NaN, 2, 2, parse(Int64, Args[19]) - 1, parse(Int64, Args[16])
+)
 
-computationLoopNumber = 1
+Data = get_Data(
+	[:DividendYield], # RegressorName
+	Symbol(ModelChoice), Path,
+	1, # NumberOfTarget
+	parse(Int64, Args[19]), # NumberOfDataPoint
+	Model, Prior,
+	[0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
+	parse(Bool, Args[20]),
+	parse(Int64, Args[17]),
+	parse(Int64, Args[18])
+)
+
 for computationLoopNumber in 1:parse(Int64, Args[16])
 
 	println(computationLoopNumber)
 
-	Data = get_Data(
-		# [:DividendYield], # RegressorName
-		Symbol(ModelChoice), Path,
-		1, # NumberOfTarget
-		100, # NumberOfDataPoint
-		Model, Prior,
-		[1.0, 0.0, 0.0],
-		# [0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
-		get_Parameter_for_simulation(Symbol(ModelChoice))..., # Parameter and TransitionProbabilityMatrix
-	)
+	# Data = get_Data(
+	# 	[:DividendYield], # RegressorName
+	# 	Symbol(ModelChoice), Path,
+	# 	1, # NumberOfTarget
+	# 	parse(Int64, Args[19]), # NumberOfDataPoint
+	# 	Model, Prior,
+	# 	[0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
+	# 	parse(Bool, Args[20]),
+	# 	parse(Int64, Args[17]),
+	# 	parse(Int64, Args[18])
+	# )
 
 	Output = run_Algorithm(
 		Model,
@@ -147,27 +150,27 @@ for computationLoopNumber in 1:parse(Int64, Args[16])
 		Symbol(Args[15]) # AlgorithmType
 	)
 
-	out[:, :, computationLoopNumber] =
-	# Output[3].TransitionProbabilityMatrix[:, 1, 1, :]
-	Output[3].TransitionProbabilityMatrix[1, :, 1, :]
+	TransitionProbabilityMatrix[:, :, :, computationLoopNumber] =
+	Output[3].TransitionProbabilityMatrix[:, :, 1, :]
 
 end
 
 using Plots
 
-Index = 2
+IndexCol1 = 1
+IndexCol2 = 1
 
-FilteredMean = mean(out[Index, :, :], dims = 2)[:, 1]
-FilteredQuantile95 = map(x -> quantile(x, 0.95), [out[Index, i, :] for i in 1:99])
-FilteredQuantile5 = map(x -> quantile(x, 0.05), [out[Index, i, :] for i in 1:99])
+FilteredMean = mean(TransitionProbabilityMatrix[IndexCol1, IndexCol2, :, :], dims = 2)[:, 1]
+FilteredQuantileUpper = map(x -> quantile(x, 0.99), [TransitionProbabilityMatrix[IndexCol1, IndexCol2, i, :] for i in 1:parse(Int64, Args[19]) - 1])
+FilteredQuantileLower = map(x -> quantile(x, 0.01), [TransitionProbabilityMatrix[IndexCol1, IndexCol2, i, :] for i in 1:parse(Int64, Args[19]) - 1])
 
-plot(FilteredMean)
-plot!(FilteredQuantile95)
-plot!(FilteredQuantile5)
+scatter(TransitionProbabilityMatrix[IndexCol1, IndexCol2, end, :])
 
-scatter(out[Index, end, :])
+histogram(TransitionProbabilityMatrix[IndexCol1, IndexCol2, end, :], nbins = 20)
 
-histogram(out[Index, end, :], nbins = 20)
+plot(FilteredMean, legend = false)
+plot!(FilteredQuantileUpper)
+plot!(FilteredQuantileLower)
 
 plot(Data.Target')
 

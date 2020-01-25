@@ -1,6 +1,6 @@
 function get_Parameter_for_simulation(ModelChoice)
 
-	if ModelChoice == :WellLog
+	if ModelChoice in (:WellLog, :WellLogSim, :WellLogManyOf1, :WellLogManyOfMany)
 
 		Parameter = [
 			0.1,

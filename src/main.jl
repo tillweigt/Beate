@@ -7,7 +7,7 @@ if !ComputationOnCluster
 	Args = fill("", 20)
 
 	Args[1] = "Parallel"
-	Args[2] = "WellLog" # ModelChoice
+	Args[2] = "WellLogManyOf1" # ModelChoice
 	Args[3] = "128" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
 	Args[5] = "100" # NumberOfParameterParticle = 50,
@@ -22,10 +22,10 @@ if !ComputationOnCluster
 	Args[14] = "true" # SaveOutput = true
 	Args[15] = "IbisDataTempering" # AlgotirhmType
 	Args[16] = "1" # ComputationLoopNumber
-	Args[17] = "1000" # DataStart
-	Args[18] = "1091" # DataEnd
-	Args[19] = "501" # NumberOfDataPoint
-	Args[20] = "false"
+	Args[17] = "1" # DataStart
+	Args[18] = "100" # DataEnd
+	Args[19] = "101" # NumberOfDataPoint
+	Args[20] = "true"
 
 else
 

@@ -16,7 +16,7 @@
 #SBATCH --time=7-00:00:00
 
 # set name of job
-#SBATCH --job-name=IbisDataSim_100Of1
+#SBATCH --job-name=IbisDataSim_manyOf1
 # mail alert at start, end and abortion of execution
 #SBATCH --mail-type=ALL
 
@@ -30,7 +30,7 @@
 ../julia-1.1.0/bin/julia \
 src/main.jl \
 Parallel \
-WellLog \
+WellLogManyOf1 \
 128 `#NumberOfStateParticle` \
 1 `#NumberOfMcmcStep` \
 1000 `#NumberOfParameterParticle` \
@@ -44,8 +44,8 @@ true `#McmcFullCovariance` \
 1 `#NumberOfDensityPoint` \
 true `#SaveOutput` \
 IbisDataTempering `#AlgorithmType` \
-10 `#ComputationLoopNumber` \
+50 `#ComputationLoopNumber` \
 1 `#DataStart` \
-500 `#DataEnd` \
+100 `#DataEnd` \
 0 `#NumberOfDataPoint` \
 true `#Simulation`
