@@ -5,11 +5,7 @@
 	)
 end
 
-ChangeNothing = NoFilterStruct(
-	Observation = Observation
-)
-
-ChangeToMean = KalmanFilterStruct(
+JumpVolKalman = KalmanFilterStruct(
 	Observation = Observation,
 	ObservationMatrixState = function(Regressor, Parameter, State)
 		reshape([1.0], 1, 1)
@@ -28,34 +24,15 @@ ChangeToMean = KalmanFilterStruct(
 	StateMeanEquationIndex = 1:1
 )
 
-JumpVol =
-DiscreteParticleFilterStruct(
-	Filter = (
-		ChangeNothing,
-		ChangeToMean
-	),
-	StateIndex = 1:2,
-	MixtureStateIndex = 3,
-	# TransitionProbabilityMatrixIndex = 4:7,
-	# IsTransitionProbabilityMatrixFromState = false,
-	TransitionProbabilityMatrixIndex = 4:7,
-	IsTransitionProbabilityMatrixFromState = true
-)
-
-JumpVolPrior =
+JumpVolKalmanPrior =
 PriorStruct(
 	Parameter = [
 		# Invariant(0.1), # Observation
-		Uniform(0.0, 50.0), # Observation
+		Uniform(), # Observation
 		# Invariant(0.9), Invariant(0.1), # TransitionProbability
 		# Invariant(0.9), Invariant(0.1)
 	],
 	State = [
 		Invariant(0.0), Invariant(1.0), # Transition
-		Invariant(1.0), # MixtureTransition
-		Dirichlet(fill(1.0, 2)), # TransitionProbability
-		Dirichlet(fill(1.0, 2))
-		# Invariant(0.9), Invariant(0.1), # TransitionProbability
-		# Invariant(0.9), Invariant(0.1)
 	]
 )

@@ -16,19 +16,19 @@ ChangeToMean = KalmanFilterStruct(
 	end,
 	Transition = function(Regressor, Parameter, State)
 		Normal(
-			State[1],
-			Parameter[1]
+			Parameter[1],
+			Parameter[2]
 		)
 	end,
 	TransitionMatrixState = function(Regressor, Parameter, State)
-		reshape([1.0], 1, 1)
+		reshape([0.0], 1, 1)
 	end,
 	StateMeanIndex = 1:1,
 	StateCovarianceIndex = 2:2,
 	StateMeanEquationIndex = 1:1
 )
 
-JumpVol =
+JumpVolWellLog =
 DiscreteParticleFilterStruct(
 	Filter = (
 		ChangeNothing,
@@ -42,11 +42,12 @@ DiscreteParticleFilterStruct(
 	IsTransitionProbabilityMatrixFromState = true
 )
 
-JumpVolPrior =
+JumpVolWellLogPrior =
 PriorStruct(
 	Parameter = [
 		# Invariant(0.1), # Observation
-		Uniform(0.0, 50.0), # Observation
+		Uniform(-20.0, 20.0),
+		Uniform(), # Observation
 		# Invariant(0.9), Invariant(0.1), # TransitionProbability
 		# Invariant(0.9), Invariant(0.1)
 	],
