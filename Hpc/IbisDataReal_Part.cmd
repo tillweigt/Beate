@@ -7,7 +7,7 @@
 #SBATCH --ntasks-per-node 72
 
 # How much memory is needed (per node). Possible units: K, G, M, T
-#SBATCH --mem=150G
+#SBATCH --mem=50G
 
 # set a partition
 #SBATCH --partition normal
@@ -29,7 +29,7 @@
 # run the application
 ../julia-1.1.0/bin/julia \
 src/main.jl \
-Parallel \
+NParallel \
 JumpVol \
 128 `#NumberOfStateParticle` \
 1 `#NumberOfMcmcStep` \
@@ -44,8 +44,8 @@ true `#McmcFullCovariance` \
 1 `#NumberOfDensityPoint` \
 true `#SaveOutput` \
 IbisDataTempering `#AlgorithmType` \
-10 `#ComputationLoopNumber` \
-800 `#DataStart` \
-1091 `#DataEnd` \
+1 `#ComputationLoopNumber` \
+880 `#DataStart` \
+1020 `#DataEnd` \
 0 `#NumberOfDataPoint` \
 false `#Simulation`
