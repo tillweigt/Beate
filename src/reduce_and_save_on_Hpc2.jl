@@ -74,7 +74,7 @@ save(
 		"JoinedAndReduced.jld2"
 	),
 	"Parameter",
-	Parameter
+	Parameter,
 	"State",
 	State,
 	"TransitionProbabilityMatrix",
