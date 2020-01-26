@@ -47,4 +47,5 @@ IbisDataTempering `#AlgorithmType` \
 false `#Simulation`
 880 `#DataStart` \
 1000 `#DataEnd` \
-0 `#NumberOfDataPoint`
+0 `#NumberOfDataPoint` \
+1:1
