@@ -33,40 +33,48 @@ File2 = joinpath(
 	"_DP_" * string(NumberOfDensityPoint)
 )
 
-Parameter = missing
+function join_and_reduce()
 
-State = missing
+	Parameter = missing
 
-TransitionProbabilityMatrix = missing
+	State = missing
 
-for loopNumber in ComputationLoopNumber
+	TransitionProbabilityMatrix = missing
 
-	ComputationOverTempering = load(
-		File2 *
-		"_CLN_" * string(loopNumber) *
-		".jld2",
-		"ComputationOverTempering"
-	)
+	for loopNumber in ComputationLoopNumber
 
-	if loopNumber == ComputationLoopNumber[1]
+		ComputationOverTempering = load(
+			File2 *
+			"_CLN_" * string(loopNumber) *
+			".jld2",
+			"ComputationOverTempering"
+		)
 
-		Parameter = (ComputationOverTempering.Parameter,)
+		if loopNumber == ComputationLoopNumber[1]
 
-		State = (ComputationOverTempering.State,)
+			Parameter = (ComputationOverTempering.Parameter,)
 
-		TransitionProbabilityMatrix = (ComputationOverTempering.TransitionProbabilityMatrix,)
+			State = (ComputationOverTempering.State,)
 
-	else
+			TransitionProbabilityMatrix = (ComputationOverTempering.TransitionProbabilityMatrix,)
 
-		Parameter = (Parameter..., ComputationOverTempering.Parameter)
+		else
 
-		State = (State..., ComputationOverTempering.State)
+			Parameter = (Parameter..., ComputationOverTempering.Parameter)
 
-		TransitionProbabilityMatrix = (TransitionProbabilityMatrix..., ComputationOverTempering.TransitionProbabilityMatrix)
+			State = (State..., ComputationOverTempering.State)
+
+			TransitionProbabilityMatrix = (TransitionProbabilityMatrix..., ComputationOverTempering.TransitionProbabilityMatrix)
+
+		end
 
 	end
 
+	return Parameter, State, TransitionProbabilityMatrix
+
 end
+
+Parameter, State, TransitionProbabilityMatrix = join_and_reduce()
 
 save(
 	joinpath(
