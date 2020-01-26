@@ -24,6 +24,19 @@ Parameter, State, TransitionProbabilityMatrix = load(
 	"TransitionProbabilityMatrix"
 )
 
+function temp()
+Parameter1 = fill(NaN, 5, 1000, 100)
+for loopNumber in 1:5
+
+	Parameter1[loopNumber, :, :] = Parameter[loopNumber][1, :, :]
+	Parameter2[loopNumber, :, :] = Parameter[loopNumber][2, :, :]
+	Parameter3[loopNumber, :, :] = Parameter[loopNumber][3, :, :]
+
+end
+return Parameter1
+end
+Parameter1 = temp()
+
 IndexCol1 = 1
 IndexCol2 = 1
 
@@ -34,3 +47,6 @@ histogram!(TransitionProbabilityMatrix[5][IndexCol1, IndexCol2, :, end])
 plot(mean(TransitionProbabilityMatrix[1][IndexCol1, IndexCol2, :, :], dims = 1)[1, :])
 plot!(mean(TransitionProbabilityMatrix[3][IndexCol1, IndexCol2, :, :], dims = 1)[1, :])
 plot!(mean(TransitionProbabilityMatrix[5][IndexCol1, IndexCol2, :, :], dims = 1)[1, :])
+
+
+PriorGrid[[1, 6, 11, 16]]

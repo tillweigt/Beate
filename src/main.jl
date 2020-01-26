@@ -7,8 +7,8 @@ if !ComputationOnCluster
 	Args = fill("", 20)
 
 	Args[1] = "NParallel"
-	Args[2] = "JumpVol" # ModelChoice
-	Args[3] = "128" # NumberOfStateParticle = 128,
+	Args[2] = "JumpVolKalman" # ModelChoice
+	Args[3] = "1" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
 	Args[5] = "500" # NumberOfParameterParticle = 50,
 	Args[6] = "1" # PrintEach = 1,
@@ -20,8 +20,8 @@ if !ComputationOnCluster
 	Args[12] = "1.1" # ResampleThresholdIbis = 1.1,
 	Args[13] = "1" # NumberOfDensityPoint = 10,
 	Args[14] = "true" # SaveOutput = true
-	Args[15] = "Filter" # AlgotirhmType
-	Args[20] = "11:35" # ComputationLoopNumber
+	Args[15] = "IbisDataTempering" # AlgotirhmType
+	Args[20] = "1:1" # ComputationLoopNumber
 	Args[17] = "880" # DataStart
 	Args[18] = "1000" # DataEnd
 	Args[19] = "0" # NumberOfDataPoint
@@ -93,7 +93,7 @@ for preRun in 1:5
 
 end
 
-PriorGrid = [
+# PriorGrid = [
 	PriorStruct(
 		Parameter = [Uniform()],
 		State = [
@@ -299,8 +299,8 @@ PriorGrid = [
 InputPmap = [
 	(
 		Model,
-		# Prior,
-		PriorGrid[computationLoopNumber - 10],
+		Prior,
+		# PriorGrid[computationLoopNumber - 10],
 		get_Data(
 			[:DividendYield], # RegressorName
 			Symbol(ModelChoice), Path,
