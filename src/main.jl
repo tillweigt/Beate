@@ -94,207 +94,207 @@ for preRun in 1:5
 end
 
 # PriorGrid = [
-	PriorStruct(
-		Parameter = [Uniform()],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([1.0, 1.0]),
-			Dirichlet([1.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform()],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([5.0, 1.0]),
-			Dirichlet([5.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform()],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([10.0, 1.0]),
-			Dirichlet([10.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform()],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([20.0, 1.0]),
-			Dirichlet([20.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform()],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([50.0, 1.0]),
-			Dirichlet([50.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform(0.0, 2.0)],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([1.0, 1.0]),
-			Dirichlet([1.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform(0.0, 2.0)],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([5.0, 1.0]),
-			Dirichlet([5.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform(0.0, 2.0)],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([10.0, 1.0]),
-			Dirichlet([10.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform(0.0, 2.0)],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([20.0, 1.0]),
-			Dirichlet([20.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform(0.0, 2.0)],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([50.0, 1.0]),
-			Dirichlet([50.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform(0.0, 5.0)],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([1.0, 1.0]),
-			Dirichlet([1.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform(0.0, 5.0)],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([5.0, 1.0]),
-			Dirichlet([5.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform(0.0, 5.0)],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([10.0, 1.0]),
-			Dirichlet([10.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform(0.0, 5.0)],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([20.0, 1.0]),
-			Dirichlet([20.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform(0.0, 5.0)],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([50.0, 1.0]),
-			Dirichlet([50.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform(0.0, 10.0)],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([1.0, 1.0]),
-			Dirichlet([1.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform(0.0, 10.0)],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([5.0, 1.0]),
-			Dirichlet([5.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform(0.0, 10.0)],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([10.0, 1.0]),
-			Dirichlet([10.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform(0.0, 10.0)],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([20.0, 1.0]),
-			Dirichlet([20.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform(0.0, 10.0)],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([50.0, 1.0]),
-			Dirichlet([50.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform(0.0, 20.0)],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([1.0, 1.0]),
-			Dirichlet([1.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform(0.0, 20.0)],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([5.0, 1.0]),
-			Dirichlet([5.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform(0.0, 20.0)],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([10.0, 1.0]),
-			Dirichlet([10.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform(0.0, 20.0)],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([20.0, 1.0]),
-			Dirichlet([20.0, 1.0])
-		]
-	),
-	PriorStruct(
-		Parameter = [Uniform(0.0, 20.0)],
-		State = [
-			Invariant(0.0), Invariant(1.0), Invariant(1.0),
-			Dirichlet([50.0, 1.0]),
-			Dirichlet([50.0, 1.0])
-		]
-	)
-]
+# 	PriorStruct(
+# 		Parameter = [Uniform()],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([1.0, 1.0]),
+# 			Dirichlet([1.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform()],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([5.0, 1.0]),
+# 			Dirichlet([5.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform()],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([10.0, 1.0]),
+# 			Dirichlet([10.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform()],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([20.0, 1.0]),
+# 			Dirichlet([20.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform()],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([50.0, 1.0]),
+# 			Dirichlet([50.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform(0.0, 2.0)],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([1.0, 1.0]),
+# 			Dirichlet([1.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform(0.0, 2.0)],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([5.0, 1.0]),
+# 			Dirichlet([5.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform(0.0, 2.0)],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([10.0, 1.0]),
+# 			Dirichlet([10.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform(0.0, 2.0)],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([20.0, 1.0]),
+# 			Dirichlet([20.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform(0.0, 2.0)],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([50.0, 1.0]),
+# 			Dirichlet([50.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform(0.0, 5.0)],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([1.0, 1.0]),
+# 			Dirichlet([1.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform(0.0, 5.0)],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([5.0, 1.0]),
+# 			Dirichlet([5.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform(0.0, 5.0)],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([10.0, 1.0]),
+# 			Dirichlet([10.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform(0.0, 5.0)],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([20.0, 1.0]),
+# 			Dirichlet([20.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform(0.0, 5.0)],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([50.0, 1.0]),
+# 			Dirichlet([50.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform(0.0, 10.0)],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([1.0, 1.0]),
+# 			Dirichlet([1.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform(0.0, 10.0)],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([5.0, 1.0]),
+# 			Dirichlet([5.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform(0.0, 10.0)],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([10.0, 1.0]),
+# 			Dirichlet([10.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform(0.0, 10.0)],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([20.0, 1.0]),
+# 			Dirichlet([20.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform(0.0, 10.0)],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([50.0, 1.0]),
+# 			Dirichlet([50.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform(0.0, 20.0)],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([1.0, 1.0]),
+# 			Dirichlet([1.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform(0.0, 20.0)],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([5.0, 1.0]),
+# 			Dirichlet([5.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform(0.0, 20.0)],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([10.0, 1.0]),
+# 			Dirichlet([10.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform(0.0, 20.0)],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([20.0, 1.0]),
+# 			Dirichlet([20.0, 1.0])
+# 		]
+# 	),
+# 	PriorStruct(
+# 		Parameter = [Uniform(0.0, 20.0)],
+# 		State = [
+# 			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+# 			Dirichlet([50.0, 1.0]),
+# 			Dirichlet([50.0, 1.0])
+# 		]
+# 	)
+# ]
 
 InputPmap = [
 	(
