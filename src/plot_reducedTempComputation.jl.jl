@@ -6,13 +6,13 @@ include(joinpath(Path, "Data", "get_Data.jl"))
 
 AlgorithmType = "IbisDataTempering"
 
-ModelChoice = "JumpVol"
+ModelChoice = "WellLog"
 
 NumberOfDataPoint = 0
 
 Simulation = false
 
-DataStart = 850
+DataStart = 1
 
 DataEnd = 1000
 

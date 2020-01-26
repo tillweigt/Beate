@@ -24,6 +24,8 @@ Parameter, State, TransitionProbabilityMatrix = load(
 	"TransitionProbabilityMatrix"
 )
 
+include(joinpath(Path, "Data", "get_Data.jl"))
+
 Data = get_Data(
 	[:DividendYield], # RegressorName
 	Symbol(ModelChoice), Path,
@@ -34,6 +36,13 @@ Data = get_Data(
 	false,
 	880,
 	1000
+)
+
+plot(mean(State[1][3, :, :], dims = 1)')
+
+TransitionProbability = DataFrame(
+	T11 = mean(TransitionProbabilityMatrix[1][1, 1, :, :], dims = 1)[1, :],
+	T12 = mean(TransitionProbabilityMatrix[1][1, 2, :, :], dims = 1)[1, :]
 )
 
 histogram(Parameter[11][1, :, end])
