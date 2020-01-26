@@ -33,7 +33,7 @@ function get_Parameter_for_simulation(ModelChoice)
 	elseif ModelChoice == :MixtureOfNormal
 
 		Parameter = [
-			0.0, 0.1, 0.2, 0.1
+			1.0, 0.1
 		]
 
 		TransitionProbabilityMatrix = reshape(

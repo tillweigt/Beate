@@ -1,8 +1,8 @@
 Normal1 = NoFilterStruct(
 	Observation = function(Regressor, Parameter, State)
 		Normal(
-			Parameter[1],
-			Parameter[2]
+			0.0,
+			Parameter[1]
 		)
 	end
 )
@@ -10,8 +10,8 @@ Normal1 = NoFilterStruct(
 Normal2 = NoFilterStruct(
 	Observation = function(Regressor, Parameter, State)
 		Normal(
-			Parameter[3],
-			Parameter[4]
+			0.0,
+			Parameter[2]
 		)
 	end
 )
@@ -33,10 +33,10 @@ DiscreteParticleFilterStruct(
 MixtureOfNormalPrior =
 PriorStruct(
 	Parameter = [
-		Invariant(0.0), Invariant(0.1),
-		Invariant(0.2), Invariant(0.1),
-		# Uniform(-0.5, 0.5), Uniform(0.0, 0.5), # Observation
-		# Uniform(0.5, 1.5), Uniform(0.0, 0.5),
+		# Invariant(0.0), Invariant(0.1),
+		# Invariant(0.2), Invariant(0.1),
+		Uniform(0.0, 2.0), # Observation
+		Uniform(0.0, 2.0),
 		# Invariant(0.9), Invariant(0.1), # TransitionProbability
 		# Invariant(0.1), Invariant(0.9)
 	],

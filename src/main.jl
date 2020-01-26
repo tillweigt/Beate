@@ -10,20 +10,20 @@ if !ComputationOnCluster
 	Args[2] = "JumpVol" # ModelChoice
 	Args[3] = "128" # NumberOfStateParticle = 128,
 	Args[4] = "1" # NumberOfMcmcStep = 1,
-	Args[5] = "1000" # NumberOfParameterParticle = 50,
+	Args[5] = "500" # NumberOfParameterParticle = 50,
 	Args[6] = "1" # PrintEach = 1,
 	Args[7] = "false" # CovarianceScaling = false,
 	Args[8] = "true" # McmcFullCovariance = true,
 	Args[9] = "1000" # McmcUpdateIntervalLength = 500,
 	Args[10] = "3000" # McmcLastUpdateIndex = 1000,
-	Args[11] = "fill(0.01, 10)" # McmcVarianceInitialisation = 0.001,
+	Args[11] = "fill(1.0, 10)" # McmcVarianceInitialisation = 0.001,
 	Args[12] = "1.1" # ResampleThresholdIbis = 1.1,
 	Args[13] = "1" # NumberOfDensityPoint = 10,
 	Args[14] = "true" # SaveOutput = true
-	Args[15] = "IbisDataTempering" # AlgotirhmType
-	Args[16] = "1" # ComputationLoopNumber
-	Args[17] = "1000" # DataStart
-	Args[18] = "1091" # DataEnd
+	Args[15] = "Filter" # AlgotirhmType
+	Args[16] = "11:35" # ComputationLoopNumber
+	Args[17] = "880" # DataStart
+	Args[18] = "1000" # DataEnd
 	Args[19] = "0" # NumberOfDataPoint
 	Args[20] = "false"
 
@@ -32,6 +32,8 @@ else
 	Args = ARGS
 
 end
+
+typeof(1:3)
 
 Args[1] == "Parallel" ? addprocs() : nothing
 
@@ -91,68 +93,214 @@ for preRun in 1:5
 
 end
 
-if parse(Int64, Args[16]) > 1
-
-	InputPmap = [
-		(
-			Model,
-			Prior,
-			get_Data(
-				[:DividendYield], # RegressorName
-				Symbol(ModelChoice), Path,
-				1, # NumberOfTarget
-				parse(Int64, Args[19]), # NumberOfDataPoint
-				Model, Prior,
-				[0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
-				parse(Bool, Args[20]),
-				parse(Int64, Args[17]),
-				parse(Int64, Args[18])
-			),
-			InputSettingStruct(
-				NumberOfStateParticle = parse(Int64, Args[3]),
-				NumberOfMcmcStep = parse(Int64, Args[4]),
-				NumberOfParameterParticle = parse(Int64, Args[5]),
-				PrintEach = parse(Int64, Args[6]),
-				CovarianceScaling = parse(Bool, Args[7]),
-				McmcFullCovariance = parse(Bool, Args[8]),
-				McmcUpdateIntervalLength = parse(Int64, Args[9]),
-				McmcLastUpdateIndex = parse(Int64, Args[10]),
-				McmcVarianceInitialisation =
-				eval(Meta.parse(Args[11])),
-				ResampleThresholdIbis = parse(Float64, Args[12]),
-				NumberOfDensityPoint = parse(Int64, Args[13]),
-				Path = Path,
-				SaveOutput = parse(Bool, Args[14]),
-				ModelChoice = ModelChoice,
-				AlgorithmType = Args[15],
-				ComputationLoopNumber = computationLoopNumber,
-				ComputationOnCluster = ComputationOnCluster
-			),
-			Symbol(Args[15])
-		) # AlgorithmType
-		for computationLoopNumber in 1:parse(Int64, Args[16])
-	]
-
-	@everywhere function run_Algorithm_parallel(InputPmap)
-
-		run_Algorithm(
-			InputPmap...
-		)
-
-		return nothing
-
-	end
-
-	pmap(
-		run_Algorithm_parallel,
-		InputPmap
+PriorGrid = [
+	PriorStruct(
+		Parameter = [Uniform()],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([1.0, 1.0]),
+			Dirichlet([1.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform()],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([5.0, 1.0]),
+			Dirichlet([5.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform()],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([10.0, 1.0]),
+			Dirichlet([10.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform()],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([20.0, 1.0]),
+			Dirichlet([20.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform()],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([50.0, 1.0]),
+			Dirichlet([50.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform(0.0, 2.0)],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([1.0, 1.0]),
+			Dirichlet([1.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform(0.0, 2.0)],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([5.0, 1.0]),
+			Dirichlet([5.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform(0.0, 2.0)],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([10.0, 1.0]),
+			Dirichlet([10.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform(0.0, 2.0)],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([20.0, 1.0]),
+			Dirichlet([20.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform(0.0, 2.0)],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([50.0, 1.0]),
+			Dirichlet([50.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform(0.0, 5.0)],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([1.0, 1.0]),
+			Dirichlet([1.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform(0.0, 5.0)],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([5.0, 1.0]),
+			Dirichlet([5.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform(0.0, 5.0)],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([10.0, 1.0]),
+			Dirichlet([10.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform(0.0, 5.0)],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([20.0, 1.0]),
+			Dirichlet([20.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform(0.0, 5.0)],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([50.0, 1.0]),
+			Dirichlet([50.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform(0.0, 10.0)],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([1.0, 1.0]),
+			Dirichlet([1.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform(0.0, 10.0)],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([5.0, 1.0]),
+			Dirichlet([5.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform(0.0, 10.0)],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([10.0, 1.0]),
+			Dirichlet([10.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform(0.0, 10.0)],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([20.0, 1.0]),
+			Dirichlet([20.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform(0.0, 10.0)],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([50.0, 1.0]),
+			Dirichlet([50.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform(0.0, 20.0)],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([1.0, 1.0]),
+			Dirichlet([1.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform(0.0, 20.0)],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([5.0, 1.0]),
+			Dirichlet([5.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform(0.0, 20.0)],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([10.0, 1.0]),
+			Dirichlet([10.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform(0.0, 20.0)],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([20.0, 1.0]),
+			Dirichlet([20.0, 1.0])
+		]
+	),
+	PriorStruct(
+		Parameter = [Uniform(0.0, 20.0)],
+		State = [
+			Invariant(0.0), Invariant(1.0), Invariant(1.0),
+			Dirichlet([50.0, 1.0]),
+			Dirichlet([50.0, 1.0])
+		]
 	)
+]
 
-else
-
-	Output = run_Algorithm(
+InputPmap = [
+	(
 		Model,
-		Prior,
+		# Prior,
+		PriorGrid[computationLoopNumber - 10],
 		get_Data(
 			[:DividendYield], # RegressorName
 			Symbol(ModelChoice), Path,
@@ -181,10 +329,25 @@ else
 			SaveOutput = parse(Bool, Args[14]),
 			ModelChoice = ModelChoice,
 			AlgorithmType = Args[15],
-			ComputationLoopNumber = 1,
+			ComputationLoopNumber = computationLoopNumber,
 			ComputationOnCluster = ComputationOnCluster
 		),
-		Symbol(Args[15]) # AlgorithmType
+		Symbol(Args[15])
+	) # AlgorithmType
+	for computationLoopNumber in eval(Meta.parse(Args[16]))
+]
+
+@everywhere function run_Algorithm_parallel(InputPmap)
+
+	Output = run_Algorithm(
+		InputPmap...
 	)
 
+	return Output
+
 end
+
+Output = pmap(
+	run_Algorithm_parallel,
+	InputPmap
+)

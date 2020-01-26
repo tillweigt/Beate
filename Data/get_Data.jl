@@ -40,7 +40,7 @@ function get_Data(
 	if Simulation
 		TargetVol = Data.Target[:, DataStart:DataEnd]
 	else
-		TargetVol = log.(Data.Target[:, DataStart:DataEnd].^2)
+		TargetVol = log.((Data.Target[:, DataStart:DataEnd]).^2)
 	end
 	Data = DataStruct(
 		TargetVol,

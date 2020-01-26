@@ -2,6 +2,8 @@ Path = pwd()
 push!(LOAD_PATH, joinpath(Path, "src"))
 using FileIO, JLD2, Beate, DataFrames, Plots, Statistics
 
+include(joinpath(Path, "Data", "get_Data.jl"))
+
 AlgorithmType = "IbisDataTempering"
 
 ModelChoice = "JumpVol"
@@ -10,9 +12,9 @@ NumberOfDataPoint = 0
 
 Simulation = false
 
-DataStart = 800
+DataStart = 850
 
-DataEnd = 1091
+DataEnd = 1000
 
 Model = missing
 
@@ -56,10 +58,13 @@ histogram(Parameter[1, :, end])
 plot(sqrt.(exp.(Data.Target[1, :])))
 plot!(sqrt.(exp.(mean(Prediction[1, :, :], dims = 1)[1, :])))
 
-plot(Data.Target[1, 250:end])
+plot(Data.Target[1, 30:end])
+vline!(0:5:size(Data.Target, 2))
+hline!(0.4:0.01:0.6)
+
 plot!(mean(State[1, :, 1:end], dims = 1)[1, :])
 
-plot(mean(State[3, :, 250:end], dims = 1)[1, :])
+plot(mean(State[3, :, :], dims = 1)[1, :])
 
 plot(mean(TransitionProbablityMatrix[1, 1, :, :], dims = 1)[1, :])
 

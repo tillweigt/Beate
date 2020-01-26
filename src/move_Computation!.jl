@@ -76,6 +76,11 @@ function move_Computation!(
 
 				end
 
+				# println(ComputationProposal.LogLikelihoodIncrement[parameterParticle])
+
+				# ComputationProposal.LogLikelihood[parameterParticle] =
+				# ComputationProposal.LogLikelihoodIncrement[parameterParticle]
+
 				# update_LogLikelihood!(
 				# 	Setting,
 				# 	ComputationProposal,
