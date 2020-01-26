@@ -30,8 +30,7 @@ File2 = joinpath(
 	"PP_" * string(NumberOfParameterParticle) *
 	"_SP_" * string(NumberOfStateParticle) *
 	"_MS_" * string(NumberOfMcmcStep) *
-	"_DP_" * string(NumberOfDensityPoint) *
-
+	"_DP_" * string(NumberOfDensityPoint)
 )
 
 Parameter = missing
