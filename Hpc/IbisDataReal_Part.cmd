@@ -10,7 +10,7 @@
 #SBATCH --mem=50G
 
 # set a partition
-#SBATCH --partition d0ow
+#SBATCH --partition express
 
 # set max wallclock time
 #SBATCH --time=7-00:00:00
@@ -44,7 +44,7 @@ true `#McmcFullCovariance` \
 1 `#NumberOfDensityPoint` \
 true `#SaveOutput` \
 IbisDataTempering `#AlgorithmType` \
-11:20 `#ComputationLoopNumber` \
+21:30 `#ComputationLoopNumber` \
 880 `#DataStart` \
 1000 `#DataEnd` \
 0 `#NumberOfDataPoint` \
