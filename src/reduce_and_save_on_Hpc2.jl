@@ -43,29 +43,34 @@ function join_and_reduce()
 
 	for loopNumber in ComputationLoopNumber
 
-		ComputationOverTempering = load(
-			File2 *
-			"_CLN_" * string(loopNumber) *
-			".jld2",
-			"ComputationOverTempering"
-		)
+		try
 
-		if loopNumber == ComputationLoopNumber[1]
+			ComputationOverTempering = load(
+				File2 *
+				"_CLN_" * string(loopNumber) *
+				".jld2",
+				"ComputationOverTempering"
+			)
 
-			Parameter = (ComputationOverTempering.Parameter,)
+			if loopNumber == ComputationLoopNumber[1]
 
-			State = (ComputationOverTempering.State,)
+				Parameter = (ComputationOverTempering.Parameter,)
 
-			TransitionProbabilityMatrix = (ComputationOverTempering.TransitionProbabilityMatrix,)
+				State = (ComputationOverTempering.State,)
 
-		else
+				TransitionProbabilityMatrix = (ComputationOverTempering.TransitionProbabilityMatrix,)
 
-			Parameter = (Parameter..., ComputationOverTempering.Parameter)
+			else
 
-			State = (State..., ComputationOverTempering.State)
+				Parameter = (Parameter..., ComputationOverTempering.Parameter)
 
-			TransitionProbabilityMatrix = (TransitionProbabilityMatrix..., ComputationOverTempering.TransitionProbabilityMatrix)
+				State = (State..., ComputationOverTempering.State)
 
+				TransitionProbabilityMatrix = (TransitionProbabilityMatrix..., ComputationOverTempering.TransitionProbabilityMatrix)
+
+			end
+
+		catch
 		end
 
 	end
