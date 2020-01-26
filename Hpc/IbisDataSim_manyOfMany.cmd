@@ -44,7 +44,7 @@ true `#McmcFullCovariance` \
 1 `#NumberOfDensityPoint` \
 true `#SaveOutput` \
 IbisDataTempering `#AlgorithmType` \
-true `#Simulation`
+true `#Simulation` \
 1 `#DataStart` \
 100 `#DataEnd` \
 101 `#NumberOfDataPoint`
