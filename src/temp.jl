@@ -4,46 +4,24 @@ using FileIO, JLD2, Beate, DataFrames, Plots, Statistics, Distributions
 
 AlgorithmType = "IbisDataTempering"
 
-ModelChoice = "WellLog"
+ModelChoice = "WellLogManyOf1"
 
-NumberOfParameterParticle = 1000
-
-NumberOfStateParticle = 128
-
-NumberOfMcmcStep = 1
-
-NumberOfDensityPoint = 1
-
-ComputationLoopNumber = 1
-
-NumberOfDataPoint = 99
+NumberOfDataPoint = 100
 
 File = joinpath(
 	Path,
 	"Output",
 	"Computation",
 	AlgorithmType,
-	ModelChoice
+	ModelChoice,
+	"JoinedAndReduced.jld2"
 )
 
-File2 = joinpath(
+Parameter, State, TransitionProbabilityMatrix = load(
 	File,
-	"PP_" * string(NumberOfParameterParticle) *
-	"_SP_" * string(NumberOfStateParticle) *
-	"_MS_" * string(NumberOfMcmcStep) *
-	"_DP_" * string(NumberOfDensityPoint) *
-	"_CLN_" * string(ComputationLoopNumber) *
-	".jld2"
-)
-
-Setting = load(
-	File2,
-	"Setting"
-)
-
-ComputationOverTempering = load(
-	File2,
-	"ComputationOverTempering"
+	"Parameter",
+	"State",
+	"TransitionProbabilityMatrix"
 )
 
 histogram(rand(Setting.Prior.Parameter[1], NumberOfParameterParticle))

@@ -21,11 +21,11 @@ if !ComputationOnCluster
 	Args[13] = "1" # NumberOfDensityPoint = 10,
 	Args[14] = "true" # SaveOutput = true
 	Args[15] = "Filter" # AlgotirhmType
-	Args[16] = "11:35" # ComputationLoopNumber
+	Args[20] = "11:35" # ComputationLoopNumber
 	Args[17] = "880" # DataStart
 	Args[18] = "1000" # DataEnd
 	Args[19] = "0" # NumberOfDataPoint
-	Args[20] = "false"
+	Args[16] = "false"
 
 else
 
@@ -66,7 +66,7 @@ for preRun in 1:5
 			parse(Int64, Args[19]), # NumberOfDataPoint
 			Model, Prior,
 			[0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
-			parse(Bool, Args[20]),
+			parse(Bool, Args[16]),
 			parse(Int64, Args[17]),
 			parse(Int64, Args[18])
 		),
@@ -308,7 +308,7 @@ InputPmap = [
 			parse(Int64, Args[19]), # NumberOfDataPoint
 			Model, Prior,
 			[0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
-			parse(Bool, Args[20]),
+			parse(Bool, Args[16]),
 			parse(Int64, Args[17]),
 			parse(Int64, Args[18])
 		),
@@ -334,7 +334,7 @@ InputPmap = [
 		),
 		Symbol(Args[15])
 	) # AlgorithmType
-	for computationLoopNumber in eval(Meta.parse(Args[16]))
+	for computationLoopNumber in eval(Meta.parse(Args[20]))
 ]
 
 @everywhere function run_Algorithm_parallel(InputPmap)
