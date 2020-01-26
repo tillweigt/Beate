@@ -14,7 +14,7 @@ NumberOfMcmcStep = 1
 
 NumberOfDensityPoint = 1
 
-ComputationLoopNumber = 1:1#eval(Meta.parse(ARGS[3]))
+ComputationLoopNumber = eval(Meta.parse(ARGS[3]))
 
 File = joinpath(
 	"/scratch",
@@ -48,7 +48,7 @@ for loopNumber in ComputationLoopNumber
 		"ComputationOverTempering"
 	)
 
-	# if loopNumber == ComputationLoopNumber[1]
+	if loopNumber == ComputationLoopNumber[1]
 
 		Parameter = (ComputationOverTempering.Parameter,)
 
@@ -56,15 +56,15 @@ for loopNumber in ComputationLoopNumber
 
 		TransitionProbabilityMatrix = (ComputationOverTempering.TransitionProbabilityMatrix,)
 
-	# else
-	#
-	# 	Parameter = (Parameter..., ComputationOverTempering.Parameter)
-	#
-	# 	State = (State..., ComputationOverTempering.State)
-	#
-	# 	TransitionProbabilityMatrix = (TransitionProbabilityMatrix..., ComputationOverTempering.TransitionProbabilityMatrix)
-	#
-	# end
+	else
+
+		Parameter = (Parameter..., ComputationOverTempering.Parameter)
+
+		State = (State..., ComputationOverTempering.State)
+
+		TransitionProbabilityMatrix = (TransitionProbabilityMatrix..., ComputationOverTempering.TransitionProbabilityMatrix)
+
+	end
 
 end
 
