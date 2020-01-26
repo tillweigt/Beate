@@ -23,8 +23,8 @@ if !ComputationOnCluster
 	Args[15] = "Filter" # AlgotirhmType
 	Args[16] = "100" # ComputationLoopNumber
 	Args[17] = "1" # DataStart
-	Args[18] = "500" # DataEnd
-	Args[19] = "501" # NumberOfDataPoint
+	Args[18] = "100" # DataEnd
+	Args[19] = "101" # NumberOfDataPoint
 	Args[20] = "true"
 
 else
@@ -91,8 +91,10 @@ for preRun in 1:5
 
 end
 
+DataLength = length(parse(Int64, Args[17]):parse(Int64, Args[18]))
+
 TransitionProbabilityMatrix = fill(
-	NaN, 2, 2, parse(Int64, Args[19]) - 1, parse(Int64, Args[16])
+	NaN, 2, 2, DataLength, parse(Int64, Args[16])
 )
 
 Data = get_Data(
@@ -161,8 +163,8 @@ IndexCol1 = 1
 IndexCol2 = 1
 
 FilteredMean = mean(TransitionProbabilityMatrix[IndexCol1, IndexCol2, :, :], dims = 2)[:, 1]
-FilteredQuantileUpper = map(x -> quantile(x, 0.99), [TransitionProbabilityMatrix[IndexCol1, IndexCol2, i, :] for i in 1:parse(Int64, Args[19]) - 1])
-FilteredQuantileLower = map(x -> quantile(x, 0.01), [TransitionProbabilityMatrix[IndexCol1, IndexCol2, i, :] for i in 1:parse(Int64, Args[19]) - 1])
+FilteredQuantileUpper = map(x -> quantile(x, 0.99), [TransitionProbabilityMatrix[IndexCol1, IndexCol2, i, :] for i in 1:DataLength])
+FilteredQuantileLower = map(x -> quantile(x, 0.01), [TransitionProbabilityMatrix[IndexCol1, IndexCol2, i, :] for i in 1:DataLength])
 
 scatter(TransitionProbabilityMatrix[IndexCol1, IndexCol2, end, :])
 
@@ -172,20 +174,55 @@ plot(FilteredMean, legend = false)
 plot!(FilteredQuantileUpper)
 plot!(FilteredQuantileLower)
 
-plot(Data.Target')
+WellLogFilterManyOf1T11 = DataFrame(
+	FilteredMean = FilteredMean,
+	FilteredQuantileUpper = FilteredQuantileUpper,
+	FilteredQuantileLower = FilteredQuantileLower,
+	TransitionProbabilityMatrixEnd = TransitionProbabilityMatrix[IndexCol1, IndexCol2, end, :]
+)
 
-# save(
-# 	joinpath(
-# 		pwd(),
-# 		"Output",
-# 		"Paper",
-# 		"Simulation",
-# 		"Filter",
-# 		"TransitionProbability_" *
-# 		"100Of100" *
-# 		".jld2"
-# 	),
-# 	"TransitionProbability_" *
-# 	"100Of100",
-# 	out
-# )
+save(
+	joinpath(
+		"C:\\GoogleDrive",
+		"Forschung",
+		"Paper3",
+		"Paper",
+		"data",
+		"WellLogFilterManyOf1T11.csv"
+	),
+	WellLogFilterManyOf1T11
+)
+
+IndexCol1 = 1
+IndexCol2 = 2
+
+FilteredMean = mean(TransitionProbabilityMatrix[IndexCol1, IndexCol2, :, :], dims = 2)[:, 1]
+FilteredQuantileUpper = map(x -> quantile(x, 0.99), [TransitionProbabilityMatrix[IndexCol1, IndexCol2, i, :] for i in 1:DataLength])
+FilteredQuantileLower = map(x -> quantile(x, 0.01), [TransitionProbabilityMatrix[IndexCol1, IndexCol2, i, :] for i in 1:DataLength])
+
+scatter(TransitionProbabilityMatrix[IndexCol1, IndexCol2, end, :])
+
+histogram(TransitionProbabilityMatrix[IndexCol1, IndexCol2, end, :], nbins = 20)
+
+plot(FilteredMean, legend = false)
+plot!(FilteredQuantileUpper)
+plot!(FilteredQuantileLower)
+
+WellLogFilterManyOf1T12 = DataFrame(
+	FilteredMean = FilteredMean,
+	FilteredQuantileUpper = FilteredQuantileUpper,
+	FilteredQuantileLower = FilteredQuantileLower,
+	TransitionProbabilityMatrixEnd = TransitionProbabilityMatrix[IndexCol1, IndexCol2, end, :]
+)
+
+save(
+	joinpath(
+		"C:\\GoogleDrive",
+		"Forschung",
+		"Paper3",
+		"Paper",
+		"data",
+		"WellLogFilterManyOf1T12.csv"
+	),
+	WellLogFilterManyOf1T12
+)
