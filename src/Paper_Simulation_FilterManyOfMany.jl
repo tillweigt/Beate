@@ -97,21 +97,21 @@ TransitionProbabilityMatrix = fill(
 	NaN, 2, 2, DataLength, parse(Int64, Args[16])
 )
 
-Data = get_Data(
-	[:DividendYield], # RegressorName
-	Symbol(ModelChoice), Path,
-	1, # NumberOfTarget
-	parse(Int64, Args[19]), # NumberOfDataPoint
-	Model, Prior,
-	[0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
-	parse(Bool, Args[20]),
-	parse(Int64, Args[17]),
-	parse(Int64, Args[18])
-)
-
 for computationLoopNumber in 1:parse(Int64, Args[16])
 
 	println(computationLoopNumber)
+
+	Data = get_Data(
+		[:DividendYield], # RegressorName
+		Symbol(ModelChoice), Path,
+		1, # NumberOfTarget
+		parse(Int64, Args[19]), # NumberOfDataPoint
+		Model, Prior,
+		[0.1, 0.9, 0.05], # Parameter for exogenuous Regressor Simulation
+		parse(Bool, Args[20]),
+		parse(Int64, Args[17]),
+		parse(Int64, Args[18])
+	)
 
 	Output = run_Algorithm(
 		Model,
@@ -162,7 +162,7 @@ plot(FilteredMean, legend = false)
 plot!(FilteredQuantileUpper)
 plot!(FilteredQuantileLower)
 
-WellLogFilterManyOf1T11 = DataFrame(
+WellLogFilterManyOfManyT11 = DataFrame(
 	FilteredMean = FilteredMean,
 	FilteredQuantileUpper = FilteredQuantileUpper,
 	FilteredQuantileLower = FilteredQuantileLower,
@@ -176,9 +176,9 @@ save(
 		"Paper3",
 		"Paper",
 		"data",
-		"WellLogFilterManyOf1T11.csv"
+		"WellLogFilterManyOfManyT11.csv"
 	),
-	WellLogFilterManyOf1T11
+	WellLogFilterManyOfManyT11
 )
 
 IndexCol1 = 1
@@ -196,7 +196,7 @@ plot(FilteredMean, legend = false)
 plot!(FilteredQuantileUpper)
 plot!(FilteredQuantileLower)
 
-WellLogFilterManyOf1T12 = DataFrame(
+WellLogFilterManyOfManyT12 = DataFrame(
 	FilteredMean = FilteredMean,
 	FilteredQuantileUpper = FilteredQuantileUpper,
 	FilteredQuantileLower = FilteredQuantileLower,
@@ -210,7 +210,7 @@ save(
 		"Paper3",
 		"Paper",
 		"data",
-		"WellLogFilterManyOf1T12.csv"
+		"WellLogFilterManyOfManyT12.csv"
 	),
-	WellLogFilterManyOf1T12
+	WellLogFilterManyOfManyT12
 )

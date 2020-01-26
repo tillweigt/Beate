@@ -31,18 +31,34 @@ File2 = joinpath(
 	"PP_" * string(NumberOfParameterParticle) *
 	"_SP_" * string(NumberOfStateParticle) *
 	"_MS_" * string(NumberOfMcmcStep) *
-	"_DP_" * string(NumberOfDensityPoint) *
-	"_CLN_" * string(ComputationLoopNumber) *
-	".jld2"
+	"_DP_" * string(NumberOfDensityPoint)
 )
 
-Setting = load(
-	File2,
+Setting1 = load(
+	File2 *
+	"_CLN_" * string(1) *
+	".jld2",
 	"Setting"
 )
 
-ComputationOverTempering = load(
-	File2,
+ComputationOverTempering1 = load(
+	File2 *
+	"_CLN_" * string(1) *
+	".jld2",
+	"ComputationOverTempering"
+)
+
+Setting2 = load(
+	File2 *
+	"_CLN_" * string(1) *
+	".jld2",
+	"Setting"
+)
+
+ComputationOverTempering2 = load(
+	File2 *
+	"_CLN_" * string(1) *
+	".jld2",
 	"ComputationOverTempering"
 )
 
@@ -53,7 +69,7 @@ vline!([0.0], linewidth = 5)
 histogram(rand(Setting.Prior.Parameter[3], NumberOfParameterParticle))
 vline!([1.0], linewidth = 5)
 
-histogram(ComputationOverTempering.Parameter[1, :, end])
+histogram(ComputationOverTempering1.Parameter[1, :, end])
 vline!([0.1], linewidth = 5)
 histogram(ComputationOverTempering.Parameter[2, :, end])
 vline!([0.0], linewidth = 5)
