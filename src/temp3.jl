@@ -36,7 +36,7 @@ Data = get_Data(
 	1000
 )
 
-histogram(Parameter[21][1, :, end])
+histogram(Parameter[11][1, :, end])
 
 StateMean = map(
 	i -> mean(State[i][1, :, :], dims = 1)[1, :],

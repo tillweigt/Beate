@@ -24,29 +24,39 @@ Parameter, State, TransitionProbabilityMatrix = load(
 	"TransitionProbabilityMatrix"
 )
 
-function temp()
-Parameter1 = fill(NaN, 5, 1000, 100)
-for loopNumber in 1:5
+function temp(LoopNumber)
+	Parameter1 = fill(NaN, LoopNumber, 1000, 100)
+	Parameter2 = fill(NaN, LoopNumber, 1000, 100)
+	Parameter3 = fill(NaN, LoopNumber, 1000, 100)
+	StateMean = fill(NaN, LoopNumber, 1000, 100)
+	StateMixture = fill(NaN, LoopNumber, 1000, 100)
+	TransitionProbability = fill(NaN, LoopNumber, 2, 2, 1000, 100)
+	for loopNumber in 1:5
 
-	Parameter1[loopNumber, :, :] = Parameter[loopNumber][1, :, :]
-	Parameter2[loopNumber, :, :] = Parameter[loopNumber][2, :, :]
-	Parameter3[loopNumber, :, :] = Parameter[loopNumber][3, :, :]
+		Parameter1[loopNumber, :, :] = Parameter[loopNumber][1, :, :]
+		Parameter2[loopNumber, :, :] = Parameter[loopNumber][2, :, :]
+		Parameter3[loopNumber, :, :] = Parameter[loopNumber][3, :, :]
 
+		StateMean[loopNumber, :, :] = State[loopNumber][1, :, :]
+
+		StateMixture[loopNumber, :, :] = State[loopNumber][3, :, :]
+
+		TransitionProbability[loopNumber, :, :, :, :] =
+		TransitionProbabilityMatrix[loopNumber]
+
+	end
+	return Parameter1, Parameter2, Parameter3, StateMean, StateMixture, TransitionProbability
 end
-return Parameter1
-end
-Parameter1 = temp()
+Parameter1, Parameter2, Parameter3, State2, MixtureState, TransitionProbability = temp(5)
 
-IndexCol1 = 1
-IndexCol2 = 1
-
-histogram(TransitionProbabilityMatrix[1][IndexCol1, IndexCol2, :, end])
-histogram!(TransitionProbabilityMatrix[3][IndexCol1, IndexCol2, :, end])
-histogram!(TransitionProbabilityMatrix[5][IndexCol1, IndexCol2, :, end])
-
-plot(mean(TransitionProbabilityMatrix[1][IndexCol1, IndexCol2, :, :], dims = 1)[1, :])
-plot!(mean(TransitionProbabilityMatrix[3][IndexCol1, IndexCol2, :, :], dims = 1)[1, :])
-plot!(mean(TransitionProbabilityMatrix[5][IndexCol1, IndexCol2, :, :], dims = 1)[1, :])
-
-
-PriorGrid[[1, 6, 11, 16]]
+save(
+	joinpath(
+		"C:\\GoogleDrive",
+		"Forschung",
+		"Paper3",
+		"Paper",
+		"data",
+		"WellLogFilterManyOf1Parameter1.csv"
+	),
+	DataFrame(Parameter1)
+)
