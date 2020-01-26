@@ -10,7 +10,7 @@
 #SBATCH --mem=50G
 
 # set a partition
-#SBATCH --partition requeue
+#SBATCH --partition express
 
 # set max wallclock time
 #SBATCH --time=0-06:00:00
@@ -33,7 +33,7 @@ Parallel \
 WellLogManyOfMany \
 128 `#NumberOfStateParticle` \
 1 `#NumberOfMcmcStep` \
-1000 `#NumberOfParameterParticle` \
+500 `#NumberOfParameterParticle` \
 1 `#PrintEach` \
 false `#CovarianceScaling` \
 true `#McmcFullCovariance` \
